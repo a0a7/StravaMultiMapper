@@ -52,6 +52,9 @@ devDependencies:
   svelte-check:
     specifier: ^3.6.0
     version: 3.6.6(postcss@8.4.35)(svelte@4.2.12)
+  svelte-dark-mode:
+    specifier: ^2.1.0
+    version: 2.1.0
   tailwindcss:
     specifier: ^3.4.1
     version: 3.4.1
@@ -1893,6 +1896,10 @@ packages:
       - sass
       - stylus
       - sugarss
+    dev: true
+
+  /svelte-dark-mode@2.1.0:
+    resolution: {integrity: sha512-/QmIqWGwzcfE82FAMuHBlKFwudW7Vcos60Ii8j/mJZ0H6kGAXwL5EGlcc8voBJMJv/i0QZmhp5b1ZX/XKg9NJQ==}
     dev: true
 
   /svelte-hmr@0.15.3(svelte@4.2.12):
