@@ -5,6 +5,9 @@ settings:
   excludeLinksFromLockfile: false
 
 dependencies:
+  '@fortawesome/free-solid-svg-icons':
+    specifier: ^6.5.1
+    version: 6.5.1
   '@internationalized/date':
     specifier: ^3.5.2
     version: 3.5.2
@@ -17,6 +20,12 @@ dependencies:
   cmdk-sv:
     specifier: ^0.0.13
     version: 0.0.13(svelte@4.2.12)
+  mode-watcher:
+    specifier: ^0.2.1
+    version: 0.2.1(svelte@4.2.12)
+  svelte-fa:
+    specifier: ^4.0.2
+    version: 4.0.2(svelte@4.2.12)
   svelte-maplibre:
     specifier: ^0.8.1
     version: 0.8.1(svelte@4.2.12)
@@ -31,6 +40,9 @@ dependencies:
     version: 0.2.0(tailwindcss@3.4.1)
 
 devDependencies:
+  '@fortawesome/free-brands-svg-icons':
+    specifier: ^6.5.1
+    version: 6.5.1
   '@sveltejs/adapter-auto':
     specifier: ^3.0.0
     version: 3.1.1(@sveltejs/kit@2.5.2)
@@ -52,9 +64,6 @@ devDependencies:
   svelte-check:
     specifier: ^3.6.0
     version: 3.6.6(postcss@8.4.35)(svelte@4.2.12)
-  svelte-dark-mode:
-    specifier: ^2.1.0
-    version: 2.1.0
   tailwindcss:
     specifier: ^3.4.1
     version: 3.4.1
@@ -310,6 +319,27 @@ packages:
 
   /@floating-ui/utils@0.2.1:
     resolution: {integrity: sha512-9TANp6GPoMtYzQdt54kfAyMmz1+osLlXdg2ENroU7zzrtflTLrrC/lgrIfaSe+Wu0b89GKccT7vxXA0MoAIO+Q==}
+    dev: false
+
+  /@fortawesome/fontawesome-common-types@6.5.1:
+    resolution: {integrity: sha512-GkWzv+L6d2bI5f/Vk6ikJ9xtl7dfXtoRu3YGE6nq0p/FFqA1ebMOAWg3XgRyb0I6LYyYkiAo+3/KrwuBp8xG7A==}
+    engines: {node: '>=6'}
+    requiresBuild: true
+
+  /@fortawesome/free-brands-svg-icons@6.5.1:
+    resolution: {integrity: sha512-093l7DAkx0aEtBq66Sf19MgoZewv1zeY9/4C7vSKPO4qMwEsW/2VYTUTpBtLwfb9T2R73tXaRDPmE4UqLCYHfg==}
+    engines: {node: '>=6'}
+    requiresBuild: true
+    dependencies:
+      '@fortawesome/fontawesome-common-types': 6.5.1
+    dev: true
+
+  /@fortawesome/free-solid-svg-icons@6.5.1:
+    resolution: {integrity: sha512-S1PPfU3mIJa59biTtXJz1oI0+KAXW6bkAb31XKhxdxtuXDiUIFsih4JR1v5BbxY7hVHsD1RKq+jRkVRaf773NQ==}
+    engines: {node: '>=6'}
+    requiresBuild: true
+    dependencies:
+      '@fortawesome/fontawesome-common-types': 6.5.1
     dev: false
 
   /@internationalized/date@3.5.2:
@@ -1430,6 +1460,14 @@ packages:
       minimist: 1.2.8
     dev: true
 
+  /mode-watcher@0.2.1(svelte@4.2.12):
+    resolution: {integrity: sha512-HLmJgG5kmJCFR/+rcG2te54HjIxqk7BTAsFnsygZR5hcOYlhLEJQ0V8rh1axv2JQIbOAZs1yPlUBSpVATRFtUw==}
+    peerDependencies:
+      svelte: ^4.0.0
+    dependencies:
+      svelte: 4.2.12
+    dev: false
+
   /mri@1.2.0:
     resolution: {integrity: sha512-tzzskb3bG8LvYGFF/mDTpq3jpI6Q9wc3LEmBaghu+DdCssd1FakN7Bc0hVNmEyGq1bq3RgfkCb3cmQLpNPOroA==}
     engines: {node: '>=4'}
@@ -1898,9 +1936,13 @@ packages:
       - sugarss
     dev: true
 
-  /svelte-dark-mode@2.1.0:
-    resolution: {integrity: sha512-/QmIqWGwzcfE82FAMuHBlKFwudW7Vcos60Ii8j/mJZ0H6kGAXwL5EGlcc8voBJMJv/i0QZmhp5b1ZX/XKg9NJQ==}
-    dev: true
+  /svelte-fa@4.0.2(svelte@4.2.12):
+    resolution: {integrity: sha512-lza8Jfii6jcpMQB73mBStONxaLfZsUS+rKJ/hH6WxsHUd+g68+oHIL9yQTk4a0uY9HQk78T/CPvQnED0msqJfg==}
+    peerDependencies:
+      svelte: ^4.0.0
+    dependencies:
+      svelte: 4.2.12
+    dev: false
 
   /svelte-hmr@0.15.3(svelte@4.2.12):
     resolution: {integrity: sha512-41snaPswvSf8TJUhlkoJBekRrABDXDMdpNpT2tfHIv4JuhgvHqLMhEPGtaQn0BmbNSTkuz2Ed20DF2eHw0SmBQ==}
