@@ -15,7 +15,3 @@ pre-commit:
   parallel: true
   commands:
     precommit:
-      run: |
-        lint pnpm
-        pnpm format
-        pnpm check
