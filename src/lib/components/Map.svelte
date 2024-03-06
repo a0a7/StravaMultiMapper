@@ -1,56 +1,62 @@
 <script lang="ts">
-	import {
-		Map,
-		NavigationControl,
-		GeolocateControl,
-		ScaleControl,
-		AttributionControl
-	} from 'maplibre-gl';
-	import { map } from '$lib/stores';
-	import { PUBLIC_MAPTILER_KEY } from '$env/static/public';
+	import { onMount } from 'svelte';
+	import { Map, NavigationControl } from 'maplibre-gl';
+	import { MenuControl } from '@watergis/svelte-maplibre-menu';
+	import { MeasurePanel } from '@watergis/svelte-maplibre-measure';
+	import type { MeasureOption } from '@watergis/svelte-maplibre-measure';
+	import '@watergis/maplibre-gl-export/dist/maplibre-gl-export.css';
 
 	let mapContainer: HTMLDivElement;
+	let map: Map;
+	let MaplibreExportControl, Size, PageOrientation, Format, DPI;
 
-	const init = () => {
-		return new Promise<boolean>(() => {
-			const _map = new Map({
-				container: mapContainer,
-				style: `https://api.maptiler.com/maps/streets/style.json?key=${PUBLIC_MAPTILER_KEY}`,
-				center: [37.138, 0.414],
-				zoom: 6,
-				hash: true,
-				attributionControl: false
-			});
-			_map.addControl(new NavigationControl({}), 'top-right');
-			_map.addControl(
-				new GeolocateControl({
-					positionOptions: { enableHighAccuracy: true },
-					trackUserLocation: true
-				}),
-				'top-right'
-			);
-			_map.addControl(new ScaleControl({ maxWidth: 80, unit: 'metric' }), 'bottom-left');
-			_map.addControl(new AttributionControl({ compact: true }), 'bottom-right');
+	onMount(async () => {
+		const module = await import('@watergis/maplibre-gl-export');
+		MaplibreExportControl = module.MaplibreExportControl;
+		Size = module.Size;
+		PageOrientation = module.PageOrientation;
+		Format = module.Format;
+		DPI = module.DPI;
 
-			map.set(_map);
+		map = new Map({
+			container: mapContainer,
+			style: 'https://basemaps.cartocdn.com/gl/positron-gl-style/style.json'
 		});
-	};
+		map.addControl(new NavigationControl({}));
 
-	$: if (mapContainer) {
-		init();
-	}
+		map.addControl(new MaplibreExportControl({
+			PageSize: Size.A3,
+			PageOrientation: PageOrientation.Landscape,
+			Format: Format.PNG,
+			DPI: DPI[96],
+			Crosshair: true,
+			PrintableArea: true
+		}), 'top-right');
+		map.scrollZoom.disable();
+		map.touchPitch.enable();
+	});
+	let terrainRgbUrl = 'https://narwassco.github.io/narok-terrain/tiles/{z}/{x}/{y}.png';
+	let measureOption: MeasureOption = {
+		tileSize: 512,
+		font: ['Roboto Medium'],
+		fontSize: 12,
+		fontHalo: 1,
+		mainColor: '#263238',
+		haloColor: '#fff'
+	};
 </script>
 
-<div class="map" data-testid="map" bind:this={mapContainer} />
+<MeasurePanel bind:map bind:measureOption bind:terrainRgbUrl />
+<div bind:this={mapContainer} class="map" />
 
 <style>
 	@import 'maplibre-gl/dist/maplibre-gl.css';
-
 	.map {
 		position: absolute;
 		top: 0;
 		bottom: 0;
 		width: 100%;
+		height: 100%;
 		z-index: 1;
 	}
 </style>
