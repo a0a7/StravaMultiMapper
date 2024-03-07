@@ -69,9 +69,9 @@
     attributionControl={false}
     style="https://basemaps.cartocdn.com/gl/positron-gl-style/style.json"
 >
-    <NavigationControl position="top-right" />
-    <GeolocateControl position="top-right" fitBoundsOptions={{ maxZoom: 12 }} />
-    <FullscreenControl position="top-right" />
+    <NavigationControl position="top-left" />
+    <GeolocateControl position="top-left" fitBoundsOptions={{ maxZoom: 12 }} />
+    <FullscreenControl position="top-left" />
     <ScaleControl />
     <AttributionControl compact customAttribution={
             `App created by <a href="https://github.com/sudolev" target="_blank">Alexander Weimer</a> |
