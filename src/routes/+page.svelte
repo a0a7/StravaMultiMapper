@@ -121,11 +121,16 @@
 
     :global(.measure-container .control-button) {
         padding: 0px !important;
+        margin-left: auto;
+        margin-right: auto;
         background-color: transparent !important;
         min-height: 0px !important;
         transform: none !important;
-        width: auto !important;
+        width: 29px !important;
+        height: 29px !important;
         display: block !important;
+        justify-content: center !important;
+        text-align: center !important;
     }
 
 
@@ -136,14 +141,25 @@
         display: none;
     }
     :global(.measure-container .setting-button) {
+        margin-left: auto;
+        margin-right: auto;
         padding: 0px !important;
         background-color: transparent !important;
         min-height: 0px !important;
         transform: none !important;
-        width: auto !important;
+        width: 29px !important;
+        height: 29px !important;
         display: block;
     }
     :global(.measure-container .setting-button :nth-child(1)) {
         color: #333;
+    }
+    :global(.control-button .control-icon) {
+        margin-left: auto;
+        margin-right: auto;
+        padding-right: 0px !important;
+    }
+    :global(.control-button .control-icon svg) {
+        display: unset;
     }
 </style>
