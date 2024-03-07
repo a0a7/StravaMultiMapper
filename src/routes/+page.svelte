@@ -71,7 +71,7 @@
     style="https://basemaps.cartocdn.com/gl/positron-gl-style/style.json"
 >
     <NavigationControl position="top-left" />
-    <GeolocateControl position="top-left" fitBoundsOptions={{ maxZoom: 12 }} />
+    <GeolocateControl position="top-right" fitBoundsOptions={{ maxZoom: 12 }} />
     <FullscreenControl position="top-left" />
     <ScaleControl />
     <AttributionControl compact customAttribution={
@@ -83,6 +83,13 @@
             {#if map}
                 <MeasurePanel bind:map bind:measureOption={measureOptions} bind:this={measureControl} />
             {/if}
+        </ControlGroup>
+    </Control>
+    <Control position="top-left" class="flex flex-col gap-y-2">
+        <ControlGroup>
+            <ControlButton>
+                <img src="img/icon/layer.svg" class="p-[3px]" alt="Switch Map Baselayers" title="Map Layers">
+            </ControlButton>
         </ControlGroup>
     </Control>
 </MapLibre>
