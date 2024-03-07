@@ -21,7 +21,7 @@
     let finalDefaultControl: SvelteComponentTyped;
 
     // Configure Measure Plugin
-    let measureOption: MeasureOption = {
+    let measureOptions: MeasureOption = {
         tileSize: 512,
         font: ['Roboto Medium'],
         fontSize: 12,
@@ -79,10 +79,9 @@
     }/>
       <Control class="flex flex-col gap-y-2">
         <ControlGroup>
-          {#if map}
-                <MeasurePanel bind:map bind:measureOption />
+            {#if map}
+                <MeasurePanel bind:map bind:measureOption={measureOptions} />
             {/if}
-
         </ControlGroup>
     </Control>
 </MapLibre>
