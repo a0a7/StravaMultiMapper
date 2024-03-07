@@ -60,6 +60,11 @@
        // textLayers = map.getStyle().layers.filter((layer) => layer['source-layer'] === 'place');
     }
 </script>
+
+<svelte:head>
+    <title>Strava Multi Mapper</title>
+    <meta property="og:description" content="The best way to visualize your Strava runs, rides, or other activities on a beautiful & modern map." />
+</svelte:head>
   
 <MapLibre 
     bind:map={map}
