@@ -12,29 +12,36 @@
         type Map, 
 		type ControlPosition
     } from 'svelte-maplibre';
-
+    import { MeasurePanel, type MeasureOption } from '@watergis/svelte-maplibre-measure';
     import '@watergis/maplibre-gl-export/dist/maplibre-gl-export.css';
 
-    let map: Map | null | undefined;
+    let map: any;
     let loaded: boolean;
+    //let MeasuresControl: any;
     let MaplibreExportControl: any, Size: any, PageOrientation: any, Format: any, DPI: any;
     let finalDefaultControl: SvelteComponentTyped;
     let deviceDependentPos: ControlPosition = "top-left";
 
     // Import browser-only modules, set browser-dependent variables
     onMount(async () => {
-        const module = await import('@watergis/maplibre-gl-export');
+        //const measuresModule = await import('maplibre-gl-measures');
+		//MeasuresControl = measuresModule.default;
 
-		MaplibreExportControl = module.MaplibreExportControl;
-		Size = module.Size;
-		PageOrientation = module.PageOrientation;
-		Format = module.Format;
-		DPI = module.DPI;
+        const exportModule = await import('@watergis/maplibre-gl-export');
+		MaplibreExportControl = exportModule.MaplibreExportControl;
+		Size = exportModule.Size;
+		PageOrientation = exportModule.PageOrientation;
+		Format = exportModule.Format;
+		DPI = exportModule.DPI;
 
         deviceDependentPos = window.innerWidth <= 768 ? 'top-left' : 'top-right';
     });
+
+    // $: if (map && finalDefaultControl && MeasuresControl) {
+    //     map.addControl(new MeasuresControl(), 'top-left');
+    // }
     
-    $: if (map && MaplibreExportControl && Size && PageOrientation && Format && DPI && finalDefaultControl) {
+    $: if (map && finalDefaultControl && MaplibreExportControl && Size && PageOrientation && Format && DPI) {
         map.addControl(new MaplibreExportControl({
 			PageSize: Size.A3,
 			PageOrientation: PageOrientation.Landscape,
@@ -47,6 +54,14 @@
     $: if (map && loaded) {
        // textLayers = map.getStyle().layers.filter((layer) => layer['source-layer'] === 'place');
     }
+    let measureOption: MeasureOption = {
+        tileSize: 512,
+        font: ['Roboto Medium'],
+        fontSize: 12,
+        fontHalo: 1,
+        mainColor: '#263238',
+        haloColor: '#fff',
+    };
 </script>
   
 <MapLibre 
@@ -66,6 +81,14 @@
             `App created by <a href="https://github.com/sudolev" target="_blank">Alexander Weimer</a> |
             <img src="img/icon/powered_by_strava.svg" class="h-4 inline p-0" title="Powered by Strava" alt="Powered by Strava">`
     }/>
+      <Control class="flex flex-col gap-y-2">
+        <ControlGroup>
+          {#if map}
+                <MeasurePanel bind:map bind:measureOption />
+            {/if}
+
+        </ControlGroup>
+    </Control>
 </MapLibre>
 
 <style>
@@ -83,5 +106,44 @@
         background-position: center;
         background-repeat: no-repeat;
         background-size: 70%;
+    }
+    :global(.setting-button:nth-of-type(3)) {
+        display: none !important;
+    }
+    :global(.measure-container) {
+        padding: 0px !important;
+        background-color: transparent !important;
+        min-height: 0px !important;
+        transform: none !important;
+        width: auto !important;
+        display: block !important;
+    }
+
+    :global(.measure-container .control-button) {
+        padding: 0px !important;
+        background-color: transparent !important;
+        min-height: 0px !important;
+        transform: none !important;
+        width: auto !important;
+        display: block !important;
+    }
+
+
+    :global(.measure-container .control-button :nth-child(1)) {
+        color: #333;
+    }
+    :global(.measure-container .control-button :nth-child(2)) {
+        display: none;
+    }
+    :global(.measure-container .setting-button) {
+        padding: 0px !important;
+        background-color: transparent !important;
+        min-height: 0px !important;
+        transform: none !important;
+        width: auto !important;
+        display: block;
+    }
+    :global(.measure-container .setting-button :nth-child(1)) {
+        color: #333;
     }
 </style>
