@@ -69,13 +69,11 @@
     <AttributionControl 
         compact
         customAttribution={
-            `App created by <a href="https://github.com/sudolev" target="_blank">Alexander Weimer</a> 
-            <img src="img/icon/powered_by_strava.svg" class="w-2" title="Powered by Strava" alt="Powered by Strava">`}
+            `App created by <a href="https://github.com/sudolev" target="_blank">Alexander Weimer</a> |
+            <img src="img/icon/powered_by_strava.svg" class="h-4 inline p-0" title="Powered by Strava" alt="Powered by Strava">`}
     />
 
 </MapLibre>
-
-<p class="absolute b-0 text-bold">balls</p>
 
 <style>
     :global(.map) {
@@ -83,7 +81,7 @@
         top: 0;
         bottom: 0;
         width: 100%;
-        height: 50%;
+        height: 100%;
         z-index: 1;
     }
 
