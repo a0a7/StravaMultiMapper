@@ -1,0 +1,10 @@
+.button-container .options {
+    margin-left: 0px !important;
+}
+
+.map-button.maplibregl-map {
+    position: relative !important;
+}
+.main-button > :first-child {
+    border: 3px solid rgb(0, 47, 83) !important;
+}

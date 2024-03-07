@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { SvelteComponentTyped, onMount } from 'svelte';
+    import { SvelteComponent, SvelteComponentTyped, onMount } from 'svelte';
     import { MapLibre,
         NavigationControl,
         ScaleControl, 
@@ -8,19 +8,34 @@
         AttributionControl, 
         Control, 
         ControlButton, 
-        ControlGroup,
-        type Map, 
-		type ControlPosition
+        ControlGroup
     } from 'svelte-maplibre';
     import { MeasurePanel, type MeasureOption } from '@watergis/svelte-maplibre-measure';
     import '@watergis/maplibre-gl-export/dist/maplibre-gl-export.css';
     import '$lib/styles/measure-control.css';
+    import '$lib/styles/layers-control.css';
+	import type IControl from 'maplibre-gl';
+;
 
     let map: any;
     let loaded: boolean;
+    let StyleSwitcher: any, StyleSwitcherControl: any, StyleUrl: any;
     let MaplibreExportControl: any, Size: any, PageOrientation: any, Format: any, DPI: any;
-    let measureControl: SvelteComponentTyped;
+    let measureControl: SvelteComponentTyped, layerControl: HTMLImageElement, exportControl: IControl;
+    let layerControlOpen: boolean = false;
 
+    // Configure Map Baselayers
+    let styles = [
+        {
+            title: 'Positron',
+            uri: `./data/style_light.json`
+        },
+        {
+            title: 'Dark Matter',
+            uri: `./data/style_dark.json`
+        }
+    ];
+    let selectedStyle = styles[0];
     // Configure Measure Plugin
     let measureOptions: MeasureOption = {
         tileSize: 512,
@@ -33,27 +48,35 @@
 
     // Import browser-only modules, set browser-dependent variables
     onMount(async () => {
+        const styleSwitcherModule = await import('@watergis/svelte-maplibre-style-switcher');
         const exportModule = await import('@watergis/maplibre-gl-export');
+
+        StyleSwitcher = styleSwitcherModule.StyleSwitcher;
+        StyleSwitcherControl = styleSwitcherModule.StyleSwitcherControl;
+        StyleUrl = styleSwitcherModule.StyleUrl;
 		MaplibreExportControl = exportModule.MaplibreExportControl;
 		Size = exportModule.Size;
 		PageOrientation = exportModule.PageOrientation;
 		Format = exportModule.Format;
 		DPI = exportModule.DPI;
+        
     });
+    
 
     // $: if (map && finalDefaultControl && MeasuresControl) {
     //     map.addControl(new MeasuresControl(), 'top-left');
     // }
     
-    $: if (map && measureControl && MaplibreExportControl && Size && PageOrientation && Format && DPI) {
-        map.addControl(new MaplibreExportControl({
+    $: if (map && MaplibreExportControl && Size && PageOrientation && Format && DPI && !map.hasControl(exportControl)) {
+        exportControl = new MaplibreExportControl({
 			PageSize: Size.A3,
 			PageOrientation: PageOrientation.Landscape,
 			Format: Format.PNG,
 			DPI: DPI[96],
 			Crosshair: true,
 			PrintableArea: true
-		}), 'top-right');
+		})
+        map.addControl(exportControl, 'top-right');
     }
 
     $: if (map && loaded) {
@@ -70,10 +93,10 @@
     bind:map={map}
     bind:loaded
     center={[15,30]}
-    zoom={2}
+    zoom={1}
     class="map"
     attributionControl={false}
-    style="https://basemaps.cartocdn.com/gl/positron-gl-style/style.json"
+    style={selectedStyle.uri}
 >
     <NavigationControl position="top-left" />
     <GeolocateControl position="top-right" fitBoundsOptions={{ maxZoom: 12 }} />
@@ -92,9 +115,17 @@
     </Control>
     <Control position="top-left" class="flex flex-col gap-y-2">
         <ControlGroup>
-            <ControlButton>
-                <img src="img/icon/layer.svg" class="p-[3px]" alt="Switch Map Baselayers" title="Map Layers">
+            <ControlButton on:click={
+                ()=>{
+                    layerControlOpen = !layerControlOpen
+                    document.querySelectorAll('.maplibregl-ctrl-top-left .maplibregl-ctrl:empty').forEach(el => el.remove());
+                }
+            }>
+                <img src="img/icon/layer.svg" class="p-[3px]" alt="Switch Map Baselayers" title="Map Layers" bind:this={layerControl}>
             </ControlButton>
+            {#if map && layerControlOpen && StyleSwitcher && StyleSwitcherControl && StyleUrl}
+                <StyleSwitcherControl bind:map bind:styles bind:selectedStyle position="top-left" />
+            {/if}
         </ControlGroup>
     </Control>
 </MapLibre>
