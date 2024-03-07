@@ -1,14 +1,3 @@
-.mapbox-ctrl-ruler {
-    z-index: 1000;
-}
-.mapbox-ctrl-ruler {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #333;
-    z-index: 10;
-}
-
-.mapbox-ctrl-ruler button.-active {
-    color: #4264fb;
+.map {
+    height: 100vh;
 }

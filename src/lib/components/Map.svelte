@@ -24,14 +24,6 @@
 		});
 		map.addControl(new NavigationControl({}));
 
-		map.addControl(new MaplibreExportControl({
-			PageSize: Size.A3,
-			PageOrientation: PageOrientation.Landscape,
-			Format: Format.PNG,
-			DPI: DPI[96],
-			Crosshair: true,
-			PrintableArea: true
-		}), 'top-right');
 		map.scrollZoom.disable();
 		map.touchPitch.enable();
 	});
