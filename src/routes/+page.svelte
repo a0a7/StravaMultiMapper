@@ -18,7 +18,7 @@
     let map: any;
     let loaded: boolean;
     let MaplibreExportControl: any, Size: any, PageOrientation: any, Format: any, DPI: any;
-    let finalDefaultControl: SvelteComponentTyped;
+    let measureControl: SvelteComponentTyped;
 
     // Configure Measure Plugin
     let measureOptions: MeasureOption = {
@@ -44,7 +44,7 @@
     //     map.addControl(new MeasuresControl(), 'top-left');
     // }
     
-    $: if (map && finalDefaultControl && MaplibreExportControl && Size && PageOrientation && Format && DPI) {
+    $: if (map && measureControl && MaplibreExportControl && Size && PageOrientation && Format && DPI) {
         map.addControl(new MaplibreExportControl({
 			PageSize: Size.A3,
 			PageOrientation: PageOrientation.Landscape,
@@ -71,16 +71,16 @@
 >
     <NavigationControl position="top-right" />
     <GeolocateControl position="top-right" fitBoundsOptions={{ maxZoom: 12 }} />
-    <FullscreenControl position="top-right" bind:this={finalDefaultControl} />
+    <FullscreenControl position="top-right" />
     <ScaleControl />
     <AttributionControl compact customAttribution={
             `App created by <a href="https://github.com/sudolev" target="_blank">Alexander Weimer</a> |
             <img src="img/icon/powered_by_strava.svg" class="h-4 inline p-0" title="Powered by Strava" alt="Powered by Strava">`
     }/>
-      <Control class="flex flex-col gap-y-2">
+    <Control class="flex flex-col gap-y-2">
         <ControlGroup>
             {#if map}
-                <MeasurePanel bind:map bind:measureOption={measureOptions} />
+                <MeasurePanel bind:map bind:measureOption={measureOptions} bind:this={measureControl} />
             {/if}
         </ControlGroup>
     </Control>
