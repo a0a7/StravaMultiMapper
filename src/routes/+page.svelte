@@ -17,16 +17,12 @@
 
     let map: any;
     let loaded: boolean;
-    //let MeasuresControl: any;
     let MaplibreExportControl: any, Size: any, PageOrientation: any, Format: any, DPI: any;
     let finalDefaultControl: SvelteComponentTyped;
     let deviceDependentPos: ControlPosition = "top-left";
 
     // Import browser-only modules, set browser-dependent variables
     onMount(async () => {
-        //const measuresModule = await import('maplibre-gl-measures');
-		//MeasuresControl = measuresModule.default;
-
         const exportModule = await import('@watergis/maplibre-gl-export');
 		MaplibreExportControl = exportModule.MaplibreExportControl;
 		Size = exportModule.Size;
