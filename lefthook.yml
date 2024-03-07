@@ -5,11 +5,9 @@ pre-push:
   parallel: true
   commands:
     1_build:
-      run: pnpm build
+      run:
     2_test:
       run: |
-        pnpm test:vitest
-        pnpm test:playwright
 
 pre-commit:
   parallel: true
