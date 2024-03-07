@@ -14,6 +14,7 @@
     } from 'svelte-maplibre';
     import { MeasurePanel, type MeasureOption } from '@watergis/svelte-maplibre-measure';
     import '@watergis/maplibre-gl-export/dist/maplibre-gl-export.css';
+    import '$lib/styles/measure-control.css';
 
     let map: any;
     let loaded: boolean;
@@ -77,7 +78,7 @@
             `App created by <a href="https://github.com/sudolev" target="_blank">Alexander Weimer</a> |
             <img src="img/icon/powered_by_strava.svg" class="h-4 inline p-0" title="Powered by Strava" alt="Powered by Strava">`
     }/>
-    <Control class="flex flex-col gap-y-2">
+    <Control position="top-right" class="flex flex-col gap-y-2">
         <ControlGroup>
             {#if map}
                 <MeasurePanel bind:map bind:measureOption={measureOptions} bind:this={measureControl} />
@@ -94,67 +95,5 @@
         width: 100%;
         height: 100%;
         z-index: 1;
-    }
-
-    :global(.maplibregl-export-control) {
-        background: url('img/icon/print.svg');
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: 70%;
-    }
-    :global(.setting-button:nth-of-type(3)) {
-        display: none !important;
-    }
-    :global(.measure-container) {
-        padding: 0px !important;
-        background-color: transparent !important;
-        min-height: 0px !important;
-        transform: none !important;
-        width: auto !important;
-        display: block !important;
-    }
-
-    :global(.measure-container .control-button) {
-        padding: 0px !important;
-        margin-left: auto;
-        margin-right: auto;
-        background-color: transparent !important;
-        min-height: 0px !important;
-        transform: none !important;
-        width: 29px !important;
-        height: 29px !important;
-        display: block !important;
-        justify-content: center !important;
-        text-align: center !important;
-    }
-
-
-    :global(.measure-container .control-button :nth-child(1)) {
-        color: #333;
-    }
-    :global(.measure-container .control-button :nth-child(2)) {
-        display: none;
-    }
-    :global(.measure-container .setting-button) {
-        margin-left: auto;
-        margin-right: auto;
-        padding: 0px !important;
-        background-color: transparent !important;
-        min-height: 0px !important;
-        transform: none !important;
-        width: 29px !important;
-        height: 29px !important;
-        display: block;
-    }
-    :global(.measure-container .setting-button :nth-child(1)) {
-        color: #333;
-    }
-    :global(.control-button .control-icon) {
-        margin-left: auto;
-        margin-right: auto;
-        padding-right: 0px !important;
-    }
-    :global(.control-button .control-icon svg) {
-        display: unset;
     }
 </style>
