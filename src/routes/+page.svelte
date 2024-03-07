@@ -19,7 +19,16 @@
     let loaded: boolean;
     let MaplibreExportControl: any, Size: any, PageOrientation: any, Format: any, DPI: any;
     let finalDefaultControl: SvelteComponentTyped;
-    let deviceDependentPos: ControlPosition = "top-left";
+
+    // Configure Measure Plugin
+    let measureOption: MeasureOption = {
+        tileSize: 512,
+        font: ['Roboto Medium'],
+        fontSize: 12,
+        fontHalo: 1,
+        mainColor: '#263238',
+        haloColor: '#fff',
+    };
 
     // Import browser-only modules, set browser-dependent variables
     onMount(async () => {
@@ -29,8 +38,6 @@
 		PageOrientation = exportModule.PageOrientation;
 		Format = exportModule.Format;
 		DPI = exportModule.DPI;
-
-        deviceDependentPos = window.innerWidth <= 768 ? 'top-left' : 'top-right';
     });
 
     // $: if (map && finalDefaultControl && MeasuresControl) {
@@ -47,17 +54,10 @@
 			PrintableArea: true
 		}), 'top-right');
     }
+
     $: if (map && loaded) {
        // textLayers = map.getStyle().layers.filter((layer) => layer['source-layer'] === 'place');
     }
-    let measureOption: MeasureOption = {
-        tileSize: 512,
-        font: ['Roboto Medium'],
-        fontSize: 12,
-        fontHalo: 1,
-        mainColor: '#263238',
-        haloColor: '#fff',
-    };
 </script>
   
 <MapLibre 
@@ -69,9 +69,9 @@
     attributionControl={false}
     style="https://basemaps.cartocdn.com/gl/positron-gl-style/style.json"
 >
-    <NavigationControl position="{deviceDependentPos}" />
-    <GeolocateControl position="{deviceDependentPos}" fitBoundsOptions={{ maxZoom: 12 }} />
-    <FullscreenControl position="{deviceDependentPos}" bind:this={finalDefaultControl} />
+    <NavigationControl position="top-right" />
+    <GeolocateControl position="top-right" fitBoundsOptions={{ maxZoom: 12 }} />
+    <FullscreenControl position="top-right" bind:this={finalDefaultControl} />
     <ScaleControl />
     <AttributionControl compact customAttribution={
             `App created by <a href="https://github.com/sudolev" target="_blank">Alexander Weimer</a> |
