@@ -12,4 +12,4 @@ function createMap() {
 		}
 	};
 }
-export let map = createMap();
+export const map = createMap();

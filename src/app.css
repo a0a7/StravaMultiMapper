@@ -3,6 +3,5 @@
 @tailwind utilities;
 
 .map {
-    height: 100vh;
+	height: 100vh;
 }
-
