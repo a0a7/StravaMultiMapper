@@ -148,22 +148,13 @@
 						.forEach((el) => el.remove());
 				}}
 			>
-                {#if layerControlOpen}
-                    <img
-                        src="img/icon/layer.svg"
-                        class="p-[3px]"
-                        alt="Switch Map Baselayers"
-                        title="Map Layers"
-                        style="filter: invert(22%) sepia(17%) saturate(1191%) hue-rotate(164deg) brightness(93%) contrast(87%);"
-                    />
-                {:else}
-                    <img
-                        src="img/icon/layer.svg"
-                        class="p-[3px]"
-                        alt="Switch Map Baselayers"
-                        title="Map Layers"
-                    />
-                {/if}
+				<img
+					src="img/icon/layer.svg"
+					class="p-[3px]"
+					alt="Switch Map Baselayers"
+					title="Map Layers"
+					style="{layerControlOpen ? 'filter: invert(22%) sepia(17%) saturate(1191%) hue-rotate(164deg) brightness(93%) contrast(87%);' : ''}"
+				/>
 			</ControlButton>
 			{#if map && layerControlOpen && StyleSwitcher && StyleSwitcherControl && StyleUrl}
 				<StyleSwitcherControl bind:map bind:styles bind:selectedStyle position="top-left" />
