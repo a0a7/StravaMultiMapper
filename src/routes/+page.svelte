@@ -35,10 +35,6 @@
 			uri: `./map_styles/dark.json`
 		},
         {
-			title: 'Basic',
-			uri: `./map_styles/basic.json`
-		},
-        {
 			title: 'Satellite',
 			uri: `./map_styles/satellite.json`
 		},
@@ -50,12 +46,7 @@
         {
 			title: 'Topographic',
 			uri: `./map_styles/topo.json`
-		},
-        {
-			title: 'Streets',
-			uri: `./map_styles/streets.json`
-		},
-   
+		},   
         {
 			title: 'Winter',
 			uri: `./map_styles/winter.json`
