@@ -13,6 +13,7 @@
 	} from 'svelte-maplibre';
 	import { MeasurePanel, type MeasureOption } from '@watergis/svelte-maplibre-measure';
 	import '@watergis/maplibre-gl-export/dist/maplibre-gl-export.css';
+	import '$lib/styles/map.css';
 	import '$lib/styles/measure-control.css';
 	import '$lib/styles/layers-control.css';
 	import type IControl from 'maplibre-gl';
@@ -164,12 +165,4 @@
 </MapLibre>
 
 <style>
-	:global(.map) {
-		position: absolute;
-		top: 0;
-		bottom: 0;
-		width: 100%;
-		height: 100%;
-		z-index: 1;
-	}
 </style>
