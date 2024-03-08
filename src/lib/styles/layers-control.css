@@ -4,7 +4,9 @@
 
 .map-button.maplibregl-map {
 	position: relative !important;
+	border: 0px solid transparent !important;	
+	box-shadow: 0 0 0 2px rgba(0,0,0,.1);
 }
 .main-button > :first-child {
-	border: 3px solid rgb(0, 47, 83) !important;
+	border: 3px solid #3c5c7a !important;
 }
