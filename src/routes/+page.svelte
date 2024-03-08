@@ -21,7 +21,7 @@
 	let loaded: boolean;
 	let StyleSwitcher: any, StyleSwitcherControl: any, StyleUrl: any;
 	let MaplibreExportControl: any, Size: any, PageOrientation: any, Format: any, DPI: any;
-	let measureControl: SvelteComponentTyped, layerControl: HTMLImageElement, exportControl: IControl;
+	let measureControl: SvelteComponentTyped, exportControl: IControl;
 	let layerControlOpen: boolean = false;
 
 	// Configure Map Baselayers
@@ -148,13 +148,22 @@
 						.forEach((el) => el.remove());
 				}}
 			>
-				<img
-					src="img/icon/layer.svg"
-					class="p-[3px]"
-					alt="Switch Map Baselayers"
-					title="Map Layers"
-					bind:this={layerControl}
-				/>
+                {#if layerControlOpen}
+                    <img
+                        src="img/icon/layer.svg"
+                        class="p-[3px]"
+                        alt="Switch Map Baselayers"
+                        title="Map Layers"
+                        style="filter: invert(22%) sepia(17%) saturate(1191%) hue-rotate(164deg) brightness(93%) contrast(87%);"
+                    />
+                {:else}
+                    <img
+                        src="img/icon/layer.svg"
+                        class="p-[3px]"
+                        alt="Switch Map Baselayers"
+                        title="Map Layers"
+                    />
+                {/if}
 			</ControlButton>
 			{#if map && layerControlOpen && StyleSwitcher && StyleSwitcherControl && StyleUrl}
 				<StyleSwitcherControl bind:map bind:styles bind:selectedStyle position="top-left" />
