@@ -28,11 +28,37 @@
 	let styles = [
 		{
 			title: 'Positron',
-			uri: `./data/style_light.json`
+			uri: `./map_styles/light.json`
 		},
 		{
 			title: 'Dark Matter',
-			uri: `./data/style_dark.json`
+			uri: `./map_styles/dark.json`
+		},
+        {
+			title: 'Basic',
+			uri: `./map_styles/basic.json`
+		},
+        {
+			title: 'Satellite',
+			uri: `./map_styles/satellite.json`
+		},
+
+        {
+			title: 'Landscape',
+			uri: `./map_styles/landscape.json`
+		},
+        {
+			title: 'Topographic',
+			uri: `./map_styles/topo.json`
+		},
+        {
+			title: 'Streets',
+			uri: `./map_styles/streets.json`
+		},
+   
+        {
+			title: 'Winter',
+			uri: `./map_styles/winter.json`
 		}
 	];
 	let selectedStyle = styles[0];
