@@ -6,12 +6,21 @@
 
 	let onMobile: boolean;
 	let settingsPane: PaneAPI, settingsPaneCollapsed: boolean = false;
+	let mapWidth: number = 0, mapHeight: number = 0;
+
 	onMount(() => {
 		onMobile = window.innerWidth <= 768; // Change this value based on your definition of a "phone" screen size
 		window.addEventListener('resize', () => {
 			onMobile = window.innerWidth <= 768;
 		});
 	});
+
+	function paneResized(newSize: number) {
+		console.log(`Pane Resized to ${newSize}%`)
+		settingsPaneCollapsed = newSize < 15;
+		onMobile ? mapHeight : mapWidth = 100 - newSize;
+		onMobile ? mapWidth : mapHeight = 100;	
+	}
 </script>
 <svelte:head>
 	<title>Strava Multi Mapper</title>
@@ -29,12 +38,12 @@
 		collapsible={true}
 		onCollapse={() => (settingsPaneCollapsed = true)}
 		onExpand={() => (settingsPaneCollapsed = false)}
-		onResize={() => (settingsPaneCollapsed = false)}
+		onResize={(size) => (paneResized(size))}
 	></Resizable.Pane>
   	<Resizable.Handle withHandle class="h-full "/>
   	<Resizable.Pane 
 		defaultSize={60}
 	>
-		<Map />
+		<Map width={mapWidth} height={mapHeight} />
 </Resizable.Pane>
 </Resizable.PaneGroup>
