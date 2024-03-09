@@ -1,10 +1,11 @@
 <script lang="ts">
 	import { onMount } from "svelte";
 	import * as Resizable from "$lib/components/ui/resizable";
+	import type { PaneAPI } from "paneforge";
 	import Map from '$lib/components/map/Map.svelte';
 
 	let onMobile: boolean;
-
+	let settingsPane: PaneAPI, settingsPaneCollapsed: boolean = false;
 	onMount(() => {
 		onMobile = window.innerWidth <= 768; // Change this value based on your definition of a "phone" screen size
 		window.addEventListener('resize', () => {
@@ -20,8 +21,20 @@
 	/>
 </svelte:head>
 
-<Resizable.PaneGroup direction={onMobile ? "vertical" : "horizontal"}>
-  <Resizable.Pane defaultSize={40}></Resizable.Pane>
-  <Resizable.Handle withHandle />
-  <Resizable.Pane defaultSize={60}><Map /></Resizable.Pane>
+<Resizable.PaneGroup direction={onMobile ? "vertical" : "horizontal"} class="h-[100vh]">
+  	<Resizable.Pane bind:pane={settingsPane}
+		defaultSize={40}
+		minSize={15}
+		collapsedSize={5}
+		collapsible={true}
+		onCollapse={() => (settingsPaneCollapsed = true)}
+		onExpand={() => (settingsPaneCollapsed = false)}
+		onResize={() => (settingsPaneCollapsed = false)}
+	></Resizable.Pane>
+  	<Resizable.Handle withHandle class="h-full "/>
+  	<Resizable.Pane 
+		defaultSize={60}
+	>
+		<Map />
+</Resizable.Pane>
 </Resizable.PaneGroup>
