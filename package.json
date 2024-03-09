@@ -60,11 +60,14 @@
 		"@watergis/svelte-maplibre-share": "^2.0.2",
 		"@watergis/svelte-maplibre-style-switcher": "^2.0.1",
 		"bits-ui": "^0.19.5",
+		"clsx": "^2.1.0",
 		"maplibre-gl": "^3.6.2",
 		"mode-watcher": "^0.2.2",
 		"paneforge": "^0.0.2",
 		"svelte-maplibre": "^0.8.2",
-		"svelte-sonner": "^0.3.19"
+		"svelte-radix": "^1.0.3",
+		"svelte-sonner": "^0.3.19",
+		"tailwind-merge": "^2.2.1"
 	},
 	"packageManager": "pnpm@8.15.2",
 	"engines": {
