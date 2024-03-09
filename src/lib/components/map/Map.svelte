@@ -13,9 +13,9 @@
     } from 'svelte-maplibre';
     import { MeasurePanel, type MeasureOption } from '@watergis/svelte-maplibre-measure';
     import '@watergis/maplibre-gl-export/dist/maplibre-gl-export.css';
-    import '$lib/styles/map.css';
-    import '$lib/styles/measure-control.css';
-    import '$lib/styles/layers-control.css';
+    import '$lib/components/map/map.css';
+    import '$lib/components/map/measure-control.css';
+    import '$lib/components/map/layers-control.css';
     import type IControl from 'maplibre-gl';
 
     let map: any; 

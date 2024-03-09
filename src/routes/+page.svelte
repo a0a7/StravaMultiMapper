@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { onMount } from "svelte";
 	import * as Resizable from "$lib/components/ui/resizable";
-	import Map from '$lib/components/Map.svelte';
+	import Map from '$lib/components/map/Map.svelte';
 
 	let onMobile: boolean;
 
