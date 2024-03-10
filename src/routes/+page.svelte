@@ -44,6 +44,6 @@
   	<Resizable.Pane 
 		defaultSize={60}
 	>
-		<Map width={mapWidth} height={mapHeight} />
+		<Map/>
 </Resizable.Pane>
 </Resizable.PaneGroup>

@@ -18,9 +18,6 @@
     import '$lib/components/map/layers-control.css';
     import type IControl from 'maplibre-gl';
 
-    export let width: number = 0;
-    export let height: number = 0;
-
     let map: any; 
     let loaded: boolean;
     let StyleSwitcher: any, StyleSwitcherControl: any, StyleUrl: any;
@@ -81,7 +78,6 @@
         PageOrientation = exportModule.PageOrientation;
         Format = exportModule.Format;
         DPI = exportModule.DPI;
-        console.log(`Width: ${width}, Height: ${height}`)
     });
 
     // Add image export control when ready
@@ -110,7 +106,7 @@
     bind:loaded
     center={[15, 30]}
     zoom={1}
-    class="map w-[{width}%] h-[{height}%]"
+    class="map"
     attributionControl={false}
     style={selectedStyle.uri}
 >
