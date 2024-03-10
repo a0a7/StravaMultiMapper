@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { SvelteComponentTyped, onMount } from 'svelte';
+    import { SvelteComponentTyped, onMount, onDestroy } from 'svelte';
     import {
         MapLibre,
         NavigationControl,
@@ -18,8 +18,11 @@
     import '$lib/components/map/layers-control.css';
     import type IControl from 'maplibre-gl';
 
-    let map: any; 
+    export let map: any; 
     let loaded: boolean;
+    let mapDiv: Element;
+    let mapResizeObserver: ResizeObserver;
+    
     let StyleSwitcher: any, StyleSwitcherControl: any, StyleUrl: any;
     let MaplibreExportControl: any, Size: any, PageOrientation: any, Format: any, DPI: any;
     let measureControl: SvelteComponentTyped, exportControl: IControl;
@@ -78,7 +81,38 @@
         PageOrientation = exportModule.PageOrientation;
         Format = exportModule.Format;
         DPI = exportModule.DPI;
+
+        // Handle map resizing 
+        mapDiv = document.getElementsByClassName('map-pane')[0];
+
+        mapResizeObserver = new ResizeObserver(entries => {
+            for (let entry of entries) {
+                if (entry.target === mapDiv) {
+                    rigorouslyResizeMap();
+                }
+            }
+        });
+
+        mapResizeObserver.observe(mapDiv);
+        
+        map.on('load', rigorouslyResizeMap());
     });
+
+    onDestroy(() => {
+        if (mapResizeObserver && mapDiv) {
+            mapResizeObserver.unobserve(mapDiv);
+        }
+    });
+    
+
+    export function rigorouslyResizeMap() {
+        if (map) {
+            const mapCanvas = document.getElementsByClassName('maplibregl-map')[0] as HTMLCanvasElement;
+            const mapDiv = document.getElementsByClassName('map-pane')[0] as HTMLDivElement;
+        
+            mapCanvas.style.width = mapDiv.clientWidth + 'px';
+        }
+    }
 
     // Add image export control when ready
     $: if (

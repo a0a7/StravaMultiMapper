@@ -4,9 +4,10 @@
 	import type { PaneAPI } from "paneforge";
 	import Map from '$lib/components/map/Map.svelte';
 
+	let mapElement: any = null;
+
 	let onMobile: boolean;
 	let settingsPane: PaneAPI, settingsPaneCollapsed: boolean = false;
-	let mapWidth: number = 0, mapHeight: number = 0;
 
 	onMount(() => {
 		onMobile = window.innerWidth <= 768; // Change this value based on your definition of a "phone" screen size
@@ -16,10 +17,6 @@
 	});
 
 	function paneResized(newSize: number) {
-		console.log(`Pane Resized to ${newSize}%`)
-		settingsPaneCollapsed = newSize < 15;
-		onMobile ? mapHeight : mapWidth = 100 - newSize;
-		onMobile ? mapWidth : mapHeight = 100;	
 	}
 </script>
 <svelte:head>
@@ -30,20 +27,21 @@
 	/>
 </svelte:head>
 
-<Resizable.PaneGroup direction={onMobile ? "vertical" : "horizontal"} class="h-[100vh]">
+<Resizable.PaneGroup direction={onMobile ? "vertical" : "horizontal"} class="w-screen h-screen">
   	<Resizable.Pane bind:pane={settingsPane}
+		class={onMobile ? "w-screen" : "h-screen"}
 		defaultSize={40}
 		minSize={15}
 		collapsedSize={5}
 		collapsible={true}
 		onCollapse={() => (settingsPaneCollapsed = true)}
 		onExpand={() => (settingsPaneCollapsed = false)}
-		onResize={(size) => (paneResized(size))}
 	></Resizable.Pane>
-  	<Resizable.Handle withHandle class="h-full "/>
+  	<Resizable.Handle withHandle class={onMobile ? "w-screen" : "h-screen"}/>
   	<Resizable.Pane 
+		class="map-pane {onMobile ? "w-screen" : "h-screen"}"
 		defaultSize={60}
 	>
-		<Map/>
+		<Map bind:map={mapElement}/>
 </Resizable.Pane>
 </Resizable.PaneGroup>
