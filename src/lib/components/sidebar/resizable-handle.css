@@ -1,9 +1,9 @@
 @media (max-width: 768px) {
-    .resizable-handle {
+    .resizable-touchbar {
         position: relative;
     }
 
-    .resizable-handle::before {
+    .resizable-touchbar::before {
         content: "";
         position: absolute;
         bottom: 0;
@@ -16,7 +16,7 @@
         z-index: 5;
     }
     
-    .resizable-handle::after {
+    .resizable-touchbar::after {
         content: "";
         position: absolute;
         top: -0.5rem;
