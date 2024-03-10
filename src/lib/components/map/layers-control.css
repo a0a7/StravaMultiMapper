@@ -10,3 +10,11 @@
 .main-button > :first-child {
 	border: 3px solid #3c5c7a !important;
 }
+
+@media (max-width: 768px) {
+	.button-container {
+		width: 91%;
+		overflow-x: scroll;
+		overflow-y: hidden;
+	}
+}
