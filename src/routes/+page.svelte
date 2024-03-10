@@ -10,7 +10,7 @@
 	let settingsPane: PaneAPI, settingsPaneCollapsed: boolean = false;
 
 	onMount(() => {
-		onMobile = window.innerWidth <= 768; // Change this value based on your definition of a "phone" screen size
+		onMobile = window.innerWidth <= 768;
 		window.addEventListener('resize', () => {
 			onMobile = window.innerWidth <= 768;
 		});

@@ -67,45 +67,8 @@
         mainColor: '#263238',
         haloColor: '#fff'
     };
-
-    // Import browser-only modules, set browser-dependent variables
-    onMount(async () => {
-        const styleSwitcherModule = await import('@watergis/svelte-maplibre-style-switcher');
-        const exportModule = await import('@watergis/maplibre-gl-export');
-
-        StyleSwitcher = styleSwitcherModule.StyleSwitcher;
-        StyleSwitcherControl = styleSwitcherModule.StyleSwitcherControl;
-        StyleUrl = styleSwitcherModule.StyleUrl;
-        MaplibreExportControl = exportModule.MaplibreExportControl;
-        Size = exportModule.Size;
-        PageOrientation = exportModule.PageOrientation;
-        Format = exportModule.Format;
-        DPI = exportModule.DPI;
-
-        // Handle map resizing 
-        mapDiv = document.getElementsByClassName('map-pane')[0];
-
-        mapResizeObserver = new ResizeObserver(entries => {
-            for (let entry of entries) {
-                if (entry.target === mapDiv) {
-                    rigorouslyResizeMap();
-                }
-            }
-        });
-
-        mapResizeObserver.observe(mapDiv);
-        
-        map.on('load', rigorouslyResizeMap());
-    });
-
-    onDestroy(() => {
-        if (mapResizeObserver && mapDiv) {
-            mapResizeObserver.unobserve(mapDiv);
-        }
-    });
     
-
-    export function rigorouslyResizeMap() {
+    function rigorouslyResizeMap() {
         if (map) {
             const mapCanvas = document.getElementsByClassName('maplibregl-map')[0] as HTMLCanvasElement;
             const mapDiv = document.getElementsByClassName('map-pane')[0] as HTMLDivElement;
@@ -133,6 +96,38 @@
     $: if (map && loaded) {
         // textLayers = map.getStyle().layers.filter((layer) => layer['source-layer'] === 'place');
     }
+
+    onMount(async () => {
+        // Import browser-only modules
+        const styleSwitcherModule = await import('@watergis/svelte-maplibre-style-switcher');
+        const exportModule = await import('@watergis/maplibre-gl-export');
+
+        StyleSwitcher = styleSwitcherModule.StyleSwitcher;
+        StyleSwitcherControl = styleSwitcherModule.StyleSwitcherControl;
+        StyleUrl = styleSwitcherModule.StyleUrl;
+        MaplibreExportControl = exportModule.MaplibreExportControl;
+        Size = exportModule.Size;
+        PageOrientation = exportModule.PageOrientation;
+        Format = exportModule.Format;
+        DPI = exportModule.DPI;
+
+        // Handle map resizing 
+        mapDiv = document.getElementsByClassName('map-pane')[0];
+
+        mapResizeObserver = new ResizeObserver(() => {
+            rigorouslyResizeMap();
+        });
+
+        mapResizeObserver.observe(mapDiv);
+
+        map.on('load', rigorouslyResizeMap());
+    });
+
+    onDestroy(() => {
+        if (mapResizeObserver && mapDiv) {
+            mapResizeObserver.unobserve(mapDiv);
+        }
+    });
 </script>
 
 <MapLibre
