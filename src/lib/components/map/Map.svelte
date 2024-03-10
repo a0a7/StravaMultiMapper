@@ -69,15 +69,22 @@
         haloColor: '#fff'
     };
     
+    // Properly control map size
     function rigorouslyResizeMap() {
         if (map && onMobile != undefined) {
             console.log(onMobile)
             const mapCanvas = document.getElementsByClassName('maplibregl-map')[0] as HTMLCanvasElement;
             const mapDiv = document.getElementsByClassName('map-pane')[0] as HTMLDivElement;
-            
+            const mapBottomControls = [
+                document.getElementsByClassName('maplibregl-ctrl-bottom-left')[0] as HTMLDivElement,
+                document.getElementsByClassName('maplibregl-ctrl-bottom-right')[0] as HTMLDivElement
+            ]
+             
             if (onMobile) {
                 mapCanvas.style.width = '100vw';
-                mapCanvas.style.height = `${mapDiv.clientHeight}px`;
+                mapCanvas.style.height = `${mapDiv.clientHeight + 5}px`;
+                mapBottomControls.forEach((el) => el.style.paddingBottom = '15px');
+                
             } else if (!onMobile) {
                 mapCanvas.style.width = `${mapDiv.clientWidth}px`;
                 mapCanvas.style.height = '100vh';
@@ -156,7 +163,7 @@
     <ScaleControl />
     <AttributionControl
         compact
-        customAttribution={`App created by <a href="https://github.com/sudolev" target="_blank">Alexander Weimer</a> |
+        customAttribution={`App by <a href="https://github.com/sudolev" target="_blank">lev</a> |
             <img src="img/icon/powered_by_strava.svg" class="h-4 inline p-0" title="Powered by Strava" alt="Powered by Strava">`}
     />
     <Control position="top-right" class="flex flex-col gap-y-2">
