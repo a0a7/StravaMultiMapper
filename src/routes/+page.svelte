@@ -27,9 +27,10 @@
 	/>
 </svelte:head>
 
-<Resizable.PaneGroup direction={onMobile ? "vertical" : "horizontal"} class="w-screen h-screen">
-  	<Resizable.Pane bind:pane={settingsPane}
-		class={onMobile ? "w-screen" : "h-screen"}
+<Resizable.PaneGroup direction={onMobile ? "vertical" : "horizontal"} class="w-screen h-screen flex {onMobile ? "flex-col" : "flex-row"}">
+	<Resizable.Pane bind:pane={settingsPane}
+		class="settings-pane {onMobile ? "w-screen order-3" : "h-screen order-1"}"
+		order={onMobile ? 1 : 2}
 		defaultSize={40}
 		minSize={15}
 		collapsedSize={5}
@@ -37,11 +38,12 @@
 		onCollapse={() => (settingsPaneCollapsed = true)}
 		onExpand={() => (settingsPaneCollapsed = false)}
 	></Resizable.Pane>
-  	<Resizable.Handle withHandle class={onMobile ? "w-screen" : "h-screen"}/>
-  	<Resizable.Pane 
-		class="map-pane {onMobile ? "w-screen" : "h-screen"}"
-		defaultSize={60}
+	<Resizable.Handle withHandle class="order-2 {onMobile ? "w-screen" : "h-screen"}"/>
+	<Resizable.Pane 
+			class="map-pane {onMobile ? "w-screen order-1" : "h-screen order-3"}"
+			order={onMobile ? 2 : 1}
+			defaultSize={60}
 	>
 		<Map bind:map={mapElement} bind:onMobile/>
-</Resizable.Pane>
+	</Resizable.Pane>
 </Resizable.PaneGroup>

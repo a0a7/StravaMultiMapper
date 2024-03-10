@@ -127,9 +127,12 @@
         });
 
         mapResizeObserver.observe(mapDiv);
+        mapResizeObserver.observe(document.body);
 
         map.on('load', rigorouslyResizeMap());
     });
+
+    
 
     onDestroy(() => {
         if (mapResizeObserver && mapDiv) {
