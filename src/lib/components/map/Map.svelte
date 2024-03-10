@@ -18,6 +18,7 @@
     import '$lib/components/map/layers-control.css';
     import type IControl from 'maplibre-gl';
 
+    export let onMobile: boolean;
     export let map: any; 
     let loaded: boolean;
     let mapDiv: Element;
@@ -69,11 +70,18 @@
     };
     
     function rigorouslyResizeMap() {
-        if (map) {
+        if (map && onMobile != undefined) {
+            console.log(onMobile)
             const mapCanvas = document.getElementsByClassName('maplibregl-map')[0] as HTMLCanvasElement;
             const mapDiv = document.getElementsByClassName('map-pane')[0] as HTMLDivElement;
-        
-            mapCanvas.style.width = mapDiv.clientWidth + 'px';
+            
+            if (onMobile) {
+                mapCanvas.style.width = '100vw';
+                mapCanvas.style.height = `${mapDiv.clientHeight}px`;
+            } else if (!onMobile) {
+                mapCanvas.style.width = `${mapDiv.clientWidth}px`;
+                mapCanvas.style.height = '100vh';
+            }
         }
     }
 

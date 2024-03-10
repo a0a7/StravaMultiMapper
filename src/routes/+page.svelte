@@ -42,6 +42,6 @@
 		class="map-pane {onMobile ? "w-screen" : "h-screen"}"
 		defaultSize={60}
 	>
-		<Map bind:map={mapElement}/>
+		<Map bind:map={mapElement} bind:onMobile/>
 </Resizable.Pane>
 </Resizable.PaneGroup>
