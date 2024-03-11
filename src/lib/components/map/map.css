@@ -9,7 +9,7 @@
 .dark .maplibregl-ctrl-bottom-right,
 .dark .maplibregl-ctrl-bottom-left,
 .dark .maplibregl-ctrl-group {
-    filter: invert(1) saturate(0%) brightness(92%) contrast(88%);
+    filter: invert(1) brightness(125%) hue-rotate(170deg) saturate(50%);
 }
 
 /* Fix dark mode export menu text color */

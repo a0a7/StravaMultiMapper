@@ -38,7 +38,7 @@
 
 <Resizable.PaneGroup direction={onMobile ? "vertical" : "horizontal"} class="w-screen h-screen">
 	{#if deviceTypeKnown && onMobile}
-		<Resizable.Pane class="map-pane w-screen" defaultSize={60} order={1} >
+		<Resizable.Pane class="map-pane w-screen" defaultSize={75} order={1} >
 			<Map bind:map={map} bind:this={mapComponent} bind:onMobile />
 		</Resizable.Pane>
 		<div role="button" tabindex="0"
@@ -56,7 +56,7 @@
 	<Resizable.Pane bind:pane={settingsPane}
 		class="settings-pane"
 		order={2}
-		defaultSize={40}
+		defaultSize={25}
 		minSize={8}
 		collapsedSize={8}
 		collapsible={true}
@@ -74,8 +74,8 @@
 		</ScrollArea>
 	</Resizable.Pane>
 	{#if deviceTypeKnown && !onMobile}
-		<Resizable.Handle withHandle class="h-screen" />
-		<Resizable.Pane class="map-pane h-screen" defaultSize={60} order={3}>
+		<Resizable.Handle withHandle class="resizable-touchbar h-screen w-1 bg-accent dark:bg-border" />
+		<Resizable.Pane class="map-pane h-screen" defaultSize={75} order={3}>
 			<Map bind:map={map} bind:this={mapComponent} bind:onMobile />
 		</Resizable.Pane>
 	{/if}
