@@ -1,5 +1,6 @@
 <script lang="ts">
     import { SvelteComponentTyped, onMount, onDestroy } from 'svelte';
+    import { mode, toggleMode } from 'mode-watcher';
     import {
         MapLibre,
         NavigationControl,
@@ -92,6 +93,20 @@
         }
     }
 
+    export function conditionallyInvertMapColor() {
+        if ($mode) {
+            console.log($mode + ($mode == "dark" && selectedStyle == styles[0]) + ($mode == "light" && selectedStyle == styles[1]) )
+            console.log(selectedStyle)
+            console.log(styles[0])
+            console.log(styles[0] == selectedStyle)
+            
+        }
+        if ($mode == "dark" && selectedStyle == styles[0]) {
+            selectedStyle = styles[1]; 
+        } else if ($mode == "light" && selectedStyle == styles[1]) {
+            selectedStyle = styles[0]; 
+        } 
+    }
     // Add image export control when ready
     $: if (
         map && loaded && !map.hasControl(exportControl) &&
@@ -126,6 +141,13 @@
         Format = exportModule.Format;
         DPI = exportModule.DPI;
 
+        if ($mode) {
+            console.log(mode)
+            if ($mode == "dark") {
+                selectedStyle = styles[1]; 
+            }
+        }
+
         // Handle map resizing 
         mapDiv = document.getElementsByClassName('map-pane')[0];
 
@@ -136,7 +158,10 @@
         mapResizeObserver.observe(mapDiv);
         mapResizeObserver.observe(document.body);
 
-        map.on('load', rigorouslyResizeMap());
+        map.on('load', () => {
+            rigorouslyResizeMap();
+            conditionallyInvertMapColor();
+        });
     });
 
     
@@ -147,6 +172,8 @@
         }
     });
 </script>
+
+
 
 <MapLibre
     bind:map

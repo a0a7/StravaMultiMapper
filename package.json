@@ -67,7 +67,8 @@
 		"svelte-maplibre": "^0.8.2",
 		"svelte-radix": "^1.0.3",
 		"svelte-sonner": "^0.3.19",
-		"tailwind-merge": "^2.2.1"
+		"tailwind-merge": "^2.2.1",
+		"tailwind-variants": "^0.2.0"
 	},
 	"packageManager": "pnpm@8.15.2",
 	"engines": {

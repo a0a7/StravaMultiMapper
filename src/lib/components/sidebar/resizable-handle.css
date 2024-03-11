@@ -12,7 +12,7 @@
         height: 1rem;
         border-top-left-radius: 1rem;
         border-top-right-radius: 1rem;
-        background-color: black;
+        background-color: hsl(var(--background));
         z-index: 5;
     }
     
