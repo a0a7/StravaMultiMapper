@@ -173,7 +173,11 @@
     });
 </script>
 
-
+<svelte:head>
+    {#each styles as style}
+        <link rel="prefetch" href={style.uri} />
+    {/each}
+</svelte:head>
 
 <MapLibre
     bind:map
