@@ -93,20 +93,15 @@
         }
     }
 
+    // Change map color when theme changes if using positron/dark matte
     export function conditionallyInvertMapColor() {
-        if ($mode) {
-            console.log($mode + ($mode == "dark" && selectedStyle == styles[0]) + ($mode == "light" && selectedStyle == styles[1]) )
-            console.log(selectedStyle)
-            console.log(styles[0])
-            console.log(styles[0] == selectedStyle)
-            
-        }
         if ($mode == "dark" && selectedStyle == styles[0]) {
             selectedStyle = styles[1]; 
         } else if ($mode == "light" && selectedStyle == styles[1]) {
             selectedStyle = styles[0]; 
         } 
     }
+
     // Add image export control when ready
     $: if (
         map && loaded && !map.hasControl(exportControl) &&
@@ -163,8 +158,6 @@
             conditionallyInvertMapColor();
         });
     });
-
-    
 
     onDestroy(() => {
         if (mapResizeObserver && mapDiv) {
