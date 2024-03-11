@@ -61,7 +61,7 @@
 		onCollapse={() => (settingsPaneCollapsed = true)}
 		onExpand={() => (settingsPaneCollapsed = false)}
 	>
-		<div class="w-full h-full px-5 pt-1 pb-2 md:py-5 background">
+		<div class="w-full h-full px-5 pt-1 pb-2 md:py-5 background overflow-y-scroll">
 			<Button on:click={() => {
 				toggleMode();
 				invertMapColor();
