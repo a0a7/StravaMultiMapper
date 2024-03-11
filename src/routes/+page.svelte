@@ -3,8 +3,10 @@
 	import * as Resizable from "$lib/components/ui/resizable";
 	import type { PaneAPI } from "paneforge";
 	import Button from "$lib/components/ui/button/button.svelte";
+	import { ScrollArea } from "$lib/components/ui/scroll-area/index.js";
 	import '$lib/components/sidebar/resizable-handle.css';
 	import Map from '$lib/components/map/Map.svelte';
+	import ConnectPanel from '$lib/components/sidebar/ConnectPanel.svelte';	
 	import { mode, toggleMode } from 'mode-watcher';
 	let map: any = null;
 	let mapComponent: Map | null = null;
@@ -61,14 +63,15 @@
 		onCollapse={() => (settingsPaneCollapsed = true)}
 		onExpand={() => (settingsPaneCollapsed = false)}
 	>
-		<div class="w-full h-full px-5 pt-1 pb-2 md:py-5 background overflow-y-scroll">
-			<Button on:click={() => {
+		<ScrollArea class="w-full h-full px-5 pt-1 pb-2 md:py-5 background overflow-y-scroll">
+			<!--<Button on:click={() => {
 				toggleMode();
 				invertMapColor();
 			}}>
 				Toggle Mode
-			</Button>
-		</div>
+			</Button>-->
+			<ConnectPanel />
+		</ScrollArea>
 	</Resizable.Pane>
 	{#if deviceTypeKnown && !onMobile}
 		<Resizable.Handle withHandle class="h-screen" />
