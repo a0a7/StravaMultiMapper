@@ -1,19 +1,19 @@
 .map {
-    position: relative;
-    top: 0;
-    bottom: 0;
-    z-index: 1;
+	position: relative;
+	top: 0;
+	bottom: 0;
+	z-index: 1;
 }
 
 /* Dark Mode Control Styling */
 .dark .maplibregl-ctrl-bottom-right,
 .dark .maplibregl-ctrl-bottom-left,
 .dark .maplibregl-ctrl-group {
-    filter: invert(1) brightness(125%) hue-rotate(170deg) saturate(50%);
+	filter: invert(1) brightness(125%) hue-rotate(170deg) saturate(50%);
 }
 
 /* Fix dark mode export menu text color */
-.dark .maplibregl-export-list label, 
+.dark .maplibregl-export-list label,
 .dark .maplibregl-export-list button {
-    color: black;
+	color: black;
 }
