@@ -15,7 +15,8 @@
             <svg class="svg-icon feather feather-moon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" ><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>        
         {/if}
     </Button>
-    <h5 class="mx-3 leading-[1.125] mb-1 w-[20vw]">
-        Multi-activity&nbsp;mapper by&nbsp;<a href="https://github.com/" target="_blank" class="text-secondary">Alexander&nbsp;Weimer</a>
+    <h5 class="mx-2 leading-[1.125] mb-1 w-[20vw]">
+        Multi-activity&nbsp;mapper<img src="favicon.png" alt="Strava Multi-activity Mapper Logo" class="w-5 h-5 ml-1 mr-[3px] inline" />
+        by&nbsp;<a href="https://github.com/" target="_blank" class="text-secondary">Alexander&nbsp;Weimer</a>
     </h5>
 </div>
