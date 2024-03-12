@@ -1,4 +1,5 @@
 <script lang="ts">
+	import Loading from '$lib/components/Loading.svelte';
 	import { onMount } from "svelte";
 	import * as Resizable from "$lib/components/ui/resizable";
 	import type { PaneAPI } from "paneforge";
@@ -10,8 +11,7 @@
 	import Footer from '$lib/components/sidebar/Footer.svelte';	
 
 	import { mode, toggleMode } from 'mode-watcher';
-	let map: any = null;
-	let mapComponent: Map | null = null;
+	let map: any = null, mapLoaded: boolean = false, mapComponent: Map | null = null;
 
 	let onMobile: boolean;
 	$: deviceTypeKnown = typeof onMobile !== 'undefined';
@@ -30,11 +30,13 @@
 		content="The best way to visualize your Strava runs, rides, or other activities on a beautiful & modern map."
 	/>
 </svelte:head>
-
+{#if !mapLoaded}
+	<Loading />
+{/if}
 <Resizable.PaneGroup direction={onMobile ? "vertical" : "horizontal"} class="w-screen h-screen">
 	{#if deviceTypeKnown && onMobile}
 		<Resizable.Pane class="map-pane w-screen" defaultSize={onMobile ? 25 : 75} order={1} >
-			<Map bind:map={map} bind:this={mapComponent} bind:onMobile />
+			<Map bind:map={map} bind:loaded={mapLoaded} bind:this={mapComponent} bind:onMobile />
 		</Resizable.Pane>
 		<div role="button" tabindex="0"
 			on:dblclick={() => {
@@ -73,7 +75,7 @@
 	{#if deviceTypeKnown && !onMobile}
 		<Resizable.Handle withHandle class="resizable-touchbar h-screen w-1 bg-accent dark:bg-border" />
 		<Resizable.Pane class="map-pane h-screen" defaultSize={onMobile ? 25 : 75} order={3}>
-			<Map bind:map={map} bind:this={mapComponent} bind:onMobile />
+			<Map bind:map={map} bind:loaded={mapLoaded} bind:this={mapComponent} bind:onMobile />
 		</Resizable.Pane>
 	{/if}
 </Resizable.PaneGroup>

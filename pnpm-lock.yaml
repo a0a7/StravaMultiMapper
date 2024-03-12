@@ -50,6 +50,9 @@ dependencies:
   paneforge:
     specifier: ^0.0.2
     version: 0.0.2(svelte@4.2.12)
+  svelte-loading-spinners:
+    specifier: ^0.3.4
+    version: 0.3.4
   svelte-maplibre:
     specifier: ^0.8.2
     version: 0.8.2(svelte@4.2.12)
@@ -5609,6 +5612,10 @@ packages:
       svelte: ^3.19.0 || ^4.0.0
     dependencies:
       svelte: 4.2.12
+
+  /svelte-loading-spinners@0.3.4:
+    resolution: {integrity: sha512-vKaW71QMCBcTNijAGc0mUl8k3DQ66iYmp6MB8BMGCXyWk82bTrcLy8FOnSm9fE+8q6TwzD6PLUoYFHt0II93Xw==}
+    dev: false
 
   /svelte-maplibre@0.8.2(svelte@4.2.12):
     resolution: {integrity: sha512-l4FW7VE/1/uUUyk639gtvYyK0QbNw3roRq9ouxPDS+DAW8gwpxlnDwYTtjEO+Yq7TK6xOjimJtKOG3KES8e7Uw==}

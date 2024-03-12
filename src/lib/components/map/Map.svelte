@@ -21,7 +21,7 @@
 
     export let onMobile: boolean;
     export let map: any; 
-    let loaded: boolean;
+    export let loaded: boolean;
     let mapDiv: Element;
     let mapResizeObserver: ResizeObserver;
     
