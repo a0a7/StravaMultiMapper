@@ -11,7 +11,6 @@ export default defineConfig({
 		threads: false,
 		globals: true,
 		environment: 'jsdom',
-		setupFiles: ['./src/setupTest.ts'],
 		coverage: {
 			provider: 'istanbul',
 			reporter: ['text', 'json', 'html']
