@@ -7,6 +7,8 @@
 	import '$lib/components/sidebar/resizable-handle.css';
 	import Map from '$lib/components/map/Map.svelte';
 	import ConnectPanel from '$lib/components/sidebar/ConnectPanel.svelte';	
+	import Footer from '$lib/components/sidebar/Footer.svelte';	
+
 	import { mode, toggleMode } from 'mode-watcher';
 	let map: any = null;
 	let mapComponent: Map | null = null;
@@ -19,13 +21,6 @@
 		onMobile = window.innerWidth <= 768;
 		window.addEventListener('resize', () => {onMobile = window.innerWidth <= 768});
 	});
-	function invertMapColor() {
-		console.log('attempting to invert map color')
-		if (mapComponent) {
-			console.log('inverting map color')
-			mapComponent.conditionallyInvertMapColor();
-		}
-	}
 </script>
 
 <svelte:head>
@@ -63,15 +58,17 @@
 		onCollapse={() => (settingsPaneCollapsed = true)}
 		onExpand={() => (settingsPaneCollapsed = false)}
 	>
-		<ScrollArea class="w-full h-full px-5 pt-1 pb-2 md:py-5 background overflow-y-scroll">
-			<!--<Button on:click={() => {
-				toggleMode();
-				invertMapColor();
-			}}>
-				Toggle Mode
-			</Button>-->
-			<ConnectPanel />
-		</ScrollArea>
+		<div class="w-full h-full px-5 pt-1 pb-2 md:py-5 background">
+			<ScrollArea class="w-full overflow-y-scroll">
+				<ConnectPanel />
+				{#if onMobile}
+					<Footer />
+				{/if}
+			</ScrollArea>
+			{#if !onMobile}
+				<Footer /> 
+			{/if}
+		</div>
 	</Resizable.Pane>
 	{#if deviceTypeKnown && !onMobile}
 		<Resizable.Handle withHandle class="resizable-touchbar h-screen w-1 bg-accent dark:bg-border" />

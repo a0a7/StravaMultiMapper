@@ -5,7 +5,7 @@
     import "$lib/components/sidebar/svg-styles.css";
 </script>
 
-<div class="mt-32">
+<div class="md:my-auto">
     <Card.Root>
         <Card.Header>
             <p>To map your activities, you will first need to let us <b>import your activities from Strava.</b> Click below to be taken to Strava's authorization page.</p>
@@ -23,7 +23,7 @@
                 <Alert.Title><b class="font-large">Worried about privacy?</b></Alert.Title>
                 <Alert.Description>
                     <p>
-                        This app doesn't store any of your data, full stop. It uses Strava's API to fetch your activities, but doesn't have any access to your account beyond that. None of your information is saved on our servers.
+                        This app doesn't store any of your data, full stop. It uses Strava's API to fetch your activities, but doesn't have any access to your account beyond that. None of your information is saved on our servers or used for any purpose other than showing it to you.
                     </p><p>
                         This app is <a href="https://github.com/sudolev/StravaMultiMapper" target="_blank">open-source</a> under the <a href="https://github.com/sudolev/StravaMultiMapper/blob/main/LICENSE" target="_blank">GPL-3.0 license</a>.
                     </p>

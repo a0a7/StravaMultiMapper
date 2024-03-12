@@ -93,13 +93,23 @@
         }
     }
 
-    // Change map color when theme changes if using positron/dark matte
-    export function conditionallyInvertMapColor() {
+    function updateMapModeChange() {
         if ($mode == "dark" && selectedStyle == styles[0]) {
             selectedStyle = styles[1]; 
         } else if ($mode == "light" && selectedStyle == styles[1]) {
             selectedStyle = styles[0]; 
         } 
+    }
+
+    // Change map color when theme changes if using positron/dark matte
+    $: { 
+        if ($mode) { // Done so that the reactive statement is only reactive with regard to mode
+            if ($mode == "dark" && selectedStyle == styles[0]) {
+                selectedStyle = styles[1]; 
+            } else if ($mode == "light" && selectedStyle == styles[1]) {
+                selectedStyle = styles[0]; 
+            } 
+        }
     }
 
     // Add image export control when ready
@@ -116,10 +126,6 @@
             PrintableArea: true
         });
         map.addControl(exportControl, 'top-right');
-    }
-
-    $: if (map && loaded) {
-        // textLayers = map.getStyle().layers.filter((layer) => layer['source-layer'] === 'place');
     }
 
     onMount(async () => {
@@ -155,7 +161,6 @@
 
         map.on('load', () => {
             rigorouslyResizeMap();
-            conditionallyInvertMapColor();
         });
     });
 
@@ -187,8 +192,7 @@
     <ScaleControl />
     <AttributionControl
         compact
-        customAttribution={`App by <a href="https://github.com/sudolev" target="_blank">lev</a> |
-            <img src="img/icon/powered_by_strava.svg" class="h-4 inline p-0" title="Powered by Strava" alt="Powered by Strava">`}
+        customAttribution={`<img src="img/icon/powered_by_strava.svg" class="h-4 inline p-0" title="Powered by Strava" alt="Powered by Strava">`}
     />
     <Control position="top-right" class="flex flex-col gap-y-2">
         <ControlGroup>
