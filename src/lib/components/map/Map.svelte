@@ -91,7 +91,7 @@
 			}
 		}
 	}
-	
+
 	// Change map color when theme changes if using positron/dark matte
 	$: {
 		if ($mode) {
