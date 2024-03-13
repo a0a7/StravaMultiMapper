@@ -55,7 +55,7 @@
 			>
 		{/if}
 	</Button>
-	<h5 class="mx-2 leading-[1.125] mb-1 w-[20vw]">
+	<h5 class="mx-2 leading-[1.125] mb-1 md:w-[20vw]">
 		Multi-activity&nbsp;mapper<img
 			src="favicon.png"
 			alt="Strava Multi-activity Mapper Logo"
