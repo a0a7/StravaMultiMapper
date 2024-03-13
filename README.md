@@ -1,7 +1,8 @@
 # ![Logo](https://github.com/sudolev/StravaMultiMapper/assets/61996958/3ac93fc4-6c78-460b-b964-22db9b5045d2) Strava Activity Heatmap
 
-[![CI](https://github.com/sudolev/StravaMultiMapper/actions/workflows/ci.yml/badge.svg)](https://github.com/sudolev/StravaMultiMapper/actions/workflows/ci.yml)
 ![Website](https://img.shields.io/website?url=https%3A%2F%2Fstravamap.pages.dev%2F)
+![Mozilla HTTP Observatory Grade](https://img.shields.io/mozilla-observatory/grade-score/stravamap.pages.dev)
+[![CI](https://github.com/sudolev/StravaMultiMapper/actions/workflows/ci.yml/badge.svg)](https://github.com/sudolev/StravaMultiMapper/actions/workflows/ci.yml)
 ![GitHub repo size](https://img.shields.io/github/repo-size/sudolev/StravaMultiMapper)
 [![license](https://img.shields.io/github/license/sudolev/StravaMultiMapper)](https://github.com/sudolev/StravaMultiMapper/blob/main/LICENSE)
 
