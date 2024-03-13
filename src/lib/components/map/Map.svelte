@@ -73,7 +73,6 @@
 	// Properly control map size
 	function rigorouslyResizeMap() {
 		if (map && onMobile != undefined) {
-			console.log(onMobile);
 			const mapCanvas = document.getElementsByClassName('maplibregl-map')[0] as HTMLCanvasElement;
 			const mapDiv = document.getElementsByClassName('map-pane')[0] as HTMLDivElement;
 			const mapBottomControls = [
@@ -141,7 +140,6 @@
 		DPI = exportModule.DPI;
 
 		if ($mode) {
-			console.log(mode);
 			if ($mode == 'dark') {
 				selectedStyle = styles[1];
 			}
