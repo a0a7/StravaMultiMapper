@@ -87,6 +87,7 @@
 			} else if (!onMobile) {
 				mapCanvas.style.width = `${mapDiv.clientWidth}px`;
 				mapCanvas.style.height = '100vh';
+				mapBottomControls.forEach((el) => (el.style.paddingBottom = '0px'));
 			}
 		}
 	}
