@@ -59,7 +59,7 @@
 		"@watergis/svelte-maplibre-menu": "^2.1.2",
 		"@watergis/svelte-maplibre-share": "^2.0.2",
 		"@watergis/svelte-maplibre-style-switcher": "^2.0.1",
-		"bits-ui": "^0.19.5",
+		"bits-ui": "^0.19.6",
 		"clsx": "^2.1.0",
 		"maplibre-gl": "^3.6.2",
 		"mode-watcher": "^0.2.2",
