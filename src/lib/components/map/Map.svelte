@@ -79,7 +79,7 @@
 				document.getElementsByClassName('maplibregl-ctrl-bottom-left')[0] as HTMLDivElement,
 				document.getElementsByClassName('maplibregl-ctrl-bottom-right')[0] as HTMLDivElement
 			];
-			map.resize() // Pre-resize helps counteract map flickering
+			map.resize(); // Pre-resize helps counteract map flickering
 			if (onMobile) {
 				mapDiv.style.width = '100vw';
 				mapDiv.style.height = `${mapDiv.clientHeight + 5}px`;
@@ -89,7 +89,7 @@
 				mapDiv.style.height = '100vh';
 				mapBottomControls.forEach((el) => (el.style.paddingBottom = '0px'));
 			}
-			setTimeout(() => map.resize(), 0) // Timer helps counteract map flickering
+			setTimeout(() => map.resize(), 0); // Timer helps counteract map flickering
 		}
 	}
 
@@ -151,7 +151,7 @@
 		mapDiv = document.getElementsByClassName('map-pane')[0];
 
 		mapResizeObserver = new ResizeObserver(() => {
-			setTimeout(() => rigorouslyResizeMap(), 0) // This timeout hard carries this app bro it prevents so much map flicker
+			setTimeout(() => rigorouslyResizeMap(), 0); // This timeout hard carries this app bro it prevents so much map flicker
 		});
 
 		mapResizeObserver.observe(mapDiv);
