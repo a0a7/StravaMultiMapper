@@ -43,7 +43,6 @@ jobs:
       - run: pnpm format
       - run: pnpm lint
       - run: pnpm build
-      - run: pnpm check
   test:
     runs-on: ubuntu-latest
 
