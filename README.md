@@ -1,54 +1,27 @@
-# svelte-maplibre-boilerplate
+# ![Logo](https://github.com/sudolev/StravaMultiMapper/assets/61996958/3ac93fc4-6c78-460b-b964-22db9b5045d2) Strava Activity Heatmap
 
-![license](https://img.shields.io/github/license/watergis/sveltekit-maplibre-boilerplate)
-[![Netlify Status](https://api.netlify.com/api/v1/badges/be68de24-2ebe-48ef-bc7a-a5f27544f551/deploy-status)](https://app.netlify.com/sites/sveltekit-maplibre-boilerplace/deploys)
-[![CI](https://github.com/watergis/sveltekit-maplibre-boilerplate/actions/workflows/ci.yml/badge.svg)](https://github.com/watergis/sveltekit-maplibre-boilerplate/actions/workflows/ci.yml)
+[![CI](https://github.com/sudolev/StravaMultiMapper/actions/workflows/ci.yml/badge.svg)](https://github.com/sudolev/StravaMultiMapper/actions/workflows/ci.yml)
+![Website](https://img.shields.io/website?url=https%3A%2F%2Fstravamap.pages.dev%2F)
+![GitHub repo size](https://img.shields.io/github/repo-size/sudolev/StravaMultiMapper)
+[![license](https://img.shields.io/github/license/sudolev/StravaMultiMapper)](https://github.com/sudolev/StravaMultiMapper/blob/main/LICENSE)
 
-This is a simple and smart boilerplate to integrate maplibre project by using sveltekit.
+ A free, modern, and feature-rich way to map your Strava activities. 
 
-## Usage
+## Screenshots
 
-### Environmental variables
+## Contributing/Building
 
-```bash
-cp .env.example
-vi .env
-```
-
-Add your own API key `PUBLIC_MAPTILER_KEY` for maptiler. The key can be created at maptiler website [here](https://cloud.maptiler.com/account/keys/). You probably need to sign up first.
-
-### Installation
-
+Clone the repository. If you don't have pnpm installed, install that.
 ```bash
 npm i -g pnpm
+```
+Install dependencies
+```bash
 pnpm i
 ```
-
-### Developing
-
-Once you've created a project and installed dependencies with `pnpm install`, start a development server:
-
+Run the development server
 ```bash
 pnpm dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
 ```
 
-### Building
-
-To create a production version of your app:
-
-```bash
-pnpm build
-```
-
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
-
-In this repository, it uses Netlify to build and deploy demo website.
-
-## License
-
-[MIT License](./LICENSE)
+© Alexander Weimer. Licensed under [GPL-3.0](./LICENSE).
