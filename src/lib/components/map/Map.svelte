@@ -12,7 +12,7 @@
 		ControlButton,
 		ControlGroup
 	} from 'svelte-maplibre';
-	// import { MeasurePanel, type MeasureOption } from '@watergis/svelte-maplibre-measure';
+	import { MeasurePanel, type MeasureOption } from '@watergis/svelte-maplibre-measure';
 	import '@watergis/maplibre-gl-export/dist/maplibre-gl-export.css';
 	import '$lib/components/map/map.css';
 	import '$lib/components/map/measure-control.css';
@@ -61,14 +61,14 @@
 	let selectedStyle = styles[0];
 
 	// Configure Measuring Plugin
-	//let measureOptions: MeasureOption = {
-	//	tileSize: 512,
-	//	font: ['Roboto Medium'],
-	//	fontSize: 12,
-	//	fontHalo: 1,
-	//	mainColor: '#263238',
-	//	haloColor: '#fff'
-	//};
+	let measureOptions: MeasureOption = {
+		tileSize: 512,
+		font: ['Roboto Medium'],
+		fontSize: 12,
+		fontHalo: 1,
+		mainColor: '#263238',
+		haloColor: '#fff'
+	};
 
 	// Properly control map size
 	function rigorouslyResizeMap() {
@@ -192,13 +192,13 @@
 		compact
 		customAttribution={`<img src="img/icon/powered_by_strava.svg" class="h-4 inline p-0" title="Powered by Strava" alt="Powered by Strava">`}
 	/>
-	<!--<Control position="top-right" class="flex flex-col gap-y-2">
+	<Control position="top-right" class="flex flex-col gap-y-2">
 		<ControlGroup>
 			{#if map}
 				<MeasurePanel bind:map bind:measureOption={measureOptions} bind:this={measureControl} />
 			{/if}
 		</ControlGroup>
-	</Control>-->
+	</Control>
 	<Control position="top-left" class="flex flex-col gap-y-2">
 		<ControlGroup>
 			<ControlButton

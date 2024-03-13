@@ -4,7 +4,7 @@ MeasurePanel component to make them
 match the conventions of MapLibre controls. */
 
 .maplibregl-export-control {
-	background: url('img/icon/print.svg');
+	background: url('/img/icon/print.svg');
 	background-position: center;
 	background-repeat: no-repeat;
 	background-size: 70%;

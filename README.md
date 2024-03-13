@@ -5,21 +5,26 @@
 ![GitHub repo size](https://img.shields.io/github/repo-size/sudolev/StravaMultiMapper)
 [![license](https://img.shields.io/github/license/sudolev/StravaMultiMapper)](https://github.com/sudolev/StravaMultiMapper/blob/main/LICENSE)
 
- A free, modern, and feature-rich way to map your Strava activities. 
+A free, modern, and feature-rich way to map your Strava activities.
 
 ## Screenshots
 
 ## Contributing/Building
 
 Clone the repository. If you don't have pnpm installed, install that.
+
 ```bash
 npm i -g pnpm
 ```
+
 Install dependencies
+
 ```bash
 pnpm i
 ```
+
 Run the development server
+
 ```bash
 pnpm dev
 ```
