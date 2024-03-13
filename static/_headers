@@ -1,4 +1,4 @@
 https://stravamap.pages.dev/*
     X-Content-Type-Options: nosniff
     X-Frame-Options: DENY
-    Content-Security-Policy: default-src 'self' blob: data: https://tiles.basemaps.cartocdn.com; font-src 'self'; img-src 'self' https://*.basemaps.cartocdn.com data: blob:; object-src 'none'; script-src 'self' 'unsafe-inline' https://static.cloudflareinsights.com blob: data:; style-src 'self' 'unsafe-inline'
+    Content-Security-Policy: default-src 'self' blob: data: https://*.basemaps.cartocdn.com; font-src 'self'; img-src 'self' https://*.basemaps.cartocdn.com data: blob:; object-src 'none'; script-src 'self' 'unsafe-inline' https://static.cloudflareinsights.com blob: data:; style-src 'self' 'unsafe-inline'
