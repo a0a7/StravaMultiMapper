@@ -1,26 +1,20 @@
 {
-    "name": "Strava Activity Heatmap",
-      "description": "A free, modern, and feature-rich way to map your Strava activities.",
-      "repository": {
-        "url": "https://github.com/sudolev/StravaMultiMapper/",
-        "license": "GPL-3.0",
-        "tests": "https://github.com/sudolev/StravaMultiMapper/actions/workflows/ci.yml"
-      },
-      "participate": {
-        "home": "https://github.com/sudolev/StravaMultiMapper/blob/main/README.md"
-      },
-      "bugs": {
-        "list": "https://github.com/sudolev/StravaMultiMapper/issues",
-        "report": "https://github.com/sudolev/StravaMultiMapper/issues/new"
-      },
-      "urls": {
-        "prod": "https://stravamap.pages.dev/"
-      },
-      "keywords": [
-        "svelte",
-        "typescript",
-        "tailwind-css",
-        "html5",
-        "maplibre"
-      ]
-  }
+	"name": "Strava Activity Heatmap",
+	"description": "A free, modern, and feature-rich way to map your Strava activities.",
+	"repository": {
+		"url": "https://github.com/sudolev/StravaMultiMapper/",
+		"license": "GPL-3.0",
+		"tests": "https://github.com/sudolev/StravaMultiMapper/actions/workflows/ci.yml"
+	},
+	"participate": {
+		"home": "https://github.com/sudolev/StravaMultiMapper/blob/main/README.md"
+	},
+	"bugs": {
+		"list": "https://github.com/sudolev/StravaMultiMapper/issues",
+		"report": "https://github.com/sudolev/StravaMultiMapper/issues/new"
+	},
+	"urls": {
+		"prod": "https://stravamap.pages.dev/"
+	},
+	"keywords": ["svelte", "typescript", "tailwind-css", "html5", "maplibre"]
+}
