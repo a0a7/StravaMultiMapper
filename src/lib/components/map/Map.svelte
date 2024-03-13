@@ -61,14 +61,14 @@
 	let selectedStyle = styles[0];
 
 	// Configure Measuring Plugin
-	let measureOptions: MeasureOption = {
-		tileSize: 512,
-		font: ['Roboto Medium'],
-		fontSize: 12,
-		fontHalo: 1,
-		mainColor: '#263238',
-		haloColor: '#fff'
-	};
+	//let measureOptions: MeasureOption = {
+	//	tileSize: 512,
+	//	font: ['Roboto Medium'],
+	//	fontSize: 12,
+	//	fontHalo: 1,
+	//	mainColor: '#263238',
+	//	haloColor: '#fff'
+	//};
 
 	// Properly control map size
 	function rigorouslyResizeMap() {
