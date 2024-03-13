@@ -13,16 +13,19 @@
 		mapLoaded: boolean = false,
 		mapComponent: Map | null = null;
 
-	let onMobile: boolean;
+	let onMobile: boolean, mapSizePercent: number;
 	$: deviceTypeKnown = typeof onMobile !== 'undefined';
 	let settingsPane: PaneAPI,
 		settingsPaneCollapsed: boolean = false;
 
 	onMount(() => {
+		// Mobile device detection
 		onMobile = window.innerWidth <= 768;
 		window.addEventListener('resize', () => {
 			onMobile = window.innerWidth <= 768;
 		});
+		// Map width percentage calculation
+		mapSizePercent	= onMobile ? 75 : Math.round(window.innerWidth * -0.013 + 50);
 	});
 </script>
 
@@ -38,7 +41,7 @@
 {/if}
 <Resizable.PaneGroup direction={onMobile ? 'vertical' : 'horizontal'} class="w-screen h-screen">
 	{#if deviceTypeKnown && onMobile}
-		<Resizable.Pane class="map-pane w-screen" defaultSize={onMobile ? 25 : 75} order={1}>
+		<Resizable.Pane class="map-pane w-screen" defaultSize={100 - mapSizePercent} order={1}>
 			<Map bind:map bind:loaded={mapLoaded} bind:this={mapComponent} bind:onMobile />
 		</Resizable.Pane>
 		<div
@@ -59,7 +62,7 @@
 		bind:pane={settingsPane}
 		class="settings-pane"
 		order={2}
-		defaultSize={onMobile ? 75 : 25}
+		defaultSize={mapSizePercent}
 		minSize={8}
 		collapsedSize={8}
 		collapsible={true}
@@ -77,7 +80,7 @@
 	</Resizable.Pane>
 	{#if deviceTypeKnown && !onMobile}
 		<Resizable.Handle withHandle class="resizable-touchbar h-screen w-1 bg-accent dark:bg-border" />
-		<Resizable.Pane class="map-pane h-screen" defaultSize={onMobile ? 25 : 75} order={3}>
+		<Resizable.Pane class="map-pane h-screen" defaultSize={100 - mapSizePercent} order={3}>
 			<Map bind:map bind:loaded={mapLoaded} bind:this={mapComponent} bind:onMobile />
 		</Resizable.Pane>
 	{/if}
