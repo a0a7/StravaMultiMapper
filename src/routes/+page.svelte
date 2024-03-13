@@ -68,14 +68,11 @@
 	>
 		<div class="w-full h-full px-5 pt-1 md:py-5 background">
 			<ScrollArea class="w-full overflow-y-scroll h-full">
-				<ConnectPanel />
-				{#if onMobile}
+				<div class="flex flex-col md:min-h-screen">
+					<ConnectPanel />
 					<Footer />
-				{/if}
+				</div>
 			</ScrollArea>
-			{#if !onMobile}
-				<Footer />
-			{/if}
 		</div>
 	</Resizable.Pane>
 	{#if deviceTypeKnown && !onMobile}

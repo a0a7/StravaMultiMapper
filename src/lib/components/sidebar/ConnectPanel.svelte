@@ -34,8 +34,7 @@
 			<Alert.Description>
 				<p>
 					This app doesn't store any of your data, full stop. It uses Strava's API to fetch your
-					activities, but doesn't have any access to your account beyond that. None of your
-					information is saved on our servers or used for any purpose other than showing it to you.
+					activities, but doesn't have any access to your account beyond that.
 				</p>
 				<p>
 					This app is <a href="https://github.com/sudolev/StravaMultiMapper" target="_blank"
