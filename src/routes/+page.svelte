@@ -9,12 +9,12 @@
 	import ConnectPanel from '$lib/components/sidebar/ConnectPanel.svelte';
 	import Footer from '$lib/components/sidebar/Footer.svelte';
 
-	let onMobile: boolean, mapSizePercent: number, panelsResized: boolean = false;
+	let onMobile: boolean, settingsSizePercent: number, panelsResized: boolean = false;
 	let map: any = null,
 		mapLoaded: boolean = false,
 		mapComponent: Map | null = null;
 	let settingsPane: PaneAPI,
-		settingsPaneCollapsed: boolean = false, mobilePanelAPI: PaneAPI, mapAPI: PaneAPI;
+		mobileMap: PaneAPI, desktopMap: PaneAPI;
 
 	$: deviceTypeKnown = typeof onMobile !== 'undefined';
 
@@ -23,14 +23,16 @@
 		onMobile = window.innerWidth <= 768;
 		window.addEventListener('resize', () => {
 			onMobile = window.innerWidth <= 768;
-			if (panelsResized) {
-				return
-			} else {
-				
+			if (panelsResized) return;
+			else if (onMobile) return;
+			else {
+				settingsSizePercent	= Math.round(window.innerWidth * -0.013 + 50);
+				settingsPane.resize(settingsSizePercent);
 			}
-		});
+		})
 		// Map width percentage calculation
-		mapSizePercent	= onMobile ? 75 : Math.round(window.innerWidth * -0.013 + 50);
+		settingsSizePercent = onMobile ? 75 : Math.round(window.innerWidth * -0.013 + 50);
+		settingsPane.resize(settingsSizePercent);
 	});
 </script>
 
@@ -46,18 +48,18 @@
 {/if}
 <Resizable.PaneGroup direction={onMobile ? 'vertical' : 'horizontal'} autoSaveId="mainPaneGroup" class="w-screen h-screen">
 	{#if deviceTypeKnown && onMobile}
-		<Resizable.Pane class="map-pane w-screen" defaultSize={100 - mapSizePercent} order={1} >
+		<Resizable.Pane class="map-pane w-screen" defaultSize={100 - settingsSizePercent} order={1} bind:pane={mobileMap}>
 			<Map bind:map bind:loaded={mapLoaded} bind:this={mapComponent} bind:onMobile />
 		</Resizable.Pane>
 		<div
 			role="button"
 			tabindex="0"
 			on:dblclick={() => {
-				if (settingsPaneCollapsed) settingsPane.expand();
+				if (settingsPane.isCollapsed()) settingsPane.expand();
 				else settingsPane.collapse();
 			}}
 			on:dragstart={() => {
-				if (settingsPaneCollapsed) settingsPane.expand();
+				if (settingsPane.isCollapsed()) settingsPane.expand();
 			}}
 		>
 			<Resizable.Handle class="resizable-touchbar w-screen" onDraggingChange={() => (panelsResized = true)} />
@@ -67,12 +69,10 @@
 		bind:pane={settingsPane}
 		class="settings-pane"
 		order={2}
-		defaultSize={mapSizePercent}
+		defaultSize={settingsSizePercent}
 		minSize={8}
 		collapsedSize={8}
 		collapsible={true}
-		onCollapse={() => (settingsPaneCollapsed = true)}
-		onExpand={() => (settingsPaneCollapsed = false)}
 	>
 		<div class="w-full h-full px-5 pt-1 md:py-5 background">
 			<ScrollArea class="w-full overflow-y-scroll h-full">
@@ -85,7 +85,7 @@
 	</Resizable.Pane>
 	{#if deviceTypeKnown && !onMobile}
 		<Resizable.Handle withHandle class="resizable-touchbar h-screen w-1 bg-accent dark:bg-border" onDraggingChange={() => (panelsResized = true)}/>
-		<Resizable.Pane class="map-pane h-screen" defaultSize={100 - mapSizePercent} order={3}>
+		<Resizable.Pane class="map-pane h-screen" defaultSize={100 - settingsSizePercent} order={3} bind:pane={desktopMap}>
 			<Map bind:map bind:loaded={mapLoaded} bind:this={mapComponent} bind:onMobile />
 		</Resizable.Pane>
 	{/if}
