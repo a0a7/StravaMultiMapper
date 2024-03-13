@@ -2,6 +2,8 @@
 	import Button from '../ui/button/button.svelte';
 	import '$lib/components/sidebar/svg-styles.css';
 	import { mode, toggleMode } from 'mode-watcher';
+
+	export let onMobile: boolean;
 </script>
 
 <div class="md:mt-28 mt-32 flex-grow relative">
@@ -69,8 +71,10 @@
 				>
 			</h5>
 		</div>
-		<h5 class="text-secondary opacity-35 w-full mt-4">
-			© {new Date().getFullYear()} Alexander Weimer
-		</h5>
+		{#if onMobile}
+			<h5 class="text-secondary opacity-35 w-full mt-4">
+				© {new Date().getFullYear()} Alexander Weimer
+			</h5>
+		{/if}
 	</div>
 </div>

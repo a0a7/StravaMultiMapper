@@ -70,7 +70,7 @@
 			<ScrollArea class="w-full overflow-y-scroll h-full">
 				<div class="flex flex-col md:min-h-screen">
 					<ConnectPanel />
-					<Footer />
+					<Footer bind:onMobile />
 				</div>
 			</ScrollArea>
 		</div>
