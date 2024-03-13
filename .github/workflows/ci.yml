@@ -40,8 +40,8 @@ jobs:
       - name: Make envfile
         run: |
           echo "PUBLIC_MAPTILER_KEY=${PUBLIC_MAPTILER_KEY}" > .env
-      - run: pnpm lint
       - run: pnpm format
+      - run: pnpm lint
       - run: pnpm build
       - run: pnpm check
   test:
