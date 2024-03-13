@@ -9,20 +9,25 @@
 	import ConnectPanel from '$lib/components/sidebar/ConnectPanel.svelte';
 	import Footer from '$lib/components/sidebar/Footer.svelte';
 
+	let onMobile: boolean, mapSizePercent: number, panelsResized: boolean = false;
 	let map: any = null,
 		mapLoaded: boolean = false,
 		mapComponent: Map | null = null;
-
-	let onMobile: boolean, mapSizePercent: number;
-	$: deviceTypeKnown = typeof onMobile !== 'undefined';
 	let settingsPane: PaneAPI,
-		settingsPaneCollapsed: boolean = false;
+		settingsPaneCollapsed: boolean = false, mobilePanelAPI: PaneAPI, mapAPI: PaneAPI;
+
+	$: deviceTypeKnown = typeof onMobile !== 'undefined';
 
 	onMount(() => {
 		// Mobile device detection
 		onMobile = window.innerWidth <= 768;
 		window.addEventListener('resize', () => {
 			onMobile = window.innerWidth <= 768;
+			if (panelsResized) {
+				return
+			} else {
+				
+			}
 		});
 		// Map width percentage calculation
 		mapSizePercent	= onMobile ? 75 : Math.round(window.innerWidth * -0.013 + 50);
@@ -39,9 +44,9 @@
 {#if !mapLoaded}
 	<Loading />
 {/if}
-<Resizable.PaneGroup direction={onMobile ? 'vertical' : 'horizontal'} class="w-screen h-screen">
+<Resizable.PaneGroup direction={onMobile ? 'vertical' : 'horizontal'} autoSaveId="mainPaneGroup" class="w-screen h-screen">
 	{#if deviceTypeKnown && onMobile}
-		<Resizable.Pane class="map-pane w-screen" defaultSize={100 - mapSizePercent} order={1}>
+		<Resizable.Pane class="map-pane w-screen" defaultSize={100 - mapSizePercent} order={1} >
 			<Map bind:map bind:loaded={mapLoaded} bind:this={mapComponent} bind:onMobile />
 		</Resizable.Pane>
 		<div
@@ -55,7 +60,7 @@
 				if (settingsPaneCollapsed) settingsPane.expand();
 			}}
 		>
-			<Resizable.Handle class="resizable-touchbar w-screen" />
+			<Resizable.Handle class="resizable-touchbar w-screen" onDraggingChange={() => (panelsResized = true)} />
 		</div>
 	{/if}
 	<Resizable.Pane
@@ -79,7 +84,7 @@
 		</div>
 	</Resizable.Pane>
 	{#if deviceTypeKnown && !onMobile}
-		<Resizable.Handle withHandle class="resizable-touchbar h-screen w-1 bg-accent dark:bg-border" />
+		<Resizable.Handle withHandle class="resizable-touchbar h-screen w-1 bg-accent dark:bg-border" onDraggingChange={() => (panelsResized = true)}/>
 		<Resizable.Pane class="map-pane h-screen" defaultSize={100 - mapSizePercent} order={3}>
 			<Map bind:map bind:loaded={mapLoaded} bind:this={mapComponent} bind:onMobile />
 		</Resizable.Pane>
