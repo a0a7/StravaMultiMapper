@@ -1,6 +1,5 @@
 <script lang="ts">
 	import Loading from '$lib/components/Loading.svelte';
-	import { onMount } from 'svelte';
 	import * as Resizable from '$lib/components/ui/resizable';
 	import type { PaneAPI } from 'paneforge';
 	import { ScrollArea } from '$lib/components/ui/scroll-area/index.js';
@@ -8,6 +7,10 @@
 	import Map from '$lib/components/map/Map.svelte';
 	import ConnectPanel from '$lib/components/sidebar/ConnectPanel.svelte';
 	import Footer from '$lib/components/sidebar/Footer.svelte';
+	import { onMount } from 'svelte';
+
+	import { page } from '$app/stores';
+	console.log($page.data.session);
 
 	let onMobile: boolean,
 		settingsSizePercent: number,

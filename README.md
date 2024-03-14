@@ -27,11 +27,9 @@ The best way to visualize your Strava activities--free, modern, fast and feature
 
 - Resizable & collapsible settings sidebar (desktop)/drawer (mobile) with layout persistence via browser stores.
 
-
 ## Screenshots
 
 ![Loading Screen](https://github.com/sudolev/StravaMultiMapper/assets/61996958/b3274e8b-a5dc-4a41-a1c1-85050ac9c86a)
-
 
 ## Contributing/Building
 
@@ -54,4 +52,5 @@ pnpm dev
 ```
 
 ## License
+
 © @sudolev. Published under the [GPL-3.0](./LICENSE) license.
