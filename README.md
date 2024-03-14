@@ -7,6 +7,25 @@
 ![GitHub repo size](https://img.shields.io/github/repo-size/sudolev/StravaMultiMapper)
 [![license](https://img.shields.io/github/license/sudolev/StravaMultiMapper)](https://github.com/sudolev/StravaMultiMapper/blob/main/LICENSE)
 
+The best way to visualize your Strava activities--free, modern, fast and feature-rich. Currently WIP!
+
+## Standout Features
+
+- Privacy- and safety-focused with no data stored, no cookies used and website safety such as CRS.
+
+### ❖ Map
+
+- Customizable basemap appearance (Light, Dark, Satellite, Landscape, Topographic and Winter options)
+
+- Map export to PNG, JPG, PDF and SVG with fine control over export dimensions and resolution.
+
+- Distance measurements via measurement control
+
+### ❖ Comforts
+
+- Fully-featured light/dark mode with persistence via browser stores & automatic preference detection as well as a manual control.
+
+- Resizable & collapsible settings sidebar (desktop)/drawer (mobile) with layout persistence via browser stores.
 
 
 ## Screenshots
