@@ -53,4 +53,5 @@ Run the development server
 pnpm dev
 ```
 
-© Alexander Weimer. Licensed under [GPL-3.0](./LICENSE).
+## License
+© @sudolev. Published under the [GPL-3.0](./LICENSE) license.
