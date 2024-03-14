@@ -3,6 +3,19 @@
 	import Button from '../ui/button/button.svelte';
 	import * as Alert from '$lib/components/ui/alert';
 	import '$lib/components/sidebar/svg-styles.css';
+
+	const clientId = import.meta.env.VITE_STRAVA_CLIENT_ID;
+	const environment = import.meta.env.VITE_ENV
+	function authenticate() {
+		console.log('Starting Auth Sequence')
+		const redirectUri = environment === 'production' 
+			? 'https://stravamap.pages.dev/' 
+			: 'http://localhost:5173/';
+			const responseType = 'code';
+		const scope = 'read,activity:read';
+		const authUrl = `https://www.strava.com/oauth/authorize?client_id=${clientId}&redirect_uri=${redirectUri}&response_type=${responseType}&scope=${scope}`;
+		window.location.href = authUrl;
+	}
 </script>
 
 <Card.Root>
@@ -14,7 +27,7 @@
 		</p>
 	</Card.Header>
 	<Card.Content>
-		<Button class="bg-[#FC4C02] hover:bg-[#d14002] flex items-center mx-auto px-0 h-10 my-3">
+		<Button class="bg-[#FC4C02] hover:bg-[#d14002] flex items-center mx-auto px-0 h-10 my-3" on:click={() => {authenticate()}}>
 			<img src="img/icon/connect_with_strava.svg" alt="Connect with Strava" class="h-14" />
 		</Button>
 	</Card.Content>
