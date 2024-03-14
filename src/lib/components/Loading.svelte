@@ -13,7 +13,8 @@
 		<h3>
 			Experiencing issues? <a href="https://github.com/sudolev/StravaMultiMapper" target="_blank"
 				>Report them on GitHub</a
-			>.
+			>
+			or <a href="https://discord.gg/5P3AYFrwQG">Discord</a>.
 		</h3>
 	</div>
 </div>
