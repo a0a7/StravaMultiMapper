@@ -49,6 +49,7 @@
 	"type": "module",
 	"dependencies": {
 		"@esbuild-plugins/node-globals-polyfill": "^0.2.3",
+		"@formkit/auto-animate": "^0.8.1",
 		"@internationalized/date": "^3.5.2",
 		"@mapbox-controls/ruler": "^1.1.0",
 		"@mapbox-controls/styles": "^1.1.0",
