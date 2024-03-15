@@ -1,11 +1,10 @@
 import { SvelteKitAuth } from '@auth/sveltekit';
 import Strava from '@auth/sveltekit/providers/strava';
-const STRAVA_ID = import.meta.env.VITE_STRAVA_ID, STRAVA_SECRET = import.meta.env.VITE_STRAVA_SECRET;
+import { PUBLIC_STRAVA_ID } from '$env/static/public'
+import { STRAVA_SECRET } from '$env/static/private'
 
-console.log(STRAVA_ID);
-console.log(STRAVA_SECRET)
 export const { handle } = SvelteKitAuth({
-	providers: [Strava({ clientId: STRAVA_ID, clientSecret: STRAVA_SECRET })],
+	providers: [Strava({ clientId: PUBLIC_STRAVA_ID, clientSecret: STRAVA_SECRET })],
 	callbacks: {
 		async jwt({ token, account }) {
 			if (account) {

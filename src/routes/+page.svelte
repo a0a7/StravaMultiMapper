@@ -10,7 +10,7 @@
 	import { onMount } from 'svelte';
 
 	import { page } from '$app/stores';
-	console.log($page.data.session);
+	console.log(`$page.data.session: ${$page.data.session}`);
 
 	let onMobile: boolean,
 		settingsSizePercent: number,
