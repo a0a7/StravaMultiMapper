@@ -4,7 +4,6 @@
 ![Website](https://img.shields.io/website?url=https%3A%2F%2Fstravamap.pages.dev%2F)
 ![Mozilla HTTP Observatory Grade](https://img.shields.io/mozilla-observatory/grade-score/stravamap.pages.dev)
 [![CI](https://github.com/sudolev/StravaMultiMapper/actions/workflows/ci.yml/badge.svg)](https://github.com/sudolev/StravaMultiMapper/actions/workflows/ci.yml)
-![GitHub repo size](https://img.shields.io/github/repo-size/sudolev/StravaMultiMapper)
 [![license](https://img.shields.io/github/license/sudolev/StravaMultiMapper)](https://github.com/sudolev/StravaMultiMapper/blob/main/LICENSE)
 
 The best way to visualize your Strava activities--free, modern, fast and feature-rich. Currently WIP!
@@ -53,4 +52,4 @@ pnpm dev
 
 ## License
 
-© @sudolev. Published under the [GPL-3.0](./LICENSE) license.
+© [Alexander Weimer](github.com/syslev). Published under the [GPL-3.0](./LICENSE) license.
