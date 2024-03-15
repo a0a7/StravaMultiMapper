@@ -14,4 +14,4 @@ We reserve the right to update or change this Privacy Policy at any time. Any ch
 
 If you have any questions or concerns about this Privacy Policy or our practices, please contact us on Github, Discord or at alexskypie2@gmail.com.
 
-*This Privacy Policy was last updated on March 14th, 2024.*
+_This Privacy Policy was last updated on March 14th, 2024._

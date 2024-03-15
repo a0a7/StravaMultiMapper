@@ -5,6 +5,9 @@ settings:
   excludeLinksFromLockfile: false
 
 dependencies:
+  '@auth/core':
+    specifier: ^0.28.0
+    version: 0.28.0
   '@auth/sveltekit':
     specifier: ^0.14.0
     version: 0.14.0(@sveltejs/kit@1.30.4)(svelte@4.2.12)

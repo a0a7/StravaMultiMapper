@@ -49,6 +49,7 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"@auth/core": "^0.28.0",
 		"@auth/sveltekit": "^0.14.0",
 		"@esbuild-plugins/node-globals-polyfill": "^0.2.3",
 		"@internationalized/date": "^3.5.2",
