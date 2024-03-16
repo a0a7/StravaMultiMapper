@@ -40,6 +40,10 @@ jobs:
       - name: Make envfile
         run: |
           echo "PUBLIC_MAPTILER_KEY=${PUBLIC_MAPTILER_KEY}" > .env
+          echo "PUBLIC_STRAVA_ID=${PUBLIC_STRAVA_ID}" > .env
+          echo "STRAVA_SECRET=${STRAVA_SECRET}" > .env
+          echo "AUTH_SECRET=${AUTH_SECRET}" > .env
+
       - run: pnpm format
       - run: pnpm lint
       - run: pnpm build
