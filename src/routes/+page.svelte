@@ -6,6 +6,7 @@
 	import '$lib/components/sidebar/resizable-handle.css';
 	import Map from '$lib/components/map/Map.svelte';
 	import ConnectPanel from '$lib/components/sidebar/ConnectPanel.svelte';
+	import SetupPanel from '$lib/components/sidebar/SetupPanel.svelte';
 	import Footer from '$lib/components/sidebar/Footer.svelte';
 	import { onMount } from 'svelte';
 
@@ -95,8 +96,10 @@
 				<div class="flex flex-col md:min-h-screen">
 					{#if ($page.data.session?.access_token === undefined || $page.data.session?.access_token === null)}
 						<ConnectPanel />
-					{:else if (new Date($page.data.session.expires) < new Date())}
+					{:else if (new Date($page.data.session?.expires) < new Date())}
 						<ConnectPanel sessionExpired={true}/>
+					{:else if ($page.data.session?.user)}
+						<SetupPanel />
 					{:else}
 						<p class="text-center p-3">Something has gone wrong. If reloading the page doesn't fix the issue, please report it on <a href="https://github.com/sudolev/StravaMultiMapper" target="_blank"
 							>GitHub</a> or <a href="https://discord.gg/5P3AYFrwQG">Discord</a>.</p>
