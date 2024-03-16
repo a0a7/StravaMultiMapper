@@ -91,9 +91,9 @@
 		collapsedSize={8}
 		collapsible={true}
 	>
-		<div class="w-full h-full px-5 pt-1 md:py-5 background">
+		<div class="w-full h-full px-5 pt-1 md:pt-5 background overflow-hidden">
 			<ScrollArea class="w-full overflow-y-scroll h-full">
-				<div class="flex flex-col md:min-h-screen">
+				<div class="flex flex-col md:min-h-[calc(100vh-20px)]">
 					{#if ($page.data.session?.access_token === undefined || $page.data.session?.access_token === null)}
 						<ConnectPanel />
 					{:else if (new Date($page.data.session?.expires) < new Date())}
