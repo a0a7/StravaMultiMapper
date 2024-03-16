@@ -10,7 +10,7 @@
 	import { onMount } from 'svelte';
 
 	import { page } from '$app/stores';
-	console.log(`$page.data.session: ${$page.data.session}`);
+	console.log($page.data.session);
 
 	let onMobile: boolean,
 		settingsSizePercent: number,
@@ -93,7 +93,11 @@
 		<div class="w-full h-full px-5 pt-1 md:py-5 background">
 			<ScrollArea class="w-full overflow-y-scroll h-full">
 				<div class="flex flex-col md:min-h-screen">
-					<ConnectPanel />
+					{#if ($page.data.session?.access_token === undefined || $page.data.session?.access_token === null)}
+						<ConnectPanel />
+					{:else if (new Date($page.data.session.expires) < new Date())}
+						<ConnectPanel sessionExpired={true}/>
+					{/if }
 					<Footer bind:onMobile />
 				</div>
 			</ScrollArea>

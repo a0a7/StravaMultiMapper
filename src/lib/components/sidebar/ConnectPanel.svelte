@@ -4,15 +4,23 @@
 	import Button from '../ui/button/button.svelte';
 	import * as Alert from '$lib/components/ui/alert';
 	import '$lib/components/sidebar/svg-styles.css';
+
+	export let sessionExpired = false;
 </script>
 
 <Card.Root>
 	<Card.Header>
-		<p>
-			To map your activities, you will first need to let us <b
-				>import your activities from Strava.</b
-			> Click below to be taken to Strava's authorization page.
-		</p>
+		{#if sessionExpired}
+			<p>
+				Your Strava session has expired. Please re-authorize your account to import your activities.
+			</p>
+		{:else}
+			<p>
+				To map your activities, you will first need to let us <b
+					>import your activities from Strava.</b
+				> Click below to be taken to Strava's authorization page.
+			</p>
+		{/if}
 	</Card.Header>
 	<Card.Content>
 		<Button
