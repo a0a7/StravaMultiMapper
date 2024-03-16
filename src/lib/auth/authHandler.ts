@@ -3,7 +3,7 @@ import Strava from '@auth/sveltekit/providers/strava';
 import { PUBLIC_STRAVA_ID } from '$env/static/public';
 import { STRAVA_SECRET } from '$env/static/private';
 
-export const { handle } = SvelteKitAuth({
+export const { handle, signIn, signOut } = SvelteKitAuth({
 	providers: [Strava({ clientId: PUBLIC_STRAVA_ID, clientSecret: STRAVA_SECRET })],
 	callbacks: {
 		async jwt({ token, account }) {
@@ -17,5 +17,6 @@ export const { handle } = SvelteKitAuth({
 			session.access_token = token.accessToken;
 			return session;
 		}
-	}
+	},
+	basePath: ''
 });

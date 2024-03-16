@@ -1,8 +1,7 @@
 <script lang="ts">
 	import { signOut } from '@auth/sveltekit/client';
 	import * as Card from '$lib/components/ui/card';
-	import Button from '../ui/button/button.svelte';
-	import * as Alert from '$lib/components/ui/alert';
+	import Button from '../../ui/button/button.svelte';
 	import '$lib/components/sidebar/svg-styles.css';
 
 	import { page } from '$app/stores';

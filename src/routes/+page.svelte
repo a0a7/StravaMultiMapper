@@ -5,8 +5,8 @@
 	import { ScrollArea } from '$lib/components/ui/scroll-area/index.js';
 	import '$lib/components/sidebar/resizable-handle.css';
 	import Map from '$lib/components/map/Map.svelte';
-	import ConnectPanel from '$lib/components/sidebar/ConnectPanel.svelte';
-	import SetupPanel from '$lib/components/sidebar/SetupPanel.svelte';
+	import ConnectPanel from '$lib/components/sidebar/views/ConnectPanel.svelte';
+	import SetupPanel from '$lib/components/sidebar/views/SetupPanel.svelte';
 	import Footer from '$lib/components/sidebar/Footer.svelte';
 	import { onMount } from 'svelte';
 
