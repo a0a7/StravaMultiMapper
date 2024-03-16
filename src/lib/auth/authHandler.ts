@@ -5,7 +5,11 @@ import { STRAVA_SECRET } from '$env/static/private';
 import { AUTH_SECRET } from '$env/static/private';
 
 export const { handle, signIn, signOut } = SvelteKitAuth({
-	providers: [Strava({ clientId: PUBLIC_STRAVA_ID, clientSecret: STRAVA_SECRET })],
+	providers: [Strava({ 
+		clientId: PUBLIC_STRAVA_ID, 
+		clientSecret: STRAVA_SECRET,
+		authorization: { params: { scope: 'read,activity:read,activity:read_all' } },
+	})],
 	callbacks: {
 		async jwt({ token, account }) {
 			if (account) {
