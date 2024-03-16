@@ -2,6 +2,7 @@ import { SvelteKitAuth } from '@auth/sveltekit';
 import Strava from '@auth/sveltekit/providers/strava';
 import { PUBLIC_STRAVA_ID } from '$env/static/public';
 import { STRAVA_SECRET } from '$env/static/private';
+import { AUTH_SECRET } from '$env/static/private';
 
 export const { handle, signIn, signOut } = SvelteKitAuth({
 	providers: [Strava({ clientId: PUBLIC_STRAVA_ID, clientSecret: STRAVA_SECRET })],
@@ -18,5 +19,6 @@ export const { handle, signIn, signOut } = SvelteKitAuth({
 			return session;
 		}
 	},
-	basePath: ''
+	basePath: '/auth',
+	secret: AUTH_SECRET
 });
