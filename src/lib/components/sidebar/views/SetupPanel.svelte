@@ -1,16 +1,66 @@
 <script lang="ts">
+	import { onMount } from 'svelte';
 	import { signOut } from '@auth/sveltekit/client';
 	import { page } from '$app/stores';
-	import { SyncLoader } from 'svelte-loading-spinners';
 	import { mode } from 'mode-watcher'
+
+	import { SyncLoader } from 'svelte-loading-spinners';
 	import * as Card from '$lib/components/ui/card';
 	import Button from '$lib/components/ui/button/button.svelte';
 	import * as Avatar from '$lib/components/ui/avatar';
 	import { Separator } from '$lib/components/ui/separator';
-
+	import ErrorNotice from '$lib/components/Error.svelte';
 	import '$lib/components/sidebar/svg-styles.css';
+
+	let activities: any[] = [];
+	let error: string | null = null;
+
+	async function getActivities() {
+		try {
+			// @ts-ignore: Exists at runtime.
+			if ($page.data?.session?.access_token  && new Date($page.data?.session?.expires) > new Date()) {
+				const promises = Array.from({ length: 15 }, (_, i) => 
+					// @ts-ignore: Exists at runtime.
+					fetch(`https://www.strava.com/api/v3/athlete/activities?access_token=${$page.data?.session?.access_token}&per_page=100&page=${i + 1}`)
+						.then(response => {
+							if (!response.ok) {
+								throw new Error('HTTP error! status: ' + response.status);
+							}
+							return response.json();
+						})
+				);
+				const allActivities = await Promise.all(promises);
+				activities = allActivities.flat();
+				console.log(activities);
+
+				localStorage.setItem('activities', JSON.stringify(activities));
+			} else {
+				console.error('No access token found in session data. Reload page and try again.');
+			}
+		} catch (err) {
+			error = String(err);
+			console.error(err);
+		}
+	}
+	onMount(() => {
+		console.log('onmount running');
+		console.log(localStorage.getItem('activities') != null);
+		if (localStorage.getItem('activities')) {
+			activities = JSON.parse(localStorage.getItem('activities')!);
+			console.log('Activities Already Present in Local Storage!'); 
+			console.log(activities);
+		}
+		console.log(activities)
+		if (activities.length = 0) {
+			console.log('No activities found in local storage. Fetching from Strava.');
+			getActivities();
+		}
+	});
 </script>
 
+{#if error}
+	<ErrorNotice content={error} />
+{/if}
 <Card.Root>
 	<Card.Content>
 		<div class="flex mb-4 mt-6 flex-row justify-center items-center">
