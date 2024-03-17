@@ -65,6 +65,7 @@
 		"@watergis/svelte-maplibre-style-switcher": "^2.0.1",
 		"bits-ui": "^0.19.6",
 		"clsx": "^2.1.0",
+		"lucide-svelte": "^0.358.0",
 		"maplibre-gl": "^3.6.2",
 		"mode-watcher": "^0.2.2",
 		"paneforge": "^0.0.2",
