@@ -10,25 +10,23 @@ The best way to visualize your Strava activities--free, modern, fast and feature
 
 ## Standout Features
 
-- Privacy- and safety-focused with no data stored, no cookies used and website safety such as CRS.
+- Privacy-focused with no data stored, no user cookies used, and a completely transparent FOSS model.
 
 ### ❖ Map
 
-- Customizable basemap appearance (Light, Dark, Satellite, Landscape, Topographic and Winter options)
+- Customizable basemap appearance (Light, Dark, Satellite, Landscape, Topographic and Winter)
 
-- Map export to PNG, JPG, PDF and SVG with fine control over export dimensions and resolution.
+- Map export to PNG, JPG, PDF and SVG with detailed control over export dimensions and resolution.
 
 - Distance measurements via measurement control
 
 ### ❖ Comforts
 
-- Fully-featured light/dark mode with persistence via browser stores & automatic preference detection as well as a manual control.
+- Fully-featured light/dark mode with persistence via browser stores & automatic preference detection on top of manual control.
 
-- Resizable & collapsible settings sidebar (desktop)/drawer (mobile) with layout persistence via browser stores.
+- Resizable & collapsible settings sidebar (desktop) or drawer (mobile) with layout persistence via browser stores.
 
 ## Screenshots
-
-![Loading Screen](https://github.com/sudolev/StravaMultiMapper/assets/61996958/b3274e8b-a5dc-4a41-a1c1-85050ac9c86a)
 
 ## Contributing/Building
 
