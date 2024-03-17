@@ -46,7 +46,7 @@
 			<Alert.Description>
 				<p>
 					This app doesn't store any of your data, full stop. We are committed to upholding the
-					highest privacy standard possible--if you want to know more, read our privacy policy.
+					highest privacy standard possible--if you want to know more, read our privacy assurance <a href="" target="_blank">here</a>.
 				</p>
 				<p>
 					This app is <a href="https://github.com/sudolev/StravaMultiMapper" target="_blank"
