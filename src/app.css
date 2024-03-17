@@ -12,7 +12,8 @@
 		--popover-foreground: 214 95% 7%;
 		--primary: 214 100% 31%;
 		--primary-foreground: 0 0% 100%;
-		--secondary: 214 18% 50%;
+		--secondary: 214 28% 40%;
+		--secondary-hover: 214 28% 10%;
 		--secondary-foreground: 0 0% 0%;
 		--muted: 176 18% 85%;
 		--muted-foreground: 214 5% 35%;
@@ -35,6 +36,7 @@
 		--primary: 214 100% 31%;
 		--primary-foreground: 0 0% 100%;
 		--secondary: 214 18% 70%;
+		--secondary-hover: 214 18% 60%;
 		--secondary-foreground: 0 0% 100%;
 		--muted: 176 18% 15%;
 		--muted-foreground: 214 5% 60%;
@@ -56,4 +58,12 @@
 	body {
 		@apply bg-background text-foreground;
 	}
+}
+
+a:not(.no-default-link) {
+    color: hsl(var(--secondary));
+}
+
+a:not(.no-default-link):hover {
+	color: hsl(var(--secondary-hover));
 }
