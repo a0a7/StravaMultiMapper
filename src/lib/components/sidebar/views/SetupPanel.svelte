@@ -86,7 +86,7 @@
 			{/if}
 		</div>
 	</Card.Header>
-	{#if activities.length > 0}
+	{#if activities.length == 0}
 		<Card.Content>
 			<Separator />
 			<div class="flex flex-col justify-center items-center w-full mt-2">
