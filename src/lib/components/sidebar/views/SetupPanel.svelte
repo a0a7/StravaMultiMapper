@@ -11,6 +11,7 @@
 	import { Separator } from '$lib/components/ui/separator';
 	import ErrorNotice from '$lib/components/Error.svelte';
 	import '$lib/components/sidebar/svg-styles.css';
+	import { Head } from '$lib/components/ui/table';
 
 	let activities: any[] = [];
 	let error: string | null = null;
@@ -52,31 +53,33 @@
 	<ErrorNotice content={error} />
 {/if}
 <Card.Root>
-	<Card.Content>
-		{#if activities.length = 0}
-			<div class="flex mb-4 mt-6 flex-row justify-center items-center">
-				{#if $page.data.session?.user}
-					{#if $page.data.session.user?.image && $page.data.session.user?.name}
-						<Avatar.Root class="rounded-xl">
-							<Avatar.Image
-								src={$page.data.session.user.image}
-								alt="{$page.data.session.user.name} Profile picture"
-							/>
-							<Avatar.Fallback></Avatar.Fallback>
-						</Avatar.Root>
-						<p class="mx-3 leading-[1.125]">
-							Connected&nbsp;to&nbsp;Strava&nbsp;as<br /><b
-								>{$page.data.session.user.name.replace(/ /g, '\xa0')}</b
-							>
-						</p>
-					{:else}
-						<p>
-							Connected to Strava, but with profile information missing. Something probably went wrong
-							somewhere and you might want to reload the page.
-						</p>
-					{/if}
+	<Card.Header>
+		<div class="flex flex-row justify-center items-center">
+			{#if $page.data.session?.user}
+				{#if $page.data.session.user?.image && $page.data.session.user?.name}
+					<Avatar.Root class="rounded-xl">
+						<Avatar.Image
+							src={$page.data.session.user.image}
+							alt="{$page.data.session.user.name} Profile picture"
+						/>
+						<Avatar.Fallback></Avatar.Fallback>
+					</Avatar.Root>
+					<p class="mx-3 leading-[1.125]">
+						Connected&nbsp;to&nbsp;Strava&nbsp;as<br /><b
+							>{$page.data.session.user.name.replace(/ /g, '\xa0')}</b
+						>
+					</p>
+				{:else}
+					<p>
+						Connected to Strava, but with profile information missing. Something probably went wrong
+						somewhere and you might want to reload the page.
+					</p>
 				{/if}
-			</div>
+			{/if}
+		</div>
+	</Card.Header>
+	{#if activities.length > 0}
+	<Card.Content>
 			<Separator />
 			<div class="flex flex-col justify-center items-center w-full mt-2">
 				<div class="pb-8 text-center">
@@ -85,8 +88,8 @@
 				</div>
 				<SyncLoader size="55" color="{$mode == 'dark' ? '#f0f2f5' : '#444'}" unit="px" duration="1.1s" />
 			</div>
-		{/if}
 	</Card.Content>
+	{/if}
 	<Card.Footer>
 		<Button
 			class="py-[6px] px-[10px] bg-background hover:bg-card dark:hover:bg-muted border flex items-center mx-auto h-10 my-3 px-4"
