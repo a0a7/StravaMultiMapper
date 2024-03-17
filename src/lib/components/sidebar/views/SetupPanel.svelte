@@ -2,7 +2,7 @@
 	import { signOut } from '@auth/sveltekit/client';
 	import { page } from '$app/stores';
 	import { SyncLoader } from 'svelte-loading-spinners';
-
+	import { mode } from 'mode-watcher'
 	import * as Card from '$lib/components/ui/card';
 	import Button from '$lib/components/ui/button/button.svelte';
 	import * as Avatar from '$lib/components/ui/avatar';
@@ -26,31 +26,31 @@
 					<p class="mx-3 leading-[1.125]">
 						Connected&nbsp;to&nbsp;Strava&nbsp;as<br /><b
 							>{$page.data.session.user.name.replace(/ /g, '\xa0')}</b
-						>.
+						>
 					</p>
 				{:else}
 					<p>
 						Connected to Strava, but with profile information missing. Something probably went wrong
-						somewhere.
+						somewhere and you might want to reload the page.
 					</p>
 				{/if}
 			{/if}
 		</div>
 		<Separator />
 		<div class="flex flex-col justify-center items-center w-full mt-2">
-			<div class="pb-4 text-center">
+			<div class="pb-8 text-center">
 				<p class="mt-3 font-bold text-xl">Now fetching your Strava activities.</p>
-				<p class="">Depending on how many you have, this may take a while.</p>
+				<p class="">Depending on how many activities you have, this may take a while. Sit tight!</p>
 			</div>
-			<SyncLoader size="60" color="#313c47" unit="px" duration="1.1s" />
+			<SyncLoader size="55" color="{$mode == 'dark' ? '#f0f2f5' : '#444'}" unit="px" duration="1.1s" />
 		</div>
 	</Card.Content>
 	<Card.Footer>
 		<Button
-			class="bg-[#FC4C02] hover:bg-[#d14002] flex items-center mx-auto h-10 my-3 px-4"
+			class="py-[6px] px-[10px] bg-background hover:bg-card dark:hover:bg-muted border flex items-center mx-auto h-10 my-3 px-4"
 			on:click={() => signOut('strava')}
 		>
-			<p class="font-bold text-l inline">
+			<p class="font-bold text-l inline text-black dark:text-white">
 				Cancel & Disconnect from
 				<span class="svg-icon w-3 inline">
 					<svg
