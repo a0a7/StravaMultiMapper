@@ -12,6 +12,9 @@ env:
   CI: true
   PNPM_CACHE_FOLDER: .pnpm-store
   PUBLIC_MAPTILER_KEY: ${{secrets.MAPTILER_KEY}}
+  PUBLIC_STRAVA_ID: ${{secrets.PUBLIC_STRAVA_ID}}
+  STRAVA_SECRET: ${{secrets.STRAVA_SECRET}}
+  AUTH_SECRET: ${{secrets.AUTH_SECRET}}
 
 # cancel in-progress runs on new commits to same PR (gitub.event.number)
 concurrency:
@@ -39,7 +42,7 @@ jobs:
       - run: pnpm install --frozen-lockfile
       - name: Make envfile
         run: |
-          echo "PUBLIC_MAPTILER_KEY=${PUBLIC_MAPTILER_KEY}" > .env
+          echo "PUBLIC_MAPTILER_KEY=${PUBLIC_MAPTILER_KEY}" >> .env
           echo "PUBLIC_STRAVA_ID=${PUBLIC_STRAVA_ID}" >> .env
           echo "STRAVA_SECRET=${STRAVA_SECRET}" >> .env
           echo "AUTH_SECRET=${AUTH_SECRET}" >> .env
