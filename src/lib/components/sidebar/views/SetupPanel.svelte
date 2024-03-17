@@ -11,9 +11,13 @@
 	import { Separator } from '$lib/components/ui/separator';
 	import ErrorNotice from '$lib/components/Error.svelte';
 	import '$lib/components/sidebar/svg-styles.css';
-	import { Head } from '$lib/components/ui/table';
+	import '$lib/activities';
 
-	let activities: any[] = [];
+	import { Head } from '$lib/components/ui/table';
+	import type { StravaActivity } from '$lib/activities';
+	import ActivityTable from '$lib/components/activityTable/ActivityTable.svelte';
+
+	let activities: StravaActivity[] = [];
 	let error: string | null = null;
 
 	async function getActivities() {
@@ -52,8 +56,10 @@
 			activities = JSON.parse(localStorage.getItem('activities')!);
 		}
 		if (activities.length == 0) {
+			console.log('Requesting activities from Strava')
 			getActivities();
 		}
+		console.log(activities);
 	});
 </script>
 
@@ -104,6 +110,8 @@
 				/>
 			</div>
 		</Card.Content>
+	{:else}
+	<ActivityTable activityData={activities} />
 	{/if}
 	<Card.Footer>
 		<Button
