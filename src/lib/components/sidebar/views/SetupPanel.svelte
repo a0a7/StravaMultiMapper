@@ -2,7 +2,7 @@
 	import { onMount } from 'svelte';
 	import { signOut } from '@auth/sveltekit/client';
 	import { page } from '$app/stores';
-	import { mode } from 'mode-watcher'
+	import { mode } from 'mode-watcher';
 
 	import { SyncLoader } from 'svelte-loading-spinners';
 	import * as Card from '$lib/components/ui/card';
@@ -18,17 +18,21 @@
 
 	async function getActivities() {
 		try {
-			// @ts-ignore: Exists at runtime.
-			if ($page.data?.session?.access_token  && new Date($page.data?.session?.expires) > new Date()) {
-				const promises = Array.from({ length: 15 }, (_, i) => 
-					// @ts-ignore: Exists at runtime.
-					fetch(`https://www.strava.com/api/v3/athlete/activities?access_token=${$page.data?.session?.access_token}&per_page=100&page=${i + 1}`)
-						.then(response => {
-							if (!response.ok) {
-								throw new Error('HTTP error! status: ' + response.status);
-							}
-							return response.json();
-						})
+			if (
+				// @ts-expect-error: Exists at runtime.
+				$page.data?.session?.access_token &&
+				new Date($page.data?.session?.expires) > new Date()
+			) {
+				const promises = Array.from({ length: 15 }, (_, i) =>
+					fetch(
+						// @ts-expect-error: Exists at runtime.
+						`https://www.strava.com/api/v3/athlete/activities?access_token=${$page.data?.session?.access_token}&per_page=100&page=${i + 1}`
+					).then((response) => {
+						if (!response.ok) {
+							throw new Error('HTTP error! status: ' + response.status);
+						}
+						return response.json();
+					})
 				);
 				const allActivities = await Promise.all(promises);
 				activities = allActivities.flat();
@@ -44,8 +48,12 @@
 		}
 	}
 	onMount(() => {
-		if (localStorage.getItem('activities')) {activities = JSON.parse(localStorage.getItem('activities')!);}
-		if (activities.length = 0) {getActivities();}
+		if (localStorage.getItem('activities')) {
+			activities = JSON.parse(localStorage.getItem('activities')!);
+		}
+		if (activities.length == 0) {
+			getActivities();
+		}
 	});
 </script>
 
@@ -79,21 +87,31 @@
 		</div>
 	</Card.Header>
 	{#if activities.length > 0}
-	<Card.Content>
+		<Card.Content>
 			<Separator />
 			<div class="flex flex-col justify-center items-center w-full mt-2">
 				<div class="pb-8 text-center">
 					<p class="mt-3 font-bold text-xl">Now fetching your Strava activities.</p>
-					<p class="">Depending on how many activities you have, this may take a while. Sit tight!</p>
+					<p class="">
+						Depending on how many activities you have, this may take a while. Sit tight!
+					</p>
 				</div>
-				<SyncLoader size="55" color="{$mode == 'dark' ? '#f0f2f5' : '#444'}" unit="px" duration="1.1s" />
+				<SyncLoader
+					size="55"
+					color={$mode == 'dark' ? '#f0f2f5' : '#444'}
+					unit="px"
+					duration="1.1s"
+				/>
 			</div>
-	</Card.Content>
+		</Card.Content>
 	{/if}
 	<Card.Footer>
 		<Button
 			class="py-[6px] px-[10px] bg-background hover:bg-card dark:hover:bg-muted border flex items-center mx-auto h-10 my-3 px-4"
-			on:click={() => {localStorage.removeItem('activities'); signOut('strava');}}
+			on:click={() => {
+				localStorage.removeItem('activities');
+				signOut('strava');
+			}}
 		>
 			<p class="font-bold text-l inline text-black dark:text-white">
 				Cancel & Disconnect from

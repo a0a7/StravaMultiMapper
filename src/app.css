@@ -61,7 +61,7 @@
 }
 
 a:not(.no-default-link) {
-    color: hsl(var(--secondary));
+	color: hsl(var(--secondary));
 }
 
 a:not(.no-default-link):hover {
