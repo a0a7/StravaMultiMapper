@@ -30,8 +30,8 @@ export interface StravaActivity {
 	visibility: string;
 	flagged: boolean;
 	gear_id: string;
-	start_latlng?: (number)[] | null;
-	end_latlng?: (number)[] | null;
+	start_latlng?: number[] | null;
+	end_latlng?: number[] | null;
 	average_speed: number;
 	max_speed: number;
 	average_watts: number;
@@ -51,7 +51,7 @@ export interface StravaActivity {
 	pr_count: number;
 	total_photo_count: number;
 	has_kudoed: boolean;
-  }
+}
 export interface StravaAthlete {
 	id: number;
 	resource_state: number;

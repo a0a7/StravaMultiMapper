@@ -1,11 +1,11 @@
 <script lang="ts">
 	import { signIn } from '@auth/sveltekit/client';
 	import * as Card from '$lib/components/ui/card';
-	import Button from '../../ui/button/button.svelte';
+	import Button from '$lib/components/ui/button/button.svelte';
 	import * as Alert from '$lib/components/ui/alert';
 	import '$lib/components/sidebar/svg-styles.css';
 
-	export let sessionExpired = false;
+	export let sessionExpired: boolean = false;
 </script>
 
 <Card.Root>

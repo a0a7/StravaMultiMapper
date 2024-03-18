@@ -5,7 +5,7 @@
 	import { ScrollArea } from '$lib/components/ui/scroll-area/index.js';
 	import '$lib/components/sidebar/resizable-handle.css';
 	import Map from '$lib/components/map/Map.svelte';
-	import ConnectPanel from '$lib/components/sidebar/views/ConnectPanel.svelte';
+	import ConnectPanel from '$lib/components/sidebar/ConnectPanel.svelte';
 	import SetupPanel from '$lib/components/sidebar/views/SetupPanel.svelte';
 	import Footer from '$lib/components/sidebar/Footer.svelte';
 	import { onMount } from 'svelte';
@@ -97,7 +97,7 @@
 					{#if $page.data.session?.access_token === undefined || $page.data.session?.access_token === null}
 						<ConnectPanel />
 					{:else if new Date($page.data.session?.expires) < new Date()}
-						<ConnectPanel sessionExpired={true} />
+						<ConnectPanel sessionExpired />
 					{:else if $page.data.session?.user}
 						<SetupPanel />
 					{:else}

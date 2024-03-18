@@ -56,7 +56,7 @@
 			activities = JSON.parse(localStorage.getItem('activities')!);
 		}
 		if (activities.length == 0) {
-			console.log('Requesting activities from Strava')
+			console.log('Requesting activities from Strava');
 			getActivities();
 		}
 		console.log(activities);
@@ -111,7 +111,7 @@
 			</div>
 		</Card.Content>
 	{:else}
-	<ActivityTable activityData={activities} />
+		<ActivityTable activityData={activities} />
 	{/if}
 	<Card.Footer>
 		<Button
