@@ -69,8 +69,8 @@ dependencies:
     specifier: ^0.8.2
     version: 0.8.2(svelte@4.2.12)
   svelte-radix:
-    specifier: ^1.0.3
-    version: 1.0.3(svelte@4.2.12)
+    specifier: ^1.1.0
+    version: 1.1.0(svelte@4.2.12)
   svelte-sonner:
     specifier: ^0.3.19
     version: 0.3.19(svelte@4.2.12)
@@ -6117,8 +6117,8 @@ packages:
       typescript: 5.4.2
     dev: true
 
-  /svelte-radix@1.0.3(svelte@4.2.12):
-    resolution: {integrity: sha512-Du3q9kvrPM5JCJqTUTEKyt136SRbx7AiLAKmJPHmB4chTXc6xOIWjJupDqZRRnaN70WmT8v4VOPSFFSnZnbvWw==}
+  /svelte-radix@1.1.0(svelte@4.2.12):
+    resolution: {integrity: sha512-kyE9wZiJV937INGb+wiBkAjmGtQUUYRPkVL2Q+/gj+9Vog1Ewd2wNvNmpNMUd+c+euxoc5u5YZMuCUgky9EUPw==}
     peerDependencies:
       svelte: ^3.54.0 || ^4.0.0 || ^5.0.0
     dependencies:
