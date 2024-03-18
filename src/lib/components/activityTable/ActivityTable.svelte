@@ -45,7 +45,11 @@
 				if (value === 0) {
 					return '-';
 				}
-				return (value / 1000).toFixed(Math.max(0, 2 - (value === 0 ? -1 : Math.floor(Math.log10(value))))) + " km";
+				return (
+					(value / 1000).toFixed(
+						Math.max(0, 2 - (value === 0 ? -1 : Math.floor(Math.log10(value))))
+					) + ' km'
+				);
 			}
 		}),
 		table.column({
@@ -208,7 +212,10 @@
 						<Table.Row {...rowAttrs} data-state={$selectedDataIds[row.id] && 'selected'} class="">
 							{#each row.cells as cell (cell.id)}
 								<Subscribe attrs={cell.attrs()} let:attrs>
-									<Table.Cell {...attrs} class="{cell.id === 'name' ? 'truncate max-w-40 min-w-2' : ''}">
+									<Table.Cell
+										{...attrs}
+										class={cell.id === 'name' ? 'truncate max-w-40 min-w-2' : ''}
+									>
 										<Render of={cell.render()} />
 									</Table.Cell>
 								</Subscribe>
