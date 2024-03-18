@@ -11,6 +11,8 @@
 	import * as Table from '$lib/components/ui/table';
 	import ArrowUpDown from 'lucide-svelte/icons/arrow-up-down';
 	import ChevronDown from 'lucide-svelte/icons/chevron-down';
+	import CaretSort from "svelte-radix/CaretSort.svelte";
+	import { cn } from "$lib/utils.js";
 	import { Button } from '$lib/components/ui/button';
 	import { Input } from '$lib/components/ui/input';
 	import * as DropdownMenu from '$lib/components/ui/dropdown-menu';
@@ -36,7 +38,14 @@
 			header: 'Name',
 			id: 'name',
 			cell: ({ value: { name, sport_type, commute } }) =>
-				createRender(ActivityDescriptionCell, { name, sport_type })
+				createRender(ActivityDescriptionCell, { name, sport_type }),
+			plugins: {
+				sort: {
+					getSortValue({ name }: {name: String}) {
+						return name;
+					}
+				}
+			}
 		}),
 		table.column({
 			accessor: 'distance',
@@ -107,7 +116,7 @@
 			header: 'Date',
 			cell: ({ value }) => {
 				return new Date(value).toLocaleDateString();
-			}
+			},
 		}),
 		table.column({
 			accessor: ({ id }) => id,
@@ -123,6 +132,7 @@
 	const { filterValue } = pluginStates.filter;
 	const { hiddenColumnIds } = pluginStates.hide;
 	const { selectedDataIds } = pluginStates.select;
+	  const { sortKeys } = pluginStates.sort;
 
 	const colsHiddenByDefault = [
 		'total_elevation_gain',
@@ -153,7 +163,7 @@
 <div class="m-5">
 	<div class="flex items-center py-4">
 		<Input
-			class="max-w-sm"
+			class="max-w-72 mr-4"
 			placeholder="Filter activities..."
 			type="text"
 			bind:value={$filterValue}
@@ -184,7 +194,15 @@
 							{#each headerRow.cells as cell (cell.id)}
 								<Subscribe attrs={cell.attrs()} let:attrs props={cell.props()} let:props>
 									<Table.Head {...attrs} class="[&:has([role=checkbox])]:pl-3">
-										<Render of={cell.render()} />
+										<Button variant="ghost" on:click={props.sort.toggle}>
+											<Render of={cell.render()} />
+											<CaretSort
+											  class={cn(
+												$sortKeys[0]?.id === cell.id && "text-foreground",
+												"ml-2 h-4 w-4"
+											  )}
+											/>
+										  </Button>
 									</Table.Head>
 								</Subscribe>
 							{/each}
