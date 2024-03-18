@@ -34,7 +34,7 @@
 		"eslint-plugin-svelte": "^2.35.1",
 		"jsdom": "^24.0.0",
 		"maplibre-gl-measures": "^0.0.14",
-		"postcss": "^8.4.35",
+		"postcss": "^8.4.36",
 		"prettier": "^3.2.5",
 		"prettier-plugin-svelte": "^3.2.2",
 		"rimraf": "^5.0.5",
