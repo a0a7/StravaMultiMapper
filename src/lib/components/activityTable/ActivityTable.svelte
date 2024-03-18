@@ -59,12 +59,7 @@
 				if (value === 0) {
 					return '-';
 				}
-				const formatted = new Intl.NumberFormat('en-US', {
-					style: 'decimal',
-					minimumFractionDigits: 0,
-					maximumFractionDigits: 0
-				}).format(value);
-				return `${formatted} m`;
+				return `${value.toFixed(0)} m`;
 			}
 		}),
 		table.column({
@@ -74,12 +69,7 @@
 				if (value === undefined) {
 					return '-';
 				}
-				const formatted = new Intl.NumberFormat('en-US', {
-					style: 'decimal',
-					minimumFractionDigits: 0,
-					maximumFractionDigits: 0
-				}).format(value / 4.18);
-				return `${formatted} kcal`;
+				return `${(value / 4.18).toFixed(0)} kcal`;
 			}
 		}),
 		table.column({
@@ -89,12 +79,7 @@
 				if (value === 0) {
 					return '-';
 				}
-				const formatted = new Intl.NumberFormat('en-US', {
-					style: 'decimal',
-					minimumFractionDigits: 1,
-					maximumFractionDigits: 1
-				}).format(value * 3.6);
-				return `${formatted} kmh`;
+				return `${(value * 3.6).toFixed(0)} kmh`;
 			}
 		}),
 		table.column({
@@ -104,17 +89,18 @@
 				if (value === undefined) {
 					return '-';
 				}
-				const formatted = new Intl.NumberFormat('en-US', {
-					style: 'decimal',
-					minimumFractionDigits: 0,
-					maximumFractionDigits: 0
-				}).format(value);
-				return `${formatted} W`;
+				return `${value.toFixed(0)} W`;
 			}
 		}),
 		table.column({
 			accessor: 'average_heartrate',
-			header: 'Average Heartrate'
+			header: 'Average Heartrate',
+			cell: ({ value }) => {
+				if (value === undefined) {
+					return '-';
+				}
+				return value.toFixed(0);
+			}
 		}),
 		table.column({
 			accessor: 'start_date_local',
