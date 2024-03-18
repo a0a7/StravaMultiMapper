@@ -33,8 +33,8 @@ dependencies:
     specifier: ^3.1.0
     version: 3.1.0
   '@watergis/svelte-maplibre-measure':
-    specifier: ^2.0.1
-    version: 2.0.1(svelte@4.2.12)
+    specifier: ^3.0.0
+    version: 3.0.0(svelte@4.2.12)
   '@watergis/svelte-maplibre-menu':
     specifier: ^2.1.2
     version: 2.1.2(svelte@4.2.12)
@@ -2894,17 +2894,17 @@ packages:
       maplibre-gl: 3.6.2
     dev: false
 
-  /@watergis/svelte-maplibre-measure@2.0.1(svelte@4.2.12):
-    resolution: {integrity: sha512-wSOAmuclx8B8PmuckvtZybrWNrrIvu2Xg9q9mwC+E6jod7MZcmHYViV1nDeE8vp5mfDzLDePGGjPz63sr/mFVA==}
+  /@watergis/svelte-maplibre-measure@3.0.0(svelte@4.2.12):
+    resolution: {integrity: sha512-z8QBgTZu9wRgMGeaxnzs0JWnr5Zt8La7U6i9dgyYxoeslxMD1ambuDp05f1M8zPUppq642ItGu4nnOleO40XOg==}
     peerDependencies:
       svelte: ^4.0.0
     dependencies:
       '@fortawesome/free-solid-svg-icons': 6.5.1
       '@turf/distance': 6.5.0
       '@watergis/terrain-rgb': 1.1.12
-      maplibre-gl: 3.6.2
+      maplibre-gl: 4.1.0
       svelte: 4.2.12
-      svelte-fa: 3.0.4
+      svelte-fa: 4.0.2(svelte@4.2.12)
     transitivePeerDependencies:
       - debug
     dev: false
@@ -6012,6 +6012,14 @@ packages:
 
   /svelte-fa@3.0.4:
     resolution: {integrity: sha512-y04vEuAoV1wwVDItSCzPW7lzT6v1bj/y1p+W1V+NtIMpQ+8hj8MBkx7JFD7JHSnalPU1QiI8BVfguqheEA3nPg==}
+    dev: false
+
+  /svelte-fa@4.0.2(svelte@4.2.12):
+    resolution: {integrity: sha512-lza8Jfii6jcpMQB73mBStONxaLfZsUS+rKJ/hH6WxsHUd+g68+oHIL9yQTk4a0uY9HQk78T/CPvQnED0msqJfg==}
+    peerDependencies:
+      svelte: ^4.0.0
+    dependencies:
+      svelte: 4.2.12
     dev: false
 
   /svelte-headless-table@0.18.2(svelte@4.2.12):
