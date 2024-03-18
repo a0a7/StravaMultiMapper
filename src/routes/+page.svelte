@@ -6,7 +6,7 @@
 	import '$lib/components/sidebar/resizable-handle.css';
 	import Map from '$lib/components/map/Map.svelte';
 	import ConnectPanel from '$lib/components/sidebar/ConnectPanel.svelte';
-	import SetupPanel from '$lib/components/sidebar/views/SetupPanel.svelte';
+	import SetupPanel from '$lib/components/sidebar/SetupPanel.svelte';
 	import Footer from '$lib/components/sidebar/Footer.svelte';
 	import { onMount } from 'svelte';
 
@@ -103,9 +103,15 @@
 					{:else}
 						<p class="text-center p-3">
 							Something has gone wrong. If reloading the page doesn't fix the issue, please report
-							it on <a href="https://github.com/sudolev/StravaMultiMapper" target="_blank" rel="noopener noreferrer">GitHub</a
+							it on <a
+								href="https://github.com/sudolev/StravaMultiMapper"
+								target="_blank"
+								rel="noopener noreferrer">GitHub</a
 							>
-							or <a href="https://discord.gg/5P3AYFrwQG" target="_blank" rel="noopener noreferrer">Discord</a>.
+							or
+							<a href="https://discord.gg/5P3AYFrwQG" target="_blank" rel="noopener noreferrer"
+								>Discord</a
+							>.
 						</p>
 					{/if}
 					<Footer bind:onMobile />

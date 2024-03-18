@@ -48,16 +48,21 @@
 					This app doesn't store any of your data, full stop. We are committed to upholding the
 					highest privacy standard possible--if you want to know more, read our privacy assurance <a
 						href="https://github.com/syslev/StravaMultiMapper/blob/main/privacy_policy.md"
-						target="_blank" rel="noopener noreferrer">here</a
+						target="_blank"
+						rel="noopener noreferrer">here</a
 					>.
 				</p>
 				<p>
-					This app is <a href="https://github.com/sudolev/StravaMultiMapper" target="_blank" rel="noopener noreferrer"
-						>open-source</a
+					This app is <a
+						href="https://github.com/sudolev/StravaMultiMapper"
+						target="_blank"
+						rel="noopener noreferrer">open-source</a
 					>
 					under the
-					<a href="https://github.com/sudolev/StravaMultiMapper/blob/main/LICENSE" target="_blank" rel="noopener noreferrer"
-						>GPL-3.0 license</a
+					<a
+						href="https://github.com/sudolev/StravaMultiMapper/blob/main/LICENSE"
+						target="_blank"
+						rel="noopener noreferrer">GPL-3.0 license</a
 					>.
 				</p>
 			</Alert.Description>

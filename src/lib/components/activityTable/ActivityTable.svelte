@@ -36,7 +36,7 @@
 			header: 'Name',
 			id: 'name',
 			cell: ({ value: { name, sport_type, commute } }) =>
-				createRender(ActivityDescriptionCell, { name, sport_type, commute })
+				createRender(ActivityDescriptionCell, { name, sport_type })
 		}),
 		table.column({
 			accessor: 'distance',
@@ -45,12 +45,7 @@
 				if (value === 0) {
 					return '-';
 				}
-				const formatted = new Intl.NumberFormat('en-US', {
-					style: 'decimal',
-					minimumFractionDigits: 1,
-					maximumFractionDigits: 1
-				}).format(value / 1000);
-				return `${formatted} km`;
+				return (value / 1000).toFixed(Math.max(0, 2 - (value === 0 ? -1 : Math.floor(Math.log10(value))))) + " km";
 			}
 		}),
 		table.column({
@@ -190,7 +185,7 @@
 			</DropdownMenu.Content>
 		</DropdownMenu.Root>
 	</div>
-	<ScrollArea class="h-[336px] rounded-md border">
+	<ScrollArea class="h-[336px] rounded-md border" orientation="both">
 		<Table.Root {...$tableAttrs}>
 			<Table.Header>
 				{#each $headerRows as headerRow}
@@ -210,10 +205,10 @@
 			<Table.Body {...$tableBodyAttrs}>
 				{#each $pageRows as row (row.id)}
 					<Subscribe rowAttrs={row.attrs()} let:rowAttrs>
-						<Table.Row {...rowAttrs} data-state={$selectedDataIds[row.id] && 'selected'}>
+						<Table.Row {...rowAttrs} data-state={$selectedDataIds[row.id] && 'selected'} class="">
 							{#each row.cells as cell (cell.id)}
 								<Subscribe attrs={cell.attrs()} let:attrs>
-									<Table.Cell {...attrs} class="[&:has([role=checkbox])]:pl-3">
+									<Table.Cell {...attrs} class="{cell.id === 'name' ? 'truncate max-w-40 min-w-2' : ''}">
 										<Render of={cell.render()} />
 									</Table.Cell>
 								</Subscribe>

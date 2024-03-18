@@ -92,7 +92,9 @@
 			{/if}
 		</div>
 	</Card.Header>
-	{#if activities.length == 0}
+	{#if activities.length > 0 && !(Object.keys(activities[0]).length === 0)}
+		<ActivityTable activityData={activities} />
+	{:else if activities.length == 0}
 		<Card.Content>
 			<Separator />
 			<div class="flex flex-col justify-center items-center w-full mt-2">
@@ -110,8 +112,51 @@
 				/>
 			</div>
 		</Card.Content>
+	{:else if activities.length === 1 && Object.keys(activities[0]).length === 0}
+		<Card.Content>
+			<Separator />
+			<div class="flex flex-col justify-center items-center w-full mt-2">
+				<div class="pb-8 text-center">
+					<p class="mt-3 font-bold text-xl">It looks like something went wrong.</p>
+					<p class="">
+						Make sure you have at least one activity on Strava and, if your activities are private,
+						that you have allowed us to view them. If you have made sure of the above, something
+						else has gone wrong. We might be recieving too many requests at the moment, in which
+						case you can try again later. If the issue persists, please report it on <a
+							href="https://github.com/sudolev/StravaMultiMapper"
+							target="_blank"
+							rel="noopener noreferrer">GitHub</a
+						>
+						or
+						<a href="https://discord.gg/5P3AYFrwQG" target="_blank" rel="noopener noreferrer"
+							>Discord</a
+						>.
+					</p>
+				</div>
+			</div>
+		</Card.Content>
 	{:else}
-		<ActivityTable activityData={activities} />
+		<Card.Content>
+			<Separator />
+			<div class="flex flex-col justify-center items-center w-full mt-2">
+				<div class="pb-8 text-center">
+					<p class="mt-3 font-bold text-xl">It looks like something went wrong.</p>
+					<p class="">
+						We weren't able to fetch your activities from Strava. We might be recieving too many
+						requests at the moment, in which case you can try again later. If the issue persists,
+						please report it on <a
+							href="https://github.com/sudolev/StravaMultiMapper"
+							target="_blank"
+							rel="noopener noreferrer">GitHub</a
+						>
+						or
+						<a href="https://discord.gg/5P3AYFrwQG" target="_blank" rel="noopener noreferrer"
+							>Discord</a
+						>.
+					</p>
+				</div>
+			</div>
+		</Card.Content>
 	{/if}
 	<Card.Footer>
 		<Button
@@ -122,7 +167,7 @@
 			}}
 		>
 			<p class="font-bold text-l inline text-black dark:text-white">
-				Cancel & Disconnect from
+				{activities.length > 0 ? 'Disconnect from' : 'Cancel & Disconnect from'}
 				<span class="svg-icon w-3 inline">
 					<svg
 						height="16px"

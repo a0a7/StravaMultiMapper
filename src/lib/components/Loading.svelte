@@ -13,9 +13,11 @@
 		<h3>
 			Experiencing issues? Report them on <a
 				href="https://github.com/sudolev/StravaMultiMapper"
-				target="_blank" rel="noopener noreferrer">GitHub</a
+				target="_blank"
+				rel="noopener noreferrer">GitHub</a
 			>
-			or <a href="https://discord.gg/5P3AYFrwQG" target="_blank" rel="noopener noreferrer">Discord</a>.
+			or
+			<a href="https://discord.gg/5P3AYFrwQG" target="_blank" rel="noopener noreferrer">Discord</a>.
 		</h3>
 	</div>
 </div>

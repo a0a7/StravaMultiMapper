@@ -66,8 +66,11 @@
 					alt="Strava Multi-activity Mapper Logo"
 					class="w-5 h-5 ml-1 mr-[3px] inline dark:brightness-[10] -translate-y-px"
 				/>
-				by&nbsp;<a href="https://github.com/" target="_blank" rel="noopener noreferrer" class="text-secondary"
-					>Alexander&nbsp;Weimer</a
+				by&nbsp;<a
+					href="https://github.com/"
+					target="_blank"
+					rel="noopener noreferrer"
+					class="text-secondary">Alexander&nbsp;Weimer</a
 				>
 			</h5>
 		</div>
