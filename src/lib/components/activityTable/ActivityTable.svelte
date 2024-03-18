@@ -26,8 +26,7 @@
 	const table = createTable(readable(activityData), {
 		sort: addSortBy({ disableMultiSort: true }),
 		filter: addTableFilter({
-			fn: ({ filterValue, value }: { filterValue: string; value: string }) =>
-				value.includes(filterValue)
+			fn: ({ filterValue, value }) => value.includes(filterValue)
 		}),
 		hide: addHiddenColumns(),
 		select: addSelectedRows()
@@ -44,7 +43,14 @@
 					getSortValue({ name }: {name: String}) {
 						return name;
 					}
+				},
+				filter: {
+					exclude: false,
+					getFilterValue({ name }: {name: String}) {
+						return name.toLowerCase();
+					}
 				}
+
 			}
 		}),
 		table.column({
@@ -59,6 +65,11 @@
 						Math.max(0, 2 - (value === 0 ? -1 : Math.floor(Math.log10(value))))
 					) + ' km'
 				);
+			},
+			plugins: {
+				filter: {
+				exclude: true
+				}
 			}
 		}),
 		table.column({
@@ -69,6 +80,11 @@
 					return '-';
 				}
 				return `${value.toFixed(0)} m`;
+			},
+			plugins: {
+				filter: {
+				exclude: true
+				}
 			}
 		}),
 		table.column({
@@ -79,6 +95,11 @@
 					return '-';
 				}
 				return `${(value / 4.18).toFixed(0)} kcal`;
+			},
+			plugins: {
+				filter: {
+				exclude: true
+				}
 			}
 		}),
 		table.column({
@@ -89,6 +110,11 @@
 					return '-';
 				}
 				return `${(value * 3.6).toFixed(0)} kmh`;
+			},
+			plugins: {
+				filter: {
+				exclude: true
+				}
 			}
 		}),
 		table.column({
@@ -99,6 +125,11 @@
 					return '-';
 				}
 				return `${value.toFixed(0)} W`;
+			},
+			plugins: {
+				filter: {
+				exclude: true
+				}
 			}
 		}),
 		table.column({
@@ -109,6 +140,11 @@
 					return '-';
 				}
 				return value.toFixed(0);
+			},
+			plugins: {
+				filter: {
+				exclude: true
+				}
 			}
 		}),
 		table.column({
@@ -117,22 +153,34 @@
 			cell: ({ value }) => {
 				return new Date(value).toLocaleDateString();
 			},
+			plugins: {
+				filter: {
+				exclude: true
+				}
+			}
 		}),
 		table.column({
 			accessor: ({ id }) => id,
 			header: '',
-			id: 'idString'
+			id: 'idString',
+			plugins: {
+				filter: {
+				exclude: true
+				}
+			}
 		})
 	]);
 
 	const { headerRows, pageRows, tableAttrs, tableBodyAttrs, pluginStates, flatColumns, rows } =
 		table.createViewModel(columns);
 
+	const ids = flatColumns.map((col) => col.id);
+
 	// const { pageIndex, hasNextPage, hasPreviousPage } = pluginStates.page;
 	const { filterValue } = pluginStates.filter;
 	const { hiddenColumnIds } = pluginStates.hide;
 	const { selectedDataIds } = pluginStates.select;
-	  const { sortKeys } = pluginStates.sort;
+	const { sortKeys } = pluginStates.sort;
 
 	const colsHiddenByDefault = [
 		'total_elevation_gain',
@@ -142,12 +190,7 @@
 		'average_watts',
 		'idString'
 	];
-	const ids = flatColumns.map((col) => col.id);
-	let hideForId = Object.fromEntries(ids.map((id) => [id, !colsHiddenByDefault.includes(id)]));
 
-	$: $hiddenColumnIds = Object.entries(hideForId)
-		.filter(([, hide]) => !hide)
-		.map(([id]) => id);
 
 	const hidableCols = [
 		'distance',
@@ -158,6 +201,10 @@
 		'average_heartrate',
 		'start_date_local'
 	];
+	let hideForId = Object.fromEntries(ids.map((id) => [id, !colsHiddenByDefault.includes(id)]));
+	$: $hiddenColumnIds = Object.entries(hideForId)
+		.filter(([, hide]) => !hide)
+		.map(([id]) => id);
 </script>
 
 <div class="m-5">
