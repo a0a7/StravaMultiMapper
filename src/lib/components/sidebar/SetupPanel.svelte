@@ -16,6 +16,7 @@
 	import { Head } from '$lib/components/ui/table';
 	import type { StravaActivity } from '$lib/activities';
 	import ActivityTable from '$lib/components/activityTable/ActivityTable.svelte';
+	import MapConfigPanel from '$lib/components/sidebar/map-config-components/BasemapSelect.svelte';
 
 	let activities: StravaActivity[] = [];
 	let error: string | null = null;
@@ -93,6 +94,7 @@
 		</div>
 	</Card.Header>
 	{#if activities.length > 0 && !(Object.keys(activities[0]).length === 0)}
+		<MapConfigPanel />
 		<ActivityTable activityData={activities} />
 	{:else if activities.length == 0}
 		<Card.Content>
