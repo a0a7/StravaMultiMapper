@@ -207,7 +207,7 @@
 		.map(([id]) => id);
 </script>
 
-<div class="m-5">
+<div class="mx-5">
 	<div class="flex items-center py-4">
 		<Input
 			class="max-w-72 mr-4"

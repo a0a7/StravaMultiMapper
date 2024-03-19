@@ -94,7 +94,9 @@
 		</div>
 	</Card.Header>
 	{#if activities.length > 0 && !(Object.keys(activities[0]).length === 0) && !error}
+		<Separator class="mb-3 mx-5 w-[calc(100vw-2.5rem)] md:w-auto" />
 		<MapConfigPanel/>
+		<Separator class="mt-3 mx-5 w-[calc(100vw-2.5rem)] md:w-auto" />
 		<ActivityTable activityData={activities} />
 	{:else if activities.length == 0 && !error}
 		<Card.Content>
