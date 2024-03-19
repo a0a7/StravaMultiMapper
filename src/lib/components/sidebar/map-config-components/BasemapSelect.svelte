@@ -48,7 +48,6 @@
 	}
 </script>
 
-<Label for="basemap-select">Basemap</Label>
 <Popover.Root bind:open let:ids>
 	<Popover.Trigger asChild id="basemap-select" let:builder>
 		<Button
