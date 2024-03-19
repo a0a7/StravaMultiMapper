@@ -52,11 +52,26 @@
 }
 
 @layer base {
+	@font-face {
+		font-family: 'Fredoka';
+		font-style: normal;
+		font-weight: 400;
+		font-display: swap;
+		src: url(/font/Fredoka-Regular.ttf) format('truetype');
+	}
+	@font-face {
+		font-family: 'Fredoka';
+		font-style: normal;
+		font-weight: 700;
+		font-display: swap;
+		src: url(/font/Fredoka-Regular.ttf) format('truetype');
+	}
 	* {
 		@apply border-border;
 	}
 	body {
 		@apply bg-background text-foreground;
+		font-family: 'Fredoka', sans-serif;
 	}
 }
 

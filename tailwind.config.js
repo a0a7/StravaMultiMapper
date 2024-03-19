@@ -14,6 +14,9 @@ const config = {
 			}
 		},
 		extend: {
+			fontFamily: {
+				fredoka: ["Fredoka", "sans-serif"],
+			},
 			colors: {
 				border: 'hsl(var(--border) / <alpha-value>)',
 				input: 'hsl(var(--input) / <alpha-value>)',
