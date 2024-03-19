@@ -64,7 +64,7 @@
 		font-style: normal;
 		font-weight: 700;
 		font-display: swap;
-		src: url(/font/Fredoka-Regular.ttf) format('truetype');
+		src: url(/font/Fredoka-SemiBold.ttf) format('truetype');
 	}
 	* {
 		@apply border-border;
