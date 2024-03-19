@@ -232,7 +232,7 @@
 			</DropdownMenu.Content>
 		</DropdownMenu.Root>
 	</div>
-	<ScrollArea class="h-[336px] rounded-md border" orientation="both">
+	<ScrollArea class="h-[225px] md:h-[336px] rounded-md border" orientation="both">
 		<Table.Root {...$tableAttrs}>
 			<Table.Header>
 				{#each $headerRows as headerRow}
@@ -240,8 +240,8 @@
 						<Table.Row>
 							{#each headerRow.cells as cell (cell.id)}
 								<Subscribe attrs={cell.attrs()} let:attrs props={cell.props()} let:props>
-									<Table.Head {...attrs} class="[&:has([role=checkbox])]:pl-3">
-										<Button variant="ghost" on:click={props.sort.toggle}>
+									<Table.Head {...attrs} class="pr-0 [&:has([role=checkbox])]:pl-3">
+										<Button variant="ghost" on:click={props.sort.toggle} class="px-[0.75rem]">
 											<Render of={cell.render()} />
 											<CaretSort
 											  class={cn(
