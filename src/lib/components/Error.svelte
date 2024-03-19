@@ -11,7 +11,7 @@
 		</AlertDialog.Header>
 		<AlertDialog.Footer>
 			<AlertDialog.Cancel>Close</AlertDialog.Cancel>
-			<AlertDialog.Action on:click={() => window.location.reload()}>Reload</AlertDialog.Action>
+			<!--<AlertDialog.Action on:click={() => window.location.reload()}>Reload</AlertDialog.Action>-->
 		</AlertDialog.Footer>
 	</AlertDialog.Content>
 </AlertDialog.Root>
