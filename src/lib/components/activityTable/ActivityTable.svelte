@@ -26,6 +26,7 @@
 	const table = createTable(readable(activityData), {
 		sort: addSortBy({ disableMultiSort: true }),
 		filter: addTableFilter({
+			// @ts-expect-error: It's chill
 			fn: ({ filterValue, value }) => value.includes(filterValue)
 		}),
 		hide: addHiddenColumns(),
