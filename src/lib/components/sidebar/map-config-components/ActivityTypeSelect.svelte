@@ -7,9 +7,47 @@
 	import { Button } from '$lib/components/ui/button/index.js';
 	import { cn } from '$lib/utils.js';
 	import { tick } from 'svelte';
-	import { ScrollArea } from "$lib/components/ui/scroll-area/index.js";
+	import { ScrollArea } from '$lib/components/ui/scroll-area/index.js';
 
-	const activityList = ['Run', 'Ride', 'Walk', 'Hike', 'EBikeRide', 'NordicSki', 'AlpineSki', 'BackcountrySki', 'Snowboard', 'RollerSki', 'Canoeing', 'Handcycle',  'IceSkate', 'InlineSkate', 'Kayaking', 'Kitesurf', 'Rowing', 'Sail', 'Skateboard',  'Snowshoe', 'Soccer',  'StandUpPaddling', 'Surfing', 'Swim', 'Velomobile', 'WeightTraining', 'Wheelchair', 'Windsurf', 'Elliptical', 'Golf', 'Crossfit', 'RockClimbing', 'StairStepper', 'VirtualRide', 'VirtualRun', 'Workout', 'Yoga'];
+	const activityList = [
+		'Run',
+		'Ride',
+		'Walk',
+		'Hike',
+		'EBikeRide',
+		'NordicSki',
+		'AlpineSki',
+		'BackcountrySki',
+		'Snowboard',
+		'RollerSki',
+		'Canoeing',
+		'Handcycle',
+		'IceSkate',
+		'InlineSkate',
+		'Kayaking',
+		'Kitesurf',
+		'Rowing',
+		'Sail',
+		'Skateboard',
+		'Snowshoe',
+		'Soccer',
+		'StandUpPaddling',
+		'Surfing',
+		'Swim',
+		'Velomobile',
+		'WeightTraining',
+		'Wheelchair',
+		'Windsurf',
+		'Elliptical',
+		'Golf',
+		'Crossfit',
+		'RockClimbing',
+		'StairStepper',
+		'VirtualRide',
+		'VirtualRun',
+		'Workout',
+		'Yoga'
+	];
 
 	const activityGroupings = [
 		{
@@ -37,7 +75,8 @@
 			label: 'Paddle Sports'
 		},
 		{
-			value: 'Swimming-StandUpPaddling-Canoeing-Kayaking-Rowing-Sailing-Surfing-Windsurfing-Kitesurfing',
+			value:
+				'Swimming-StandUpPaddling-Canoeing-Kayaking-Rowing-Sailing-Surfing-Windsurfing-Kitesurfing',
 			label: 'Water Sports'
 		}
 	];
@@ -45,13 +84,20 @@
 	// Populate the above array with all the individual activity types
 
 	for (const index in activityList) {
-		activityGroupings.push({activityTypes: activityList[index], label: activityList[index].replace(/(?<=.)([A-Z])/g, ' $1').replace('E Bike', 'E-bike').replace('Stand Up', 'Stand-up')});
+		activityGroupings.push({
+			activityTypes: activityList[index],
+			label: activityList[index]
+				.replace(/(?<=.)([A-Z])/g, ' $1')
+				.replace('E Bike', 'E-bike')
+				.replace('Stand Up', 'Stand-up')
+		});
 	}
 
 	let open = false;
 	let value = '';
 
-	$: selectedValue = activityGroupings.find((f) => f.value === value)?.label ?? activityGroupings[0].label;
+	$: selectedValue =
+		activityGroupings.find((f) => f.value === value)?.label ?? activityGroupings[0].label;
 
 	function closeAndFocusTrigger(triggerId: string) {
 		open = false;
@@ -61,7 +107,7 @@
 	}
 </script>
 
-<Popover.Root bind:open let:ids preventScroll={false} >
+<Popover.Root bind:open let:ids preventScroll={false}>
 	<Popover.Trigger asChild id="activityGroup-select" let:builder>
 		<Button
 			builders={[builder]}

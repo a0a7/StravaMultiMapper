@@ -11,8 +11,8 @@
 	import * as Table from '$lib/components/ui/table';
 	import ArrowUpDown from 'lucide-svelte/icons/arrow-up-down';
 	import ChevronDown from 'lucide-svelte/icons/chevron-down';
-	import CaretSort from "svelte-radix/CaretSort.svelte";
-	import { cn } from "$lib/utils.js";
+	import CaretSort from 'svelte-radix/CaretSort.svelte';
+	import { cn } from '$lib/utils.js';
 	import { Button } from '$lib/components/ui/button';
 	import { Input } from '$lib/components/ui/input';
 	import * as DropdownMenu from '$lib/components/ui/dropdown-menu';
@@ -40,17 +40,16 @@
 				createRender(ActivityDescriptionCell, { name, sport_type }),
 			plugins: {
 				sort: {
-					getSortValue({ name }: {name: String}) {
+					getSortValue({ name }: { name: string }) {
 						return name;
 					}
 				},
 				filter: {
 					exclude: false,
-					getFilterValue({ name }: {name: String}) {
+					getFilterValue({ name }: { name: string }) {
 						return name.toLowerCase();
 					}
 				}
-
 			}
 		}),
 		table.column({
@@ -68,7 +67,7 @@
 			},
 			plugins: {
 				filter: {
-				exclude: true
+					exclude: true
 				}
 			}
 		}),
@@ -83,7 +82,7 @@
 			},
 			plugins: {
 				filter: {
-				exclude: true
+					exclude: true
 				}
 			}
 		}),
@@ -98,7 +97,7 @@
 			},
 			plugins: {
 				filter: {
-				exclude: true
+					exclude: true
 				}
 			}
 		}),
@@ -113,7 +112,7 @@
 			},
 			plugins: {
 				filter: {
-				exclude: true
+					exclude: true
 				}
 			}
 		}),
@@ -128,7 +127,7 @@
 			},
 			plugins: {
 				filter: {
-				exclude: true
+					exclude: true
 				}
 			}
 		}),
@@ -143,7 +142,7 @@
 			},
 			plugins: {
 				filter: {
-				exclude: true
+					exclude: true
 				}
 			}
 		}),
@@ -155,7 +154,7 @@
 			},
 			plugins: {
 				filter: {
-				exclude: true
+					exclude: true
 				}
 			}
 		}),
@@ -165,7 +164,7 @@
 			id: 'idString',
 			plugins: {
 				filter: {
-				exclude: true
+					exclude: true
 				}
 			}
 		})
@@ -190,7 +189,6 @@
 		'average_watts',
 		'idString'
 	];
-
 
 	const hidableCols = [
 		'distance',
@@ -244,12 +242,12 @@
 										<Button variant="ghost" on:click={props.sort.toggle} class="px-[0.75rem]">
 											<Render of={cell.render()} />
 											<CaretSort
-											  class={cn(
-												$sortKeys[0]?.id === cell.id && "text-foreground",
-												"ml-2 h-4 w-4"
-											  )}
+												class={cn(
+													$sortKeys[0]?.id === cell.id && 'text-foreground',
+													'ml-2 h-4 w-4'
+												)}
 											/>
-										  </Button>
+										</Button>
 									</Table.Head>
 								</Subscribe>
 							{/each}

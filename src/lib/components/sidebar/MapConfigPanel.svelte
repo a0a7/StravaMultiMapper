@@ -10,7 +10,7 @@
 	import DateRangePicker from '$lib/components/sidebar/map-config-components/DateRangePicker.svelte';
 	import type { StravaActivity } from '$lib/activities';
 
-    export let activities: StravaActivity[];
+	export let activities: StravaActivity[];
 </script>
 
 <div class="w-full px-6">
@@ -21,17 +21,21 @@
 		</tr>
 		<tr>
 			<td>Date range:</td>
-			<td><DateRangePicker {activities}/></td>
+			<td><DateRangePicker {activities} /></td>
 		</tr>
 		<tr>
 			<td>Activity type:</td>
 			<td><ActivityTypeSelect /></td>
+		</tr>
+		<tr>
+			<td>Commute status:</td>
+			<td></td>
 		</tr>
 	</table>
 </div>
 
 <style>
 	td {
-		@apply pr-4 pb-2 leading-none
+		@apply pr-4 pb-2 leading-none;
 	}
 </style>
