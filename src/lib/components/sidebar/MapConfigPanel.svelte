@@ -6,13 +6,29 @@
 	import { Separator } from '$lib/components/ui/separator';
 	import { Label } from '$lib/components/ui/label';
 	import BasemapSelect from '$lib/components/sidebar/map-config-components/BasemapSelect.svelte';
+	import ActivityTypeSelect from '$lib/components/sidebar/map-config-components/ActivityTypeSelect.svelte';
 	import DateRangePicker from '$lib/components/sidebar/map-config-components/DateRangePicker.svelte';
 </script>
 
 <div class="w-full px-6">
-	<div>
-	<p class="inline">Map Appearance: </p><BasemapSelect />
-	</div><div>
-	<p class="inline">Filter by Date: </p><DateRangePicker />
-	</div>
+	<table>
+		<tr>
+			<td>Map Appearance:</td>
+			<td><BasemapSelect /></td>
+		</tr>
+		<tr>
+			<td>Date:</td>
+			<td><DateRangePicker /></td>
+		</tr>
+		<tr>
+			<td>Activity Type:</td>
+			<td><ActivityTypeSelect /></td>
+		</tr>
+	</table>
 </div>
+
+<style>
+	td {
+		@apply pr-4 pb-2 leading-none
+	}
+</style>
