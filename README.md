@@ -1,9 +1,9 @@
 # ![Logo](https://github.com/sudolev/StravaMultiMapper/assets/61996958/3ac93fc4-6c78-460b-b964-22db9b5045d2) Strava Activity Heatmap
 
 [![Discord](https://img.shields.io/discord/1166050503998849154?logo=discord&logoColor=white&label=discord&color=%235d6af2&link=https%3A%2F%2Fdiscord.gg%2F5P3AYFrwQG)](https://discord.gg/5P3AYFrwQG)
-![Website](https://img.shields.io/website?url=https%3A%2F%2Fstravamap.pages.dev%2F)
+[![Website](https://img.shields.io/website?url=https%3A%2F%2Fstravamap.pages.dev%2F)](https://stravamap.pages.dev/)
 [![CI](https://github.com/sudolev/StravaMultiMapper/actions/workflows/ci.yml/badge.svg)](https://github.com/sudolev/StravaMultiMapper/actions/workflows/ci.yml)
-![Mozilla HTTP Observatory Grade](https://img.shields.io/mozilla-observatory/grade-score/stravamap.pages.dev)
+[![Mozilla HTTP Observatory Grade](https://img.shields.io/mozilla-observatory/grade-score/stravamap.pages.dev)](https://observatory.mozilla.org/analyze/stravamap.pages.dev)
 [![license](https://img.shields.io/github/license/sudolev/StravaMultiMapper)](https://github.com/sudolev/StravaMultiMapper/blob/main/LICENSE)
 
 The best way to visualize your Strava activities--free, modern, fast and feature-rich. Currently WIP!
