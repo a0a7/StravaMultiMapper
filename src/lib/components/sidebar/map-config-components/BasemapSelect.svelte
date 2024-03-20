@@ -51,50 +51,51 @@
 
 <div class="flex w-full max-w-[320px] flex-col gap-0.5">
 	<Label for="basemap-select" class="pl-2 block select-none text-sm font-medium"
-	  >Basemap Appearance</Label>
+		>Basemap Appearance</Label
+	>
 
-<Popover.Root bind:open let:ids>
-	<Popover.Trigger asChild id="basemap-select" let:builder>
-		<Button
-			builders={[builder]}
-			variant="outline"
-			role="combobox"
-			aria-expanded={open}
-			class="w-[200px] justify-between"
-		>
-			{selectedValue}
-			<CaretSort class="ml-2 h-4 w-4 shrink-0 opacity-50" />
-		</Button>
-	</Popover.Trigger>
-	<Popover.Content class="w-[200px] p-0">
-		<Command.Root>
-			<Command.Group heading="Palettes">
-				{#each basemaps.slice(0, 4) as basemap}
-					<Command.Item 
-						value={basemap.value}
-						onSelect={(currentValue) => {
-							value = currentValue;
-							closeAndFocusTrigger(ids.trigger);
-						}}
-					>
-						{basemap.label}
-					</Command.Item>
-				{/each}
-			</Command.Group>
-			<Command.Group heading="Data Sources">
-				{#each basemaps.slice(4, 6) as basemap}
-					<Command.Item
-						value={basemap.value}
-						onSelect={(currentValue) => {
-							value = currentValue;
-							closeAndFocusTrigger(ids.trigger);
-						}}
-					>
-						{basemap.label}
-					</Command.Item>
-				{/each}
-			</Command.Group>
-		</Command.Root>
-	</Popover.Content>
-</Popover.Root>
+	<Popover.Root bind:open let:ids>
+		<Popover.Trigger asChild id="basemap-select" let:builder>
+			<Button
+				builders={[builder]}
+				variant="outline"
+				role="combobox"
+				aria-expanded={open}
+				class="w-[200px] justify-between"
+			>
+				{selectedValue}
+				<CaretSort class="ml-2 h-4 w-4 shrink-0 opacity-50" />
+			</Button>
+		</Popover.Trigger>
+		<Popover.Content class="w-[200px] p-0">
+			<Command.Root>
+				<Command.Group heading="Palettes">
+					{#each basemaps.slice(0, 4) as basemap}
+						<Command.Item
+							value={basemap.value}
+							onSelect={(currentValue) => {
+								value = currentValue;
+								closeAndFocusTrigger(ids.trigger);
+							}}
+						>
+							{basemap.label}
+						</Command.Item>
+					{/each}
+				</Command.Group>
+				<Command.Group heading="Data Sources">
+					{#each basemaps.slice(4, 6) as basemap}
+						<Command.Item
+							value={basemap.value}
+							onSelect={(currentValue) => {
+								value = currentValue;
+								closeAndFocusTrigger(ids.trigger);
+							}}
+						>
+							{basemap.label}
+						</Command.Item>
+					{/each}
+				</Command.Group>
+			</Command.Root>
+		</Popover.Content>
+	</Popover.Root>
 </div>

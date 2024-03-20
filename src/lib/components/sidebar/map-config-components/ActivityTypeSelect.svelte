@@ -76,7 +76,8 @@
 			label: 'Paddle Sports'
 		},
 		{
-			activityTypes: 'Swimming-StandUpPaddling-Canoeing-Kayaking-Rowing-Sailing-Surfing-Windsurfing-Kitesurfing',
+			activityTypes:
+				'Swimming-StandUpPaddling-Canoeing-Kayaking-Rowing-Sailing-Surfing-Windsurfing-Kitesurfing',
 			label: 'Water Sports'
 		}
 	];
@@ -108,70 +109,79 @@
 
 <div class="flex w-full max-w-[320px] flex-col gap-0.5">
 	<Label for="activity-select" class="pl-2 block select-none text-sm font-medium"
-	  >Filter by Activity Sport Type</Label>
+		>Filter by Activity Sport Type</Label
+	>
 
-<Popover.Root bind:open let:ids preventScroll={false}>
-	<Popover.Trigger asChild id="activity-select" let:builder>
-		<Button
-			builders={[builder]}
-			variant="outline"
-			role="combobox"
-			aria-expanded={open}
-			class="w-[200px] justify-between"
-		>
-			{selectedValue}
-			<CaretSort class="ml-2 h-4 w-4 shrink-0 opacity-50" />
-		</Button>
-	</Popover.Trigger>
-	<Popover.Content class="w-[200px] p-0 max-h-[400px] md:max-h-[500px] overflow-y-auto">
-		<ScrollArea class="">
-			<Command.Root>
-				<Command.Group>
-					<Command.Item
-						value={activityGroupings[0].activityTypes}
-						onSelect={(currentValue) => {
-							value = currentValue;
-							closeAndFocusTrigger(ids.trigger);
-						}}
-					><!-- svelte-ignore a11y-no-noninteractive-tabindex -->
-					<p tabindex="0">
-						{activityGroupings[0].label}</p>
-					</Command.Item>
-				</Command.Group>
-				<Command.Group heading="Groups">
-					{#each activityGroupings.slice(1, 7) as activityGroup}
+	<Popover.Root bind:open let:ids preventScroll={false}>
+		<Popover.Trigger asChild id="activity-select" let:builder>
+			<Button
+				builders={[builder]}
+				variant="outline"
+				role="combobox"
+				aria-expanded={open}
+				class="w-[200px] justify-between"
+			>
+				{selectedValue}
+				<CaretSort class="ml-2 h-4 w-4 shrink-0 opacity-50" />
+			</Button>
+		</Popover.Trigger>
+		<Popover.Content class="w-[200px] p-0 max-h-[400px] md:max-h-[500px] overflow-y-auto">
+			<ScrollArea class="">
+				<Command.Root>
+					<Command.Group>
 						<Command.Item
-							value={activityGroup.activityTypes}
+							value={activityGroupings[0].activityTypes}
 							onSelect={(currentValue) => {
 								value = currentValue;
 								closeAndFocusTrigger(ids.trigger);
 							}}
-						>
-						<p>
-							{activityGroup.label}
-						</p>
-						<span class="pb-1">
-							<QuestionMarkIcon content={activityGroup.activityTypes?.replace(/(?<=.)([A-Z])/g, ' $1').replace(/-/g, ',').replace('E Bike', 'E-bike').replace('Stand Up', 'Stand-up')}/>
-						</span>
+							><!-- svelte-ignore a11y-no-noninteractive-tabindex -->
+							<p tabindex="0">
+								{activityGroupings[0].label}
+							</p>
 						</Command.Item>
-					{/each}
-				</Command.Group>
-				<Command.Group heading="Individual Types">
-					{#each activityGroupings.slice(7, activityGroupings.length) as activityGroup}
-						<Command.Item
-							value={activityGroup.activityTypes}
-							onSelect={(currentValue) => {
-								value = currentValue;
-								closeAndFocusTrigger(ids.trigger);
-							}}
-						>
-						<p>
-							{activityGroup.label}</p>
-						</Command.Item>
-					{/each}
-				</Command.Group>
-			</Command.Root>
-		</ScrollArea>
-	</Popover.Content>
-</Popover.Root>
+					</Command.Group>
+					<Command.Group heading="Groups">
+						{#each activityGroupings.slice(1, 7) as activityGroup}
+							<Command.Item
+								value={activityGroup.activityTypes}
+								onSelect={(currentValue) => {
+									value = currentValue;
+									closeAndFocusTrigger(ids.trigger);
+								}}
+							>
+								<p>
+									{activityGroup.label}
+								</p>
+								<span class="pb-1">
+									<QuestionMarkIcon
+										content={activityGroup.activityTypes
+											?.replace(/(?<=.)([A-Z])/g, ' $1')
+											.replace(/-/g, ',')
+											.replace('E Bike', 'E-bike')
+											.replace('Stand Up', 'Stand-up')}
+									/>
+								</span>
+							</Command.Item>
+						{/each}
+					</Command.Group>
+					<Command.Group heading="Individual Types">
+						{#each activityGroupings.slice(7, activityGroupings.length) as activityGroup}
+							<Command.Item
+								value={activityGroup.activityTypes}
+								onSelect={(currentValue) => {
+									value = currentValue;
+									closeAndFocusTrigger(ids.trigger);
+								}}
+							>
+								<p>
+									{activityGroup.label}
+								</p>
+							</Command.Item>
+						{/each}
+					</Command.Group>
+				</Command.Root>
+			</ScrollArea>
+		</Popover.Content>
+	</Popover.Root>
 </div>

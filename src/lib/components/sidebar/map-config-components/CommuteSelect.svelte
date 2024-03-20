@@ -12,7 +12,7 @@
 	const commuteStatuses = [
 		{
 			value: 'dontFilter',
-			label: "All Activities"
+			label: 'All Activities'
 		},
 		{
 			value: 'onlyCommutes',
@@ -39,49 +39,50 @@
 
 <div class="flex w-full max-w-[320px] flex-col gap-0.5">
 	<Label for="commute-status-select" class="pl-2 block select-none text-sm font-medium"
-	  >Filter by Commute Status</Label>
-<Popover.Root bind:open let:ids>
-	<Popover.Trigger asChild id="commute-status-select" let:builder>
-		<Button
-			builders={[builder]}
-			variant="outline"
-			role="combobox"
-			aria-expanded={open}
-			class="w-[200px] justify-between"
-		>
-			{selectedValue}
-			<CaretSort class="ml-2 h-4 w-4 shrink-0 opacity-50" />
-		</Button>
-	</Popover.Trigger>
-	<Popover.Content class="w-[200px] p-0">
-		<Command.Root>
-			<Command.Group heading="Palettes">
-				{#each commuteStatuses.slice(0, 4) as commuteStatus}
-					<Command.Item 
-						value={commuteStatus.value}
-						onSelect={(currentValue) => {
-							value = currentValue;
-							closeAndFocusTrigger(ids.trigger);
-						}}
-					>
-						{commuteStatus.label}
-					</Command.Item>
-				{/each}
-			</Command.Group>
-			<Command.Group heading="Data Sources">
-				{#each commuteStatuses.slice(4, 6) as commuteStatus}
-					<Command.Item
-						value={commuteStatus.value}
-						onSelect={(currentValue) => {
-							value = currentValue;
-							closeAndFocusTrigger(ids.trigger);
-						}}
-					>
-						{commuteStatus.label}
-					</Command.Item>
-				{/each}
-			</Command.Group>
-		</Command.Root>
-	</Popover.Content>
-</Popover.Root>
+		>Filter by Commute Status</Label
+	>
+	<Popover.Root bind:open let:ids>
+		<Popover.Trigger asChild id="commute-status-select" let:builder>
+			<Button
+				builders={[builder]}
+				variant="outline"
+				role="combobox"
+				aria-expanded={open}
+				class="w-[200px] justify-between"
+			>
+				{selectedValue}
+				<CaretSort class="ml-2 h-4 w-4 shrink-0 opacity-50" />
+			</Button>
+		</Popover.Trigger>
+		<Popover.Content class="w-[200px] p-0">
+			<Command.Root>
+				<Command.Group heading="Palettes">
+					{#each commuteStatuses.slice(0, 4) as commuteStatus}
+						<Command.Item
+							value={commuteStatus.value}
+							onSelect={(currentValue) => {
+								value = currentValue;
+								closeAndFocusTrigger(ids.trigger);
+							}}
+						>
+							{commuteStatus.label}
+						</Command.Item>
+					{/each}
+				</Command.Group>
+				<Command.Group heading="Data Sources">
+					{#each commuteStatuses.slice(4, 6) as commuteStatus}
+						<Command.Item
+							value={commuteStatus.value}
+							onSelect={(currentValue) => {
+								value = currentValue;
+								closeAndFocusTrigger(ids.trigger);
+							}}
+						>
+							{commuteStatus.label}
+						</Command.Item>
+					{/each}
+				</Command.Group>
+			</Command.Root>
+		</Popover.Content>
+	</Popover.Root>
 </div>
