@@ -16,15 +16,15 @@
 <div class="w-full px-6">
 	<table>
 		<tr>
-			<td>Map Appearance:</td>
+			<td>Map appearance:</td>
 			<td><BasemapSelect /></td>
 		</tr>
 		<tr>
-			<td>Date:</td>
+			<td>Date range:</td>
 			<td><DateRangePicker {activities}/></td>
 		</tr>
 		<tr>
-			<td>Activity Type:</td>
+			<td>Activity type:</td>
 			<td><ActivityTypeSelect /></td>
 		</tr>
 	</table>

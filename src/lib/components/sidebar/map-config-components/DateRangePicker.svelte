@@ -39,7 +39,7 @@
         <Button
           variant="outline"
           class={cn(
-            "w-fit justify-start text-left font-normal px-2",
+            "w-fit justify-start text-left font-normal px-3",
             !value && "text-muted-foreground"
           )}
           builders={[builder]}
