@@ -11,6 +11,7 @@
 	} from '@internationalized/date';
 	import { cn, flyAndScale } from '$lib/utils.js';
 	import type { StravaActivity } from '$lib/activities';
+	import QuestionMarkIcon from '$lib/components/QuestionMarkIcon.svelte';
 
 	export let activities: StravaActivity[];
 
@@ -34,8 +35,11 @@
 	<DateRangePicker.Root bind:value weekdayFormat="short" fixedWeeks={true}>
 		<div class="flex w-fit flex-col gap-0.5">
 			<DateRangePicker.Label class="pl-2 block select-none text-sm font-medium"
-				>Filter Activities by Date</DateRangePicker.Label
-			>
+				>Filter by Date
+				<div class="transform translate-y-[1px] inline-block">
+					<QuestionMarkIcon content="Filters activities by their start date" />
+				</div>
+			</DateRangePicker.Label>
 			<DateRangePicker.Input
 				let:segments
 				class="flex h-input w-fit select-none items-center rounded-lg border border-border-input bg-background px-2 py-[1.2px] text-sm tracking-[0.01em] text-foreground focus-within:border-border-input-hover focus-within:shadow-date-field-focus hover:border-border-input-hover"

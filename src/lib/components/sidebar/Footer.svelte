@@ -6,7 +6,7 @@
 	export let onMobile: boolean;
 </script>
 
-<div class="md:mt-28 mt-32 flex-grow relative">
+<div class="mt-[144px] md:mt-24 flex-grow relative">
 	<div class="absolute bottom-10">
 		<div class="relative flex items-center">
 			<Button

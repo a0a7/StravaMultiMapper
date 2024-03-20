@@ -8,6 +8,7 @@
 	import { cn } from '$lib/utils.js';
 	import { tick } from 'svelte';
 	import { mode } from 'mode-watcher';
+	import QuestionMarkIcon from '$lib/components/QuestionMarkIcon.svelte';
 
 	const basemaps = [
 		{
@@ -51,7 +52,10 @@
 
 <div class="flex w-full max-w-[320px] flex-col gap-0.5">
 	<Label for="basemap-select" class="pl-2 block select-none text-sm font-medium"
-		>Basemap Appearance</Label
+		>Basemap Appearance
+		<div class="transform translate-y-[1px] inline-block">
+			<QuestionMarkIcon content="Changes the appearence of the map" />
+		</div></Label
 	>
 
 	<Popover.Root bind:open let:ids>

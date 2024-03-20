@@ -109,8 +109,11 @@
 
 <div class="flex w-full max-w-[320px] flex-col gap-0.5">
 	<Label for="activity-select" class="pl-2 block select-none text-sm font-medium"
-		>Filter by Activity Sport Type</Label
-	>
+		>Filter by Sport Type
+		<div class="transform translate-y-[1px] inline-block">
+			<QuestionMarkIcon content="Filters activities by their reported sport types" />
+		</div>
+	</Label>
 
 	<Popover.Root bind:open let:ids preventScroll={false}>
 		<Popover.Trigger asChild id="activity-select" let:builder>
@@ -153,7 +156,7 @@
 								<p>
 									{activityGroup.label}
 								</p>
-								<span class="pb-1">
+								<span class="translate-y-[2px]">
 									<QuestionMarkIcon
 										content={activityGroup.activityTypes
 											?.replace(/(?<=.)([A-Z])/g, ' $1')
