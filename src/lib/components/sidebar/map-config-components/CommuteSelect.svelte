@@ -56,21 +56,8 @@
 		</Popover.Trigger>
 		<Popover.Content class="w-[200px] p-0">
 			<Command.Root>
-				<Command.Group heading="Palettes">
-					{#each commuteStatuses.slice(0, 4) as commuteStatus}
-						<Command.Item
-							value={commuteStatus.value}
-							onSelect={(currentValue) => {
-								value = currentValue;
-								closeAndFocusTrigger(ids.trigger);
-							}}
-						>
-							{commuteStatus.label}
-						</Command.Item>
-					{/each}
-				</Command.Group>
-				<Command.Group heading="Data Sources">
-					{#each commuteStatuses.slice(4, 6) as commuteStatus}
+				<Command.Group>
+					{#each commuteStatuses as commuteStatus}
 						<Command.Item
 							value={commuteStatus.value}
 							onSelect={(currentValue) => {

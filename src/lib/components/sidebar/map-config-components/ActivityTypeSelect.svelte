@@ -53,7 +53,7 @@
 	const activityGroupings = [
 		{
 			activityTypes: 'all',
-			label: 'All Activities'
+			label: 'All Sports'
 		},
 		{
 			activityTypes: 'Run-VirtualRun-Walk-Hike-Snowshoe-RockClimbing',
