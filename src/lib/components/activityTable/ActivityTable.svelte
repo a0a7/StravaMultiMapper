@@ -209,8 +209,8 @@
 <div class="mx-5">
 	<div class="flex items-center py-4">
 		<Input
-			class="max-w-72 mr-4"
-			placeholder="Filter activities..."
+			class="max-w-72 mr-4 bg-background"
+			placeholder="Search activities..."
 			type="text"
 			bind:value={$filterValue}
 		/>
@@ -232,7 +232,7 @@
 		</DropdownMenu.Root>
 	</div>
 	<ScrollArea class="h-[225px] md:h-[336px] rounded-md border" orientation="both">
-		<Table.Root {...$tableAttrs}>
+		<Table.Root {...$tableAttrs} class="bg-background">
 			<Table.Header>
 				{#each $headerRows as headerRow}
 					<Subscribe rowAttrs={headerRow.attrs()}>
