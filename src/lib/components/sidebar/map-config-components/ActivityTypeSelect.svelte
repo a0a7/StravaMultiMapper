@@ -57,32 +57,31 @@
 		},
 		{
 			activityTypes: 'Run-VirtualRun-Walk-Hike-Snowshoe-RockClimbing',
-			label: 'Foot sports'
+			label: 'Foot Sports'
 		},
 		{
-			value: 'Ride-VirtualRide-Handcycle-Velomobile-Wheelchair',
-			label: 'Cycling sports'
+			activityTypes: 'Ride-VirtualRide-Handcycle-Velomobile-Wheelchair',
+			label: 'Cycling Sports'
 		},
 		{
-			value: 'AlpineSki-BackcountrySki-NordicSki-Snowboard-IceSkate',
-			label: 'Snow sports'
+			activityTypes: 'AlpineSki-BackcountrySki-NordicSki-Snowboard-IceSkate',
+			label: 'Snow Sports'
 		},
 		{
-			value: 'InlineSkate-RollerSki-Skateboard-IceSkate',
-			label: 'Skate sports'
+			activityTypes: 'InlineSkate-RollerSki-Skateboard-IceSkate',
+			label: 'Skate Sports'
 		},
 		{
-			value: 'StandUpPaddling-Canoeing-Kayaking-Rowing',
+			activityTypes: 'StandUpPaddling-Canoeing-Kayaking-Rowing',
 			label: 'Paddle Sports'
 		},
 		{
-			value:
-				'Swimming-StandUpPaddling-Canoeing-Kayaking-Rowing-Sailing-Surfing-Windsurfing-Kitesurfing',
+			activityTypes: 'Swimming-StandUpPaddling-Canoeing-Kayaking-Rowing-Sailing-Surfing-Windsurfing-Kitesurfing',
 			label: 'Water Sports'
 		}
 	];
 
-	// Populate the above array with all the individual activity types
+	// Populate the above array with all the individual activity types from the first array
 	for (const index in activityList) {
 		activityGroupings.push({
 			activityTypes: activityList[index],
@@ -97,7 +96,7 @@
 	let value = '';
 
 	$: selectedValue =
-		activityGroupings.find((f) => f.value === value)?.label ?? activityGroupings[0].label;
+		activityGroupings.find((f) => f.activityTypes === value)?.label ?? activityGroupings[0].label;
 
 	function closeAndFocusTrigger(triggerId: string) {
 		open = false;
@@ -107,8 +106,12 @@
 	}
 </script>
 
+<div class="flex w-full max-w-[320px] flex-col gap-0.5">
+	<Label for="activity-select" class="pl-2 block select-none text-sm font-medium"
+	  >Filter by Activity Sport Type</Label>
+
 <Popover.Root bind:open let:ids preventScroll={false}>
-	<Popover.Trigger asChild id="activityGroup-select" let:builder>
+	<Popover.Trigger asChild id="activity-select" let:builder>
 		<Button
 			builders={[builder]}
 			variant="outline"
@@ -125,39 +128,45 @@
 			<Command.Root>
 				<Command.Group>
 					<Command.Item
-						value={activityGroupings[0].value}
+						value={activityGroupings[0].activityTypes}
 						onSelect={(currentValue) => {
 							value = currentValue;
 							closeAndFocusTrigger(ids.trigger);
 						}}
-					>
-						{activityGroupings[0].label}
+					><!-- svelte-ignore a11y-no-noninteractive-tabindex -->
+					<p tabindex="0">
+						{activityGroupings[0].label}</p>
 					</Command.Item>
 				</Command.Group>
 				<Command.Group heading="Groups">
 					{#each activityGroupings.slice(1, 7) as activityGroup}
 						<Command.Item
-							value={activityGroup.value}
+							value={activityGroup.activityTypes}
 							onSelect={(currentValue) => {
 								value = currentValue;
 								closeAndFocusTrigger(ids.trigger);
 							}}
 						>
+						<p>
 							{activityGroup.label}
+						</p>
+						<span class="pb-1">
 							<QuestionMarkIcon content={activityGroup.activityTypes?.replace(/(?<=.)([A-Z])/g, ' $1').replace(/-/g, ',').replace('E Bike', 'E-bike').replace('Stand Up', 'Stand-up')}/>
+						</span>
 						</Command.Item>
 					{/each}
 				</Command.Group>
 				<Command.Group heading="Individual Types">
 					{#each activityGroupings.slice(7, activityGroupings.length) as activityGroup}
 						<Command.Item
-							value={activityGroup.value}
+							value={activityGroup.activityTypes}
 							onSelect={(currentValue) => {
 								value = currentValue;
 								closeAndFocusTrigger(ids.trigger);
 							}}
 						>
-							{activityGroup.label}
+						<p>
+							{activityGroup.label}</p>
 						</Command.Item>
 					{/each}
 				</Command.Group>
@@ -165,3 +174,4 @@
 		</ScrollArea>
 	</Popover.Content>
 </Popover.Root>
+</div>
