@@ -10,23 +10,43 @@ The best way to visualize your Strava activities--free, modern, fast and feature
 
 ## Standout Features
 
-- Privacy-focused with no data stored, no user cookies used, and a completely transparent FOSS model.
+- Privacy-focused with no user data stored, no client cookies used, and complete stack transparency.
+
+### ❖ Data Visualization
+
+- Filter activities by date, sport type, commute status and visibility
+
+- Many separate display modes incorporating different metrics (Frequency Heatmap, Elevation, Time of Year, Solid Color)
+
+- Tabular list of activities with support for displaying & sorting by many metrics (Name, Distance, Calories, Avg. Speed, Avg. Power, Avg. Heartrate, Date) & filtering by keyword
 
 ### ❖ Map
 
-- Customizable basemap appearance (Light, Dark, Satellite, Landscape, Topographic and Winter)
+- Customizable basemap appearance (Light, Dark, Satellite, Landscape, Topographic, Winter, or none)
 
 - Map export to PNG, JPG, PDF and SVG with detailed control over export dimensions and resolution.
 
 - Distance measurements via measurement control
 
+- Automatic zoom-to-fit activities added to map
+
 ### ❖ Comforts
 
-- Fully-featured light/dark mode with persistence via browser stores & automatic preference detection on top of manual control.
+- Fully-featured light/dark mode with persistence via browser stores & automatic preference detection + manual control
 
-- Resizable & collapsible settings sidebar (desktop) or drawer (mobile) with layout persistence via browser stores.
+- Resizable & collapsible settings sidebar (desktop) or drawer (mobile) with layout persistence through browser stores
+
+### ❖ Technical
+
+- Session persistence via Auth.js
+
+- Parallel fetching of activities
 
 ## Screenshots
+
+## Website Stack
+
+TODO - WRITE DESCRIPTION OF STACK
 
 ## Contributing/Building
 
