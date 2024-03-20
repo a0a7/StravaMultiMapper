@@ -91,9 +91,9 @@
 		collapsedSize={8}
 		collapsible={true}
 	>
-		<div class="w-full h-full md:px-5 pt-1 md:pt-5 background overflow-hidden">
-			<ScrollArea class="w-full overflow-y-scroll h-full">
-				<div class="flex flex-col md:min-h-[calc(100vh-20px)]">
+		<div class="w-full h-screen md:h-full md:px-5 pt-1 md:pt-5 background overflow-hidden">
+			<ScrollArea class="rounded-xl sw-full overflow-y-scroll h-[calc(100vh-90px)]">
+				<div class="flex flex-col md:min-h-[calc(100vh-110px)]">
 					{#if $page.data.session?.access_token === undefined || $page.data.session?.access_token === null}
 						<ConnectPanel />
 					{:else if new Date($page.data.session?.expires) < new Date()}
@@ -114,11 +114,18 @@
 							>.
 						</p>
 					{/if}
-					<div class="mx-5 md:mx-0">
-						<Footer bind:onMobile />
-					</div>
+					{#if onMobile}
+						<div class="mx-5">
+							<Footer bind:onMobile />
+						</div>
+					{/if}
 				</div>
 			</ScrollArea>
+			{#if !onMobile}
+				<div class="mx-5">
+					<Footer bind:onMobile />
+				</div>
+			{/if}
 		</div>
 	</Resizable.Pane>
 	{#if deviceTypeKnown && !onMobile}
