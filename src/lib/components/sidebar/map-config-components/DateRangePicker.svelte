@@ -6,19 +6,27 @@
       DateFormatter,
       getLocalTimeZone,
       today,
-      type DateValue
+      parseDate,
+      type DateValue,
     } from "@internationalized/date";
     import { cn } from "$lib/utils.js";
     import { Button } from "$lib/components/ui/button/index.js";
     import { RangeCalendar } from "$lib/components/ui/range-calendar/index.js";
     import * as Popover from "$lib/components/ui/popover/index.js";
-   
+    import type { StravaActivity } from '$lib/activities';
+
+    export let activities: StravaActivity[];
+
+    let earliestDate = activities.reduce((earliest, current) => {
+        return new Date(current.start_date) < new Date(earliest.start_date) ? current : earliest;
+    }).start_date;
+
     const df = new DateFormatter("en-US", {
       dateStyle: "medium"
     });
    
     let value: DateRange | undefined = {
-      start: new CalendarDate(1970, 1, 1),
+      start: parseDate(earliestDate.split('T')[0]),
       end: today(getLocalTimeZone())
     };
    
@@ -31,7 +39,7 @@
         <Button
           variant="outline"
           class={cn(
-            "w-fit justify-start text-left font-normal",
+            "w-fit justify-start text-left font-normal px-2",
             !value && "text-muted-foreground"
           )}
           builders={[builder]}
