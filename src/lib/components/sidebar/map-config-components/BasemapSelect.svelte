@@ -7,14 +7,15 @@
 	import { Button } from '$lib/components/ui/button/index.js';
 	import { cn } from '$lib/utils.js';
 	import { tick } from 'svelte';
+	import {mode} from 'mode-watcher';
 
 	const basemaps = [
 		{
-			value: 'proton',
+			value: 'light',
 			label: 'Light'
 		},
 		{
-			value: 'darkmatter',
+			value: 'dark',
 			label: 'Dark'
 		},
 		{
@@ -36,9 +37,9 @@
 	];
 
 	let open = false;
-	let value = '';
+	let value = $mode === 'light' ? 'light' : 'dark';
 
-	$: selectedValue = basemaps.find((f) => f.value === value)?.label ?? 'Select a basemap style...';
+	$: selectedValue = basemaps.find((f) => f.value === value)?.label;
 
 	function closeAndFocusTrigger(triggerId: string) {
 		open = false;
