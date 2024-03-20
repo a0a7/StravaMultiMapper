@@ -8,6 +8,7 @@
 	import { cn } from '$lib/utils.js';
 	import { tick } from 'svelte';
 	import { ScrollArea } from '$lib/components/ui/scroll-area/index.js';
+	import QuestionMarkIcon from '$lib/components/QuestionMarkIcon.svelte';
 
 	const activityList = [
 		'Run',
@@ -82,7 +83,6 @@
 	];
 
 	// Populate the above array with all the individual activity types
-
 	for (const index in activityList) {
 		activityGroupings.push({
 			activityTypes: activityList[index],
@@ -144,6 +144,7 @@
 							}}
 						>
 							{activityGroup.label}
+							<QuestionMarkIcon content={activityGroup.activityTypes?.replace(/(?<=.)([A-Z])/g, ' $1').replace(/-/g, ',').replace('E Bike', 'E-bike').replace('Stand Up', 'Stand-up')}/>
 						</Command.Item>
 					{/each}
 				</Command.Group>
