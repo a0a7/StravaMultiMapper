@@ -5,6 +5,7 @@
 [![CI](https://github.com/sudolev/StravaMultiMapper/actions/workflows/ci.yml/badge.svg)](https://github.com/sudolev/StravaMultiMapper/actions/workflows/ci.yml)
 [![Mozilla HTTP Observatory Grade](https://img.shields.io/mozilla-observatory/grade-score/stravamap.pages.dev)](https://observatory.mozilla.org/analyze/stravamap.pages.dev)
 [![license](https://img.shields.io/github/license/sudolev/StravaMultiMapper)](https://github.com/sudolev/StravaMultiMapper/blob/main/LICENSE)
+<!-- ![Lines of Code](https://tokei.rs/b1/github/syslev/StravaMultiMapper?type=Svelte,Typescript,Javascript&style=flat) -->
 
 The best way to visualize your Strava activities--free, modern, fast and feature-rich. Currently WIP!
 
