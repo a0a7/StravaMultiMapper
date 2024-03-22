@@ -12,7 +12,7 @@ The best way to visualize your Strava activities--free, modern, fast and feature
 
 ## Standout Features
 
-- Privacy-focused with no user data stored, no client cookies used, and complete stack transparency.
+- Privacy-focused with no user data stored, no client cookies used, and complete transparency.
 
 ### ❖ Data Visualization
 
@@ -48,7 +48,9 @@ The best way to visualize your Strava activities--free, modern, fast and feature
 
 ## Website Stack
 
-TODO - WRITE DESCRIPTION OF STACK
+This website is a [SvelteKit](https://github.com/sveltejs/kit) app with [Typescript](https://github.com/microsoft/TypeScript) and [Tailwind CSS](https://github.com/tailwindlabs/tailwindcss) hosted on [Cloudflare Pages](https://pages.cloudflare.com/). Pretty standard.
+
+It's centerpiece is a [MapLibre GL](https://github.com/maplibre/maplibre-gl-js) map with various plugins. Also used is [Auth.js](https://github.com/nextauthjs/next-auth) and [shadcn/ui Svelte](https://github.com/huntabyte/shadcn-svelte)
 
 ## Contributing/Building
 
