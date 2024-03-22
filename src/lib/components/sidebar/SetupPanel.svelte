@@ -17,9 +17,22 @@
 	import type { StravaActivity } from '$lib/activities';
 	import ActivityTable from '$lib/components/activityTable/ActivityTable.svelte';
 	import MapConfigPanel from '$lib/components/sidebar/MapConfigPanel.svelte';
+	import type Map from '$lib/components/map/Map.svelte';
+    import polyline from '@mapbox/polyline';
+	import maplibregl from 'maplibre-gl';
 
+	export let map: Map;
+
+	let activityTypeFilter: string;
+	let commuteFilter: string;
+	let dateRangeMinFilter: string;
+	let dateRangeMaxFilter: string;
+	let showPrivate: boolean;
+
+	let mapLoaded: boolean = false;
 	let activities: StravaActivity[] = [];
 	let error: string | null = null;
+	let allCoords: any[] = [];
 
 	async function getActivities() {
 		try {
@@ -62,6 +75,63 @@
 		}
 		console.log(activities);
 	});
+	$: if (map) {
+		map.on('load', () => {		
+			mapLoaded = true;
+		});
+	}
+	$: if (map && mapLoaded && activities) {
+		for (const activity in activities) {
+			if (!map.getSource(activities[activity].id) && !map.getLayer(activities[activity].id)) {
+				const coords = polyline.decode(activities[activity].map.summary_polyline);
+				// @ts-expect-error: Exists at runtime.
+				const coordsFlipped = coords.map(pair => pair.reverse()).filter((_, index) => index % 3 === 0);
+				map.addSource(`${activities[activity].id}`, {
+					'type': 'geojson',
+					'data': {
+						'type': 'Feature',
+						'properties': {},
+						'geometry': {
+							'type': 'LineString',
+							'coordinates': coordsFlipped
+						}
+					}
+				});
+				map.addLayer({
+					'id': `${activities[activity].id}`,
+					'type': 'line',
+					'source': `${activities[activity].id}`,
+					'layout': {
+						'line-join': 'round',
+						'line-cap': 'round'
+					},
+					'paint': {
+						'line-color': '#888',
+						'line-width': 8
+					}
+				});
+				map.on('click', `${activities[activity].id}`, (e: any) => {
+					new maplibregl.Popup() // @ts-ignore: literally don't care
+						.setLngLat(coordsFlipped.reduce((acc, coord) => {return [acc[0] + coord[0] / coordsFlipped.length, acc[1] + coord[1] / coordsFlipped.length];}, [0, 0]))
+						.setHTML(`<h3>${activities[activity].name}</h3><p>${activities[activity].distance}</p>`)
+						.addTo(map);
+				});
+				map.on('mouseenter', `${activities[activity].id}`, () => {
+					map.getCanvas().style.cursor = 'pointer';
+				});
+				map.on('mouseleave', `${activities[activity].id}`, () => {
+					map.getCanvas().style.cursor = '';
+				});
+			}
+		}
+	
+        // Change it back to a pointer when it leaves.
+        map.on('mouseleave', 'places', () => {
+            map.getCanvas().style.cursor = '';
+        });
+	
+	}
+
 </script>
 
 {#if error}
@@ -95,7 +165,7 @@
 	</Card.Header>
 	{#if activities.length > 0 && !(Object.keys(activities[0]).length === 0) && !error}
 		<Separator class="mb-3 mx-5 w-[calc(100vw-2.5rem)] md:w-auto" />
-		<MapConfigPanel {activities} />
+		<MapConfigPanel {activities} bind:activityTypeFilter bind:commuteFilter bind:dateRangeMinFilter bind:dateRangeMaxFilter bind:showPrivate		/>
 		<Separator class="mt-3 mx-5 w-[calc(100vw-2.5rem)] md:w-auto" />
 		<ActivityTable activityData={activities} />
 	{:else if activities.length == 0 && !error}
