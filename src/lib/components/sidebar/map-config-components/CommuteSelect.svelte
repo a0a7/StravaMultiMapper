@@ -26,7 +26,7 @@
 	];
 
 	let open = false;
-	let value = commuteStatuses[0].value;
+	export let value = commuteStatuses[0].value;
 
 	$: selectedValue = commuteStatuses.find((f) => f.value === value)?.label;
 

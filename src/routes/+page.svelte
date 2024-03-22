@@ -99,7 +99,7 @@
 					{:else if new Date($page.data.session?.expires) < new Date()}
 						<ConnectPanel sessionExpired />
 					{:else if $page.data.session?.user}
-						<SetupPanel />
+						<SetupPanel {map}/>
 					{:else}
 						<p class="text-center p-3">
 							Something has gone wrong. If reloading the page doesn't fix the issue, please report

@@ -28,6 +28,12 @@
 		end: today(getLocalTimeZone())
 	};
 
+	export let startDate;
+    export let endDate;
+
+	$: startDate = value?.start?.toString();
+	$: endDate = value?.end?.toString();
+	
 	let startValue: DateValue | undefined = undefined;
 </script>
 

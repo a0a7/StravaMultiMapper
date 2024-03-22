@@ -94,7 +94,7 @@
 	}
 
 	let open = false;
-	let value = '';
+	export let value = activityGroupings[0].activityTypes;
 
 	$: selectedValue =
 		activityGroupings.find((f) => f.activityTypes === value)?.label ?? activityGroupings[0].label;

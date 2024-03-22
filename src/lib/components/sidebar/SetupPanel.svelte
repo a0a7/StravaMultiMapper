@@ -111,9 +111,9 @@
 					}
 				});
 				map.on('click', `${activities[activity].id}`, (e: any) => {
-					new maplibregl.Popup() // @ts-ignore: literally don't care
+					new maplibregl.Popup() // @ts-ignore: no thanks
 						.setLngLat(coordsFlipped.reduce((acc, coord) => {return [acc[0] + coord[0] / coordsFlipped.length, acc[1] + coord[1] / coordsFlipped.length];}, [0, 0]))
-						.setHTML(`<h3>${activities[activity].name}</h3><p>${activities[activity].distance}</p>`)
+						.setHTML(`<h3>${activities[activity].name}</h3><p>${activities[activity].distance}</p>`) // @ts-ignore: that type doesn't exist??
 						.addTo(map);
 				});
 				map.on('mouseenter', `${activities[activity].id}`, () => {
