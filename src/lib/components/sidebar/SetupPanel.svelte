@@ -21,9 +21,12 @@
     import polyline from '@mapbox/polyline';
 	import maplibregl from 'maplibre-gl';
 	import { Deck } from '@deck.gl/core';
+	import { MapboxOverlay as DeckOverlay } from '@deck.gl/mapbox';
 	import { GeoJsonLayer } from '@deck.gl/layers';
+
 	export let map: Map;
 
+	let isClient: boolean = false;
 	let activityTypeFilter: string;
 	let commuteFilter: string;
 	let dateRangeMinFilter: string;
@@ -33,7 +36,9 @@
 	let mapLoaded: boolean = false;
 	let activities: StravaActivity[] = [];
 	let error: string | null = null;
-	let allCoords: any[] = [];
+	let geoJsonData: any[] = [];
+	let visualizationLayer: any;
+	let visualizationDeck: any;
 	let popup: any, startIcon: any, endIcon: any;
 
 	let startIconEl: HTMLImageElement, endIconEl: HTMLImageElement;
@@ -70,6 +75,7 @@
 		}
 	}
 	onMount(() => {
+		isClient = true;
 		if (localStorage.getItem('activities')) {
 			activities = JSON.parse(localStorage.getItem('activities')!);
 		}
@@ -86,79 +92,49 @@
 		startIconEl.width = 20;
 		
 	});
+	$: if (isClient && activities) {
+		for (const activity in activities) {
+			if (!geoJsonData.some(e => e.id === activities[activity].id)) {
+				const coords = polyline.decode(activities[activity].map.summary_polyline).map(coord => [coord[1], coord[0]]);
+				geoJsonData.push(new GeoJsonLayer({
+					id: `${activities[activity].id}`,
+					data: {
+						type: 'Feature',
+						properties: { id: activities[activity].id },
+						geometry: {
+							type: 'LineString', 
+							coordinates: coords
+						}
+					},
+					pickable: true,
+					stroked: true,
+					filled: true,
+					extruded: true,
+					lineWidthScale: 20,
+					lineWidthMinPixels: 2,
+					getFillColor: [160, 160, 180, 200],
+					getLineColor: [0, 0, 0, 255],
+					getPointRadius: 100,
+					getLineWidth: 1,
+					getElevation: 30
+				}));
+		}
+	}
+
+	};
 	$: if (map) {
 		map.on('load', () => {		
 			mapLoaded = true;
 		});
 	}
-	$: if (map && mapLoaded && activities) {
-		for (const activity in activities) {
-			if (!map.getSource(activities[activity].id) && !map.getLayer(activities[activity].id)) {
-				const coords = polyline.decode(activities[activity].map.summary_polyline); // @ts-expect-error: Exists at runtime.
-				const coordsFlipped = coords.map(pair => pair.reverse()).filter((_, index) => index % 3 === 0);
-				map.addSource(`${activities[activity].id}`, {
-					'type': 'geojson',
-					'data': {
-						'type': 'Feature',
-						'properties': {},
-						'geometry': {
-							'type': 'LineString',
-							'coordinates': coordsFlipped
-						}
-					}
-				});
-				map.addLayer({
-					'id': `${activities[activity].id}`,
-					'type': 'line',
-					'source': `${activities[activity].id}`,
-					'layout': {
-						'line-join': 'round',
-						'line-cap': 'round'
-					},
-					'paint': {
-						'line-color': '#888',
-						'line-width': 8
-					}
-				});
-				map.on('click', `${activities[activity].id}`, (e: any) => {
-					if (popup) {
-						popup.remove();
-					}
-					popup = new maplibregl.Popup() // @ts-ignore: no thanks
-						.setLngLat(e.lngLat)
-						.setHTML(`<h3>${activities[activity].name}</h3><p>${activities[activity].distance}</p>`) // @ts-ignore: that type shouldn't exist??
-						.addTo(map);
-					if (endIcon) {
-						endIcon.remove();
-					}
-					endIcon = new maplibregl.Marker({element: endIconEl})
-						.setLngLat(coordsFlipped[coordsFlipped.length - 1]) // @ts-ignore: that type shouldn't exist??
-						.addTo(map);
-					if (startIcon) {
-						startIcon.remove();
-					}
-					startIcon = new maplibregl.Marker({element: startIconEl})
-						.setLngLat(coordsFlipped[0]) // @ts-ignore: that type shouldn't exist??
-						.addTo(map);
-					
-
-				});
-				map.on('mouseenter', `${activities[activity].id}`, () => {
-					map.getCanvas().style.cursor = 'pointer';
-				});
-				map.on('mouseleave', `${activities[activity].id}`, () => {
-					map.getCanvas().style.cursor = '';
-				});
-			}
+	$: if (map && mapLoaded && geoJsonData) {
+		if (!visualizationDeck) {
+			visualizationDeck = new DeckOverlay({
+				layers: geoJsonData
+			});
+			map.addControl(visualizationDeck);
 		}
-	
-        // Change it back to a pointer when it leaves.
-        map.on('mouseleave', 'places', () => {
-            map.getCanvas().style.cursor = '';
-        });
-	
 	}
-
 </script>
 
 {#if error}
