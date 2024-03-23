@@ -5,12 +5,12 @@
 		addSortBy,
 		addTableFilter,
 		addHiddenColumns,
-		addSelectedRows
+		addSelectedRows // @ts-expect-error: this import does exist
 	} from 'svelte-headless-table/plugins';
 	import { readable } from 'svelte/store';
-	import * as Table from '$lib/components/ui/table';
-	import ArrowUpDown from 'lucide-svelte/icons/arrow-up-down';
-	import ChevronDown from 'lucide-svelte/icons/chevron-down';
+	import * as Table from '$lib/components/ui/table'; // @ts-expect-error: this import does exist
+	import ArrowUpDown from 'lucide-svelte/icons/arrow-up-down'; // @ts-expect-error: this import does exist
+	import ChevronDown from 'lucide-svelte/icons/chevron-down'; // @ts-expect-error: this import does exist
 	import CaretSort from 'svelte-radix/CaretSort.svelte';
 	import { cn } from '$lib/utils.js';
 	import { Button } from '$lib/components/ui/button';

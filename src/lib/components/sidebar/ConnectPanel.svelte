@@ -1,8 +1,8 @@
 <script lang="ts">
-	import { signIn } from '@auth/sveltekit/client';
 	import * as Card from '$lib/components/ui/card';
 	import Button from '$lib/components/ui/button/button.svelte';
-	import * as Alert from '$lib/components/ui/alert';
+	import * as Alert from '$lib/components/ui/alert'; // @ts-expect-error: this import does exist
+	import { signIn } from '@auth/sveltekit/client';
 	import '$lib/components/sidebar/svg-styles.css';
 
 	export let sessionExpired: boolean = false;

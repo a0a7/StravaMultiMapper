@@ -1,13 +1,13 @@
 <script lang="ts">
-	import Check from 'svelte-radix/Check.svelte';
-	import CaretSort from 'svelte-radix/CaretSort.svelte';
 	import * as Command from '$lib/components/ui/command/index.js';
 	import * as Popover from '$lib/components/ui/popover/index.js';
 	import { Label } from '$lib/components/ui/label/';
 	import { Button } from '$lib/components/ui/button/index.js';
 	import { cn } from '$lib/utils.js';
 	import { tick } from 'svelte';
-	import { mode } from 'mode-watcher';
+	import { mode } from 'mode-watcher'; // @ts-expect-error: this import does exist
+	import Check from 'svelte-radix/Check.svelte'; // @ts-expect-error: this import does exist
+	import CaretSort from 'svelte-radix/CaretSort.svelte';
 	import QuestionMarkIcon from '$lib/components/QuestionMarkIcon.svelte';
 
 	const basemaps = [

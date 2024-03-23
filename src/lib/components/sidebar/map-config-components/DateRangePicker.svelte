@@ -1,5 +1,4 @@
 <script lang="ts">
-	import CalendarIcon from 'svelte-radix/Calendar.svelte';
 	import { DateRangePicker, type DateRange } from 'bits-ui';
 	import {
 		CalendarDate,
@@ -10,8 +9,10 @@
 		type DateValue
 	} from '@internationalized/date';
 	import { cn, flyAndScale } from '$lib/utils.js';
-	import type { StravaActivity } from '$lib/activities';
+	import type { StravaActivity } from '$lib/activities'; 	// @ts-expect-error: this import does exist
+	import CalendarIcon from 'svelte-radix/Calendar.svelte';
 	import QuestionMarkIcon from '$lib/components/QuestionMarkIcon.svelte';
+	
 
 	export let activities: StravaActivity[];
 
