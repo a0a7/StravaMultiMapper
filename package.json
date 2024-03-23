@@ -52,6 +52,8 @@
 	"dependencies": {
 		"@auth/core": "^0.28.0",
 		"@auth/sveltekit": "^0.14.0",
+		"@deck.gl/core": "^9.0.1",
+		"@deck.gl/layers": "^9.0.1",
 		"@esbuild-plugins/node-globals-polyfill": "^0.2.3",
 		"@internationalized/date": "^3.5.2",
 		"@mapbox-controls/ruler": "^1.1.0",
@@ -67,6 +69,7 @@
 		"bits-ui": "^0.19.6",
 		"clsx": "^2.1.0",
 		"cmdk-sv": "^0.0.15",
+		"deck.gl": "^9.0.1",
 		"geojson-polyline": "^1.0.3",
 		"lucide-svelte": "^0.358.0",
 		"maplibre-gl": "^3.6.2",

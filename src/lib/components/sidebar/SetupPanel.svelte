@@ -20,7 +20,8 @@
 	import type Map from '$lib/components/map/Map.svelte';
     import polyline from '@mapbox/polyline';
 	import maplibregl from 'maplibre-gl';
-
+	import { Deck } from '@deck.gl/core';
+	import { GeoJsonLayer } from '@deck.gl/layers';
 	export let map: Map;
 
 	let activityTypeFilter: string;
@@ -93,8 +94,7 @@
 	$: if (map && mapLoaded && activities) {
 		for (const activity in activities) {
 			if (!map.getSource(activities[activity].id) && !map.getLayer(activities[activity].id)) {
-				const coords = polyline.decode(activities[activity].map.summary_polyline);
-				// @ts-expect-error: Exists at runtime.
+				const coords = polyline.decode(activities[activity].map.summary_polyline); // @ts-expect-error: Exists at runtime.
 				const coordsFlipped = coords.map(pair => pair.reverse()).filter((_, index) => index % 3 === 0);
 				map.addSource(`${activities[activity].id}`, {
 					'type': 'geojson',
