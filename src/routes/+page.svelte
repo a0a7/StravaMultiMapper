@@ -78,7 +78,6 @@
 		>
 			<Resizable.Handle
 				class="resizable-touchbar w-screen"
-				onDraggingChange={() => (panelsResized = true)}
 			/>
 		</div>
 	{/if}
