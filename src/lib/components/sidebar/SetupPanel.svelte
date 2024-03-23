@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
+	import { onMount } from 'svelte'; // @ts-expect-error: this import does exist
 	import { signOut } from '@auth/sveltekit/client';
 	import { page } from '$app/stores';
 	import { mode } from 'mode-watcher';
@@ -33,6 +33,9 @@
 	let activities: StravaActivity[] = [];
 	let error: string | null = null;
 	let allCoords: any[] = [];
+	let popup: any, startIcon: any, endIcon: any;
+
+	let startIconEl: HTMLImageElement, endIconEl: HTMLImageElement;
 
 	async function getActivities() {
 		try {
@@ -74,6 +77,13 @@
 			getActivities();
 		}
 		console.log(activities);
+		endIconEl = document.createElement('img');
+		endIconEl.src = 'img/map/trace_end.png';
+		endIconEl.width = 20;
+		startIconEl = document.createElement('img');
+		startIconEl.src = 'img/map/trace_start.png'; 
+		startIconEl.width = 20;
+		
 	});
 	$: if (map) {
 		map.on('load', () => {		
@@ -111,10 +121,27 @@
 					}
 				});
 				map.on('click', `${activities[activity].id}`, (e: any) => {
-					new maplibregl.Popup() // @ts-ignore: no thanks
-						.setLngLat(coordsFlipped.reduce((acc, coord) => {return [acc[0] + coord[0] / coordsFlipped.length, acc[1] + coord[1] / coordsFlipped.length];}, [0, 0]))
-						.setHTML(`<h3>${activities[activity].name}</h3><p>${activities[activity].distance}</p>`) // @ts-ignore: that type doesn't exist??
+					if (popup) {
+						popup.remove();
+					}
+					popup = new maplibregl.Popup() // @ts-ignore: no thanks
+						.setLngLat(e.lngLat)
+						.setHTML(`<h3>${activities[activity].name}</h3><p>${activities[activity].distance}</p>`) // @ts-ignore: that type shouldn't exist??
 						.addTo(map);
+					if (endIcon) {
+						endIcon.remove();
+					}
+					endIcon = new maplibregl.Marker({element: endIconEl})
+						.setLngLat(coordsFlipped[coordsFlipped.length - 1]) // @ts-ignore: that type shouldn't exist??
+						.addTo(map);
+					if (startIcon) {
+						startIcon.remove();
+					}
+					startIcon = new maplibregl.Marker({element: startIconEl})
+						.setLngLat(coordsFlipped[0]) // @ts-ignore: that type shouldn't exist??
+						.addTo(map);
+					
+
 				});
 				map.on('mouseenter', `${activities[activity].id}`, () => {
 					map.getCanvas().style.cursor = 'pointer';
