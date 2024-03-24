@@ -1,7 +1,7 @@
 <script lang="ts">
 	import * as Command from '$lib/components/ui/command/index.js';
 	import * as Popover from '$lib/components/ui/popover/index.js'; // @ts-expect-error: this import does exist
-	import Check from 'svelte-radix/Check.svelte'; 	// @ts-expect-error: this import does exist
+	import Check from 'svelte-radix/Check.svelte'; // @ts-expect-error: this import does exist
 	import CaretSort from 'svelte-radix/CaretSort.svelte';
 	import { Label } from '$lib/components/ui/label/';
 	import { Button } from '$lib/components/ui/button/index.js';

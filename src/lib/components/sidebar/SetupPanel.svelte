@@ -18,7 +18,7 @@
 	import ActivityTable from '$lib/components/activityTable/ActivityTable.svelte';
 	import MapConfigPanel from '$lib/components/sidebar/MapConfigPanel.svelte';
 	import type Map from '$lib/components/map/Map.svelte';
-    import polyline from '@mapbox/polyline';
+	import polyline from '@mapbox/polyline';
 	import maplibregl from 'maplibre-gl';
 	import { Deck } from '@deck.gl/core';
 	import { MapboxOverlay as DeckOverlay } from '@deck.gl/mapbox';
@@ -88,42 +88,44 @@
 		endIconEl.src = 'img/map/trace_end.png';
 		endIconEl.width = 20;
 		startIconEl = document.createElement('img');
-		startIconEl.src = 'img/map/trace_start.png'; 
+		startIconEl.src = 'img/map/trace_start.png';
 		startIconEl.width = 20;
-		
 	});
 	$: if (isClient && activities) {
 		for (const activity in activities) {
-			if (!geoJsonData.some(e => e.id === activities[activity].id)) {
-				const coords = polyline.decode(activities[activity].map.summary_polyline).map(coord => [coord[1], coord[0]]);
-				geoJsonData.push(new GeoJsonLayer({
-					id: `${activities[activity].id}`,
-					data: {
-						type: 'Feature',
-						properties: { id: activities[activity].id },
-						geometry: {
-							type: 'LineString', 
-							coordinates: coords
-						}
-					},
-					pickable: true,
-					stroked: true,
-					filled: true,
-					extruded: true,
-					lineWidthScale: 20,
-					lineWidthMinPixels: 2,
-					getFillColor: [160, 160, 180, 200],
-					getLineColor: [0, 0, 0, 255],
-					getPointRadius: 100,
-					getLineWidth: 1,
-					getElevation: 30
-				}));
+			if (!geoJsonData.some((e) => e.id === activities[activity].id)) {
+				const coords = polyline
+					.decode(activities[activity].map.summary_polyline)
+					.map((coord: number[]) => [coord[1], coord[0]]);
+				geoJsonData.push(
+					new GeoJsonLayer({
+						id: `${activities[activity].id}`,
+						data: {
+							type: 'Feature',
+							properties: { id: activities[activity].id },
+							geometry: {
+								type: 'LineString',
+								coordinates: coords
+							}
+						},
+						pickable: true,
+						stroked: true,
+						filled: true,
+						extruded: true,
+						lineWidthScale: 20,
+						lineWidthMinPixels: 2,
+						getFillColor: [160, 160, 180, 200],
+						getLineColor: [255, 255, 255, 255],
+						getPointRadius: 100,
+						getLineWidth: 2,
+						getElevation: 0
+					})
+				);
+			}
 		}
 	}
-
-	};
 	$: if (map) {
-		map.on('load', () => {		
+		map.on('load', () => {
 			mapLoaded = true;
 		});
 	}
@@ -134,6 +136,7 @@
 			});
 			map.addControl(visualizationDeck);
 		}
+		console.log('deck function running');
 	}
 </script>
 
@@ -168,7 +171,14 @@
 	</Card.Header>
 	{#if activities.length > 0 && !(Object.keys(activities[0]).length === 0) && !error}
 		<Separator class="mb-3 mx-5 w-[calc(100vw-2.5rem)] md:w-auto" />
-		<MapConfigPanel {activities} bind:activityTypeFilter bind:commuteFilter bind:dateRangeMinFilter bind:dateRangeMaxFilter bind:showPrivate		/>
+		<MapConfigPanel
+			{activities}
+			bind:activityTypeFilter
+			bind:commuteFilter
+			bind:dateRangeMinFilter
+			bind:dateRangeMaxFilter
+			bind:showPrivate
+		/>
 		<Separator class="mt-3 mx-5 w-[calc(100vw-2.5rem)] md:w-auto" />
 		<ActivityTable activityData={activities} />
 	{:else if activities.length == 0 && !error}

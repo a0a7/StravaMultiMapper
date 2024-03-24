@@ -21,14 +21,22 @@
 </script>
 
 <div class="w-full px-6 flex flex-col gap-3">
-	<ActivityTypeSelect bind:value={activityTypeFilter}/>
-	<CommuteSelect bind:value={commuteFilter}/>
-	<DateRangePicker {activities} bind:startDate={dateRangeMinFilter} bind:endDate={dateRangeMaxFilter}/>
+	<ActivityTypeSelect bind:value={activityTypeFilter} />
+	<CommuteSelect bind:value={commuteFilter} />
+	<DateRangePicker
+		{activities}
+		bind:startDate={dateRangeMinFilter}
+		bind:endDate={dateRangeMaxFilter}
+	/>
 	<div class="pl-2 pt-s1">
 		<Label for="private-activities" class="bottom-1 pr-1 relative select-none text-sm font-medium"
 			>Show Private Activities</Label
 		>
-		<Switch id="private-activities" bind:checked={showPrivate} class="data-[state=checked]:bg-secondary" />
+		<Switch
+			id="private-activities"
+			bind:checked={showPrivate}
+			class="data-[state=checked]:bg-secondary"
+		/>
 	</div>
 	<Separator class="w-auto" />
 	<BasemapSelect />

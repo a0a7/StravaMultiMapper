@@ -26,6 +26,12 @@ dependencies:
   '@internationalized/date':
     specifier: ^3.5.2
     version: 3.5.2
+  '@luma.gl/constants':
+    specifier: ^9.0.7
+    version: 9.0.7
+  '@luma.gl/core':
+    specifier: ^9.0.7
+    version: 9.0.7
   '@mapbox-controls/ruler':
     specifier: ^1.1.0
     version: 1.1.0(mapbox-gl@3.2.0)

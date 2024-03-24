@@ -42,12 +42,23 @@
 </script>
 
 <svelte:head>
-	<title>Strava Multi Mapper</title>
+	<title>Multi-Activity Heatmap for Strava</title>
+	<meta
+		name="description"
+		content="The best way to visualize your Strava runs, rides, or other activities on a beautiful & modern map."
+	/>
+	<meta name="keywords" content="Strava, Heatmap, Mapper" />
+	<meta name="author" content="Alexander Weimer" />
 	<meta
 		property="og:description"
 		content="The best way to visualize your Strava runs, rides, or other activities on a beautiful & modern map."
 	/>
+	<meta property="og:site_name" content="Multi-Activity Heatmap for Strava" />
+	<meta name="google-site-verification" content="2M89RJWGTKCA8xmIIjzY9ZVbahvhk9wkiWi78YJtpi0" />
 </svelte:head>
+<h1 style="position: absolute; visibility: hidden;">
+	Strava Multi-Activity Heatmap for Rides, runs and sports
+</h1>
 {#if !mapLoaded}
 	<Loading />
 {/if}
@@ -76,9 +87,7 @@
 				if (settingsPane.isCollapsed()) settingsPane.expand();
 			}}
 		>
-			<Resizable.Handle
-				class="resizable-touchbar w-screen"
-			/>
+			<Resizable.Handle class="resizable-touchbar w-screen" />
 		</div>
 	{/if}
 	<Resizable.Pane
@@ -98,7 +107,7 @@
 					{:else if new Date($page.data.session?.expires) < new Date()}
 						<ConnectPanel sessionExpired />
 					{:else if $page.data.session?.user}
-						<SetupPanel {map}/>
+						<SetupPanel {map} />
 					{:else}
 						<p class="text-center p-3">
 							Something has gone wrong. If reloading the page doesn't fix the issue, please report

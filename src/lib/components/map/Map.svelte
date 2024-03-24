@@ -17,6 +17,7 @@
 	import '$lib/components/map/map.css';
 	import '$lib/components/map/measure-control.css';
 	import '$lib/components/map/layers-control.css';
+	import maplibregl from 'maplibre-gl';
 	import type IControl from 'maplibre-gl';
 
 	export let onMobile: boolean;
@@ -24,7 +25,6 @@
 	export let loaded: boolean;
 	let mapDiv: Element;
 	let mapResizeObserver: ResizeObserver;
-
 	let StyleSwitcher: any, StyleSwitcherControl: any, StyleUrl: any;
 	let MaplibreExportControl: any, Size: any, PageOrientation: any, Format: any, DPI: any;
 	let measureControl: SvelteComponentTyped, exportControl: IControl;

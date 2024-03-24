@@ -1,1 +1,1 @@
-declare module '@mapbox/polyline'
+declare module '@mapbox/polyline';
