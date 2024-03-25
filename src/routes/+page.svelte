@@ -49,10 +49,10 @@
 	/>
 	<meta name="keywords" content="Strava, Heatmap, Mapper" />
 	<meta name="author" content="Alexander Weimer" />
-	<meta name='subject' content='Sports'>
-	<meta name='copyright' content='Alexander Weimer'>
-	<meta name='topic' content='S'>
-	<meta name='summary' content=''>
+	<meta name="subject" content="Sports" />
+	<meta name="copyright" content="Alexander Weimer" />
+	<meta name="topic" content="S" />
+	<meta name="summary" content="" />
 	<meta
 		property="og:description"
 		content="The best way to visualize your Strava runs, rides, or other activities on a beautiful & modern map."
@@ -63,23 +63,18 @@
 	<meta property="og:image" content="" />
 	<meta property="fb:admins" content="268094773018996" />
 
-	<meta name="apple-mobile-web-app-title" content="Strava Heatmap">
-	<meta name='apple-mobile-web-app-capable' content='yes'>
-	<meta name='apple-touch-fullscreen' content='yes'>
-	<meta name='apple-mobile-web-app-status-bar-style' content='black'>
-	<meta name='format-detection' content='telephone=no'>
+	<meta name="apple-mobile-web-app-title" content="Strava Heatmap" />
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-touch-fullscreen" content="yes" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+	<meta name="format-detection" content="telephone=no" />
 
-	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" type="image/png">
-	<link rel="manifest" href="/manifest.json">
-	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
-	<meta name="msapplication-TileColor" content="#5bbad5">
-	<meta name="theme-color" content="#5bbad5">
-	
-	<link href='touch-icon-ipad.png' rel='apple-touch-icon' sizes='72x72'>
-	<link href='touch-icon-iphone4.png' rel='apple-touch-icon' sizes='114x114'>
-	<link href='/startup.png' rel='apple-touch-startup-image'>
-	<link rel='fluid-icon' type='image/png' href='/fluid-icon.png'>
-	
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" type="image/png" />
+	<link rel="manifest" href="/manifest.json" />
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5" />
+	<meta name="msapplication-TileColor" content="#5bbad5" />
+	<meta name="theme-color" content="#5bbad5" />
+
 	<meta name="google-site-verification" content="2M89RJWGTKCA8xmIIjzY9ZVbahvhk9wkiWi78YJtpi0" />
 </svelte:head>
 <h1 style="position: absolute; visibility: hidden;">

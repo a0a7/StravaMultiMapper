@@ -69,9 +69,8 @@
 
 		FUNC_ADD: 0x8006,
 		FUNC_SUBTRACT: 0x800a,
-		FUNC_REVERSE_SUBTRACT: 0x800b,
-		};
-
+		FUNC_REVERSE_SUBTRACT: 0x800b
+	};
 
 	async function getActivities() {
 		try {
@@ -139,7 +138,12 @@
 							}
 						},
 						parameters: {
-							blendFuncSeparate: [GL.SRC_ALPHA_SATURATE, GL.SRC_ALPHA_SATURATE, GL.SRC_ALPHA_SATURATE, GL.ONE],
+							blendFuncSeparate: [
+								GL.SRC_ALPHA_SATURATE,
+								GL.SRC_ALPHA_SATURATE,
+								GL.SRC_ALPHA_SATURATE,
+								GL.ONE
+							],
 							blendEquation: [GL.FUNC_ADD, GL.FUNC_ADD],
 							blendColor: [1, 1, 1, 1]
 						},
