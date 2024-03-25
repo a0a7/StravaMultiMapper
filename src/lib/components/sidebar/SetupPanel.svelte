@@ -43,6 +43,36 @@
 
 	let startIconEl: HTMLImageElement, endIconEl: HTMLImageElement;
 
+	const GL = {
+		// Blending modes
+		// Constants passed to blendFunc() or blendFuncSeparate() to specify the blending mode (for both, RBG and alpha, or separately).
+
+		ZERO: 0,
+		ONE: 1,
+		SRC_COLOR: 0x0300,
+		ONE_MINUS_SRC_COLOR: 0x0301,
+		SRC_ALPHA: 0x0302,
+		ONE_MINUS_SRC_ALPHA: 0x0303,
+		DST_ALPHA: 0x0304,
+		ONE_MINUS_DST_ALPHA: 0x0305,
+		DST_COLOR: 0x0306,
+		ONE_MINUS_DST_COLOR: 0x0307,
+		SRC_ALPHA_SATURATE: 0x0308,
+		CONSTANT_COLOR: 0x8001,
+		ONE_MINUS_CONSTANT_COLOR: 0x8002,
+		CONSTANT_ALPHA: 0x8003,
+		ONE_MINUS_CONSTANT_ALPHA: 0x8004,
+
+		// Blending equations
+		// Constants passed to blendEquation() or blendEquationSeparate() to control
+		// how the blending is calculated (for both, RBG and alpha, or separately).
+
+		FUNC_ADD: 0x8006,
+		FUNC_SUBTRACT: 0x800a,
+		FUNC_REVERSE_SUBTRACT: 0x800b,
+		};
+
+
 	async function getActivities() {
 		try {
 			if (
@@ -108,15 +138,21 @@
 								coordinates: coords
 							}
 						},
+						parameters: {
+							blendFuncSeparate: [GL.SRC_ALPHA_SATURATE, GL.SRC_ALPHA_SATURATE, GL.SRC_ALPHA_SATURATE, GL.ONE],
+							blendEquation: [GL.FUNC_ADD, GL.FUNC_ADD],
+							blendColor: [1, 1, 1, 1]
+						},
 						pickable: true,
 						stroked: true,
 						filled: true,
 						extruded: true,
 						lineWidthScale: 20,
 						lineWidthMinPixels: 2,
-						getFillColor: [160, 160, 180, 200],
-						getLineColor: [255, 255, 255, 255],
+						getFillColor: [160, 160, 180],
+						getLineColor: [255, 230, 0],
 						getPointRadius: 100,
+						opacity: 0.35,
 						getLineWidth: 2,
 						getElevation: 0
 					})
