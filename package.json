@@ -54,7 +54,7 @@
 		"@auth/sveltekit": "^0.14.0",
 		"@deck.gl/core": "^9.0.1",
 		"@deck.gl/layers": "^9.0.1",
-		"@deck.gl/mapbox": "^9.0.1",
+		"@deck.gl/mapbox": "^9.0.3",
 		"@esbuild-plugins/node-globals-polyfill": "^0.2.3",
 		"@internationalized/date": "^3.5.2",
 		"@luma.gl/constants": "^9.0.7",
