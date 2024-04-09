@@ -24,8 +24,8 @@ dependencies:
     specifier: ^9.0.1
     version: 9.0.1(@deck.gl/core@9.0.1)(@loaders.gl/core@4.1.4)(@luma.gl/core@9.0.7)(@luma.gl/engine@9.0.7)
   '@deck.gl/mapbox':
-    specifier: ^9.0.1
-    version: 9.0.1(@deck.gl/core@9.0.1)(@luma.gl/core@9.0.7)
+    specifier: ^9.0.6
+    version: 9.0.6(@deck.gl/core@9.0.1)(@luma.gl/core@9.0.7)
   '@esbuild-plugins/node-globals-polyfill':
     specifier: ^0.2.3
     version: 0.2.3(esbuild@0.20.1)
@@ -106,7 +106,7 @@ dependencies:
     version: 0.3.4
   svelte-maplibre:
     specifier: ^0.8.2
-    version: 0.8.2(@deck.gl/core@9.0.1)(@deck.gl/layers@9.0.1)(@deck.gl/mapbox@9.0.1)(svelte@4.2.12)
+    version: 0.8.2(@deck.gl/core@9.0.1)(@deck.gl/layers@9.0.1)(@deck.gl/mapbox@9.0.6)(svelte@4.2.12)
   svelte-radix:
     specifier: ^1.1.0
     version: 1.1.0(svelte@4.2.12)
@@ -540,7 +540,7 @@ packages:
     dependencies:
       '@deck.gl/core': 9.0.1
       '@deck.gl/layers': 9.0.1(@deck.gl/core@9.0.1)(@loaders.gl/core@4.1.4)(@luma.gl/core@9.0.7)(@luma.gl/engine@9.0.7)
-      '@luma.gl/constants': 9.0.7
+      '@luma.gl/constants': 9.0.9
       '@luma.gl/core': 9.0.7
       '@luma.gl/engine': 9.0.7(@luma.gl/core@9.0.7)
       '@luma.gl/shadertools': 9.0.9(@luma.gl/core@9.0.7)
@@ -588,7 +588,7 @@ packages:
       '@loaders.gl/mvt': 4.1.4
       '@loaders.gl/schema': 4.1.4
       '@loaders.gl/tiles': 4.1.4(@loaders.gl/core@4.1.4)
-      '@luma.gl/constants': 9.0.7
+      '@luma.gl/constants': 9.0.9
       '@luma.gl/core': 9.0.7
       '@math.gl/web-mercator': 4.0.1
       '@types/d3-array': 3.2.1
@@ -635,7 +635,7 @@ packages:
       '@luma.gl/engine': ^9.0.0
     dependencies:
       '@deck.gl/core': 9.0.1
-      '@luma.gl/constants': 9.0.7
+      '@luma.gl/constants': 9.0.9
       '@luma.gl/core': 9.0.7
       '@luma.gl/engine': 9.0.7(@luma.gl/core@9.0.7)
       '@luma.gl/shadertools': 9.0.9(@luma.gl/core@9.0.7)
@@ -721,7 +721,7 @@ packages:
       '@luma.gl/core': ^9.0.0
     dependencies:
       '@deck.gl/core': 9.0.1
-      '@luma.gl/constants': 9.0.7
+      '@luma.gl/constants': 9.0.9
       '@luma.gl/core': 9.0.7
       '@math.gl/core': 4.0.1
       '@types/google.maps': 3.55.5
@@ -764,7 +764,19 @@ packages:
       '@luma.gl/core': ^9.0.0
     dependencies:
       '@deck.gl/core': 9.0.1
-      '@luma.gl/constants': 9.0.7
+      '@luma.gl/constants': 9.0.9
+      '@luma.gl/core': 9.0.7
+      '@math.gl/web-mercator': 4.0.1
+    dev: false
+
+  /@deck.gl/mapbox@9.0.6(@deck.gl/core@9.0.1)(@luma.gl/core@9.0.7):
+    resolution: {integrity: sha512-RHLHx0uKCGd6t7L0uyH231A2omOLi70ByfqqZKbpzbwEdk64T2ZLtZFDfcSSTf1x2D6LYm0eQL36yeZkZarLFg==}
+    peerDependencies:
+      '@deck.gl/core': ^9.0.0
+      '@luma.gl/core': ^9.0.0
+    dependencies:
+      '@deck.gl/core': 9.0.1
+      '@luma.gl/constants': 9.0.9
       '@luma.gl/core': 9.0.7
       '@math.gl/web-mercator': 4.0.1
     dev: false
@@ -7811,7 +7823,7 @@ packages:
     resolution: {integrity: sha512-vKaW71QMCBcTNijAGc0mUl8k3DQ66iYmp6MB8BMGCXyWk82bTrcLy8FOnSm9fE+8q6TwzD6PLUoYFHt0II93Xw==}
     dev: false
 
-  /svelte-maplibre@0.8.2(@deck.gl/core@9.0.1)(@deck.gl/layers@9.0.1)(@deck.gl/mapbox@9.0.1)(svelte@4.2.12):
+  /svelte-maplibre@0.8.2(@deck.gl/core@9.0.1)(@deck.gl/layers@9.0.1)(@deck.gl/mapbox@9.0.6)(svelte@4.2.12):
     resolution: {integrity: sha512-l4FW7VE/1/uUUyk639gtvYyK0QbNw3roRq9ouxPDS+DAW8gwpxlnDwYTtjEO+Yq7TK6xOjimJtKOG3KES8e7Uw==}
     peerDependencies:
       '@deck.gl/core': ^8.8.0
@@ -7828,7 +7840,7 @@ packages:
     dependencies:
       '@deck.gl/core': 9.0.1
       '@deck.gl/layers': 9.0.1(@deck.gl/core@9.0.1)(@loaders.gl/core@4.1.4)(@luma.gl/core@9.0.7)(@luma.gl/engine@9.0.7)
-      '@deck.gl/mapbox': 9.0.1(@deck.gl/core@9.0.1)(@luma.gl/core@9.0.7)
+      '@deck.gl/mapbox': 9.0.6(@deck.gl/core@9.0.1)(@luma.gl/core@9.0.7)
       d3-geo: 3.1.0
       just-compare: 2.3.0
       just-flush: 2.3.0
