@@ -45,6 +45,12 @@ The best way to visualize your Strava activities--free, modern, fast and feature
 - Parallel fetching of activities
 
 ## Screenshots
+### Heatmap usage
+![Heatmap Screenshot](https://github.com/syslev/StravaMultiMapper/assets/61996958/9223ab7a-991d-476d-8fad-4b33665744f0)
+### Layers tool
+![Connected Screenshot](https://github.com/syslev/StravaMultiMapper/assets/61996958/2104676e-73f8-413e-a967-7239599cf50a)
+### Loading Screen
+![Loading Screen](https://github.com/syslev/StravaMultiMapper/assets/61996958/67c75f01-7af2-4fb9-aa1f-53f0e52950fd)
 
 ## Website Stack
 
