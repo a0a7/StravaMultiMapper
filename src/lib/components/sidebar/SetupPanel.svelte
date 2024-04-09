@@ -23,6 +23,8 @@
 	import { Deck } from '@deck.gl/core';
 	import { MapboxOverlay as DeckOverlay } from '@deck.gl/mapbox';
 	import { GeoJsonLayer } from '@deck.gl/layers';
+	import {HeatmapLayer} from '@deck.gl/aggregation-layers';
+	import type {HeatmapLayerProps} from '@deck.gl/aggregation-layers';
 
 	export let map: Map;
 
@@ -40,38 +42,11 @@
 	let visualizationLayer: any;
 	let visualizationDeck: any;
 	let popup: any, startIcon: any, endIcon: any;
-
+	let allGeojsonFeatures: any = [];
+	let heatmapCoords: any = [];
+	let coordsFlat: any = [];
 	let startIconEl: HTMLImageElement, endIconEl: HTMLImageElement;
-
-	const GL = {
-		// Blending modes
-		// Constants passed to blendFunc() or blendFuncSeparate() to specify the blending mode (for both, RBG and alpha, or separately).
-
-		ZERO: 0,
-		ONE: 1,
-		SRC_COLOR: 0x0300,
-		ONE_MINUS_SRC_COLOR: 0x0301,
-		SRC_ALPHA: 0x0302,
-		ONE_MINUS_SRC_ALPHA: 0x0303,
-		DST_ALPHA: 0x0304,
-		ONE_MINUS_DST_ALPHA: 0x0305,
-		DST_COLOR: 0x0306,
-		ONE_MINUS_DST_COLOR: 0x0307,
-		SRC_ALPHA_SATURATE: 0x0308,
-		CONSTANT_COLOR: 0x8001,
-		ONE_MINUS_CONSTANT_COLOR: 0x8002,
-		CONSTANT_ALPHA: 0x8003,
-		ONE_MINUS_CONSTANT_ALPHA: 0x8004,
-
-		// Blending equations
-		// Constants passed to blendEquation() or blendEquationSeparate() to control
-		// how the blending is calculated (for both, RBG and alpha, or separately).
-
-		FUNC_ADD: 0x8006,
-		FUNC_SUBTRACT: 0x800a,
-		FUNC_REVERSE_SUBTRACT: 0x800b
-	};
-
+	let heatmapLayer: any;
 	async function getActivities() {
 		try {
 			if (
@@ -92,9 +67,40 @@
 				);
 				const allActivities = await Promise.all(promises);
 				activities = allActivities.flat();
-				console.log(activities);
-
-				localStorage.setItem('activities', JSON.stringify(activities));
+				
+				let allCoordsArray: any = [];
+				for (const activity in activities) {
+					let coords = polyline
+						.decode(activities[activity].map.summary_polyline)
+						.map((coord: number[]) => [coord[1], coord[0]]);
+					coordsFlat.push(...coords);
+					allCoordsArray.push(
+						{
+							type: 'Feature',
+							properties: { 
+								id: activities[activity].id, 
+								name: activities[activity].name,
+								type: activities[activity].type,
+								date: activities[activity].start_date_local, 
+								time: activities[activity].moving_time,
+								dist: activities[activity].distance, 
+								speed: activities[activity].average_speed,
+								elev: activities[activity].total_elevation_gain,
+								average_watts: activities[activity].average_watts,
+								average_heartrate: activities[activity].average_heartrate,
+							},
+							geometry: {
+								type: 'LineString',
+								coordinates: coords
+							}
+						}
+					)
+				}
+				heatmapCoords = coordsFlat;
+				console.log(heatmapCoords.length);
+				allGeojsonFeatures = allCoordsArray;
+				localStorage.setItem('heatmapCoords', JSON.stringify(heatmapCoords));
+				localStorage.setItem('allGeojsonFeatures', JSON.stringify(allGeojsonFeatures));
 			} else {
 				console.error('No access token found in session data. Reload page and try again.');
 			}
@@ -105,14 +111,17 @@
 	}
 	onMount(() => {
 		isClient = true;
-		if (localStorage.getItem('activities')) {
-			activities = JSON.parse(localStorage.getItem('activities')!);
+		if (localStorage.getItem('allGeojsonFeatures')) {
+			allGeojsonFeatures = JSON.parse(localStorage.getItem('allGeojsonFeatures')!);
 		}
-		if (activities.length == 0) {
+		if (localStorage.getItem('heatmapCoords')) {
+			heatmapCoords = JSON.parse(localStorage.getItem('heatmapCoords')!);
+		}
+		if ((allGeojsonFeatures.length == 0) || (heatmapCoords.length == 0)) {
 			console.log('Requesting activities from Strava');
 			getActivities();
 		}
-		console.log(activities);
+		console.log(allGeojsonFeatures);
 		endIconEl = document.createElement('img');
 		endIconEl.src = 'img/map/trace_end.png';
 		endIconEl.width = 20;
@@ -120,44 +129,36 @@
 		startIconEl.src = 'img/map/trace_start.png';
 		startIconEl.width = 20;
 	});
-	$: if (isClient && activities) {
-		for (const activity in activities) {
-			if (!geoJsonData.some((e) => e.id === activities[activity].id)) {
-				const coords = polyline
-					.decode(activities[activity].map.summary_polyline)
-					.map((coord: number[]) => [coord[1], coord[0]]);
+	$: if (isClient && allGeojsonFeatures && heatmapCoords) {
+		heatmapLayer = new HeatmapLayer({
+			id: 'HeatmapLayer',
+			data: heatmapCoords,
+			aggregation: 'SUM',
+			threshold: 0.05,
+			intensity: 50,
+			getWeight: d => 1,
+			getPosition: (d) => d,
+			radiusPixels: 3,
+			colorRange: [[158,188,218,0.1], [158,188,218], [140,150,198], [136,86,167], [129,15,124]],
+		});
+		for (const feature in allGeojsonFeatures) {
+			if (!geoJsonData.some((e) => e.id === allGeojsonFeatures[feature].properties.id)) {
 				geoJsonData.push(
 					new GeoJsonLayer({
-						id: `${activities[activity].id}`,
-						data: {
-							type: 'Feature',
-							properties: { id: activities[activity].id },
-							geometry: {
-								type: 'LineString',
-								coordinates: coords
-							}
-						},
-						parameters: {
-							blendFuncSeparate: [
-								GL.SRC_ALPHA_SATURATE,
-								GL.SRC_ALPHA_SATURATE,
-								GL.SRC_ALPHA_SATURATE,
-								GL.ONE
-							],
-							blendEquation: [GL.FUNC_ADD, GL.FUNC_ADD],
-							blendColor: [1, 1, 1, 1]
-						},
+						id: `${allGeojsonFeatures[feature].properties.id}`,
+						data: allGeojsonFeatures[feature],
 						pickable: true,
 						stroked: true,
-						filled: true,
+						filled: false,
 						extruded: true,
-						lineWidthScale: 20,
-						lineWidthMinPixels: 2,
-						getFillColor: [160, 160, 180],
-						getLineColor: [255, 230, 0],
+						lineWidthScale: 1,
+						lineWidthMinPixels: 5,
+						lineCapRounded: true,
+						lineJointRounded: true,
+						getLineColor: [255, 255, 255],
 						getPointRadius: 100,
-						opacity: 0.35,
-						getLineWidth: 2,
+						opacity: 0.6,
+						getLineWidth: 0.7,
 						getElevation: 0
 					})
 				);
@@ -169,14 +170,13 @@
 			mapLoaded = true;
 		});
 	}
-	$: if (map && mapLoaded && geoJsonData) {
+	$: if (map && mapLoaded && geoJsonData && heatmapLayer) {
 		if (!visualizationDeck) {
 			visualizationDeck = new DeckOverlay({
-				layers: geoJsonData
+				layers: [...geoJsonData, heatmapLayer]
 			});
 			map.addControl(visualizationDeck);
 		}
-		console.log('deck function running');
 	}
 </script>
 
@@ -209,10 +209,10 @@
 			{/if}
 		</div>
 	</Card.Header>
-	{#if activities.length > 0 && !(Object.keys(activities[0]).length === 0) && !error}
+	{#if allGeojsonFeatures.length > 0 && !(Object.keys(allGeojsonFeatures[0]).length === 0) && !error}
 		<Separator class="mb-3 mx-5 w-[calc(100vw-2.5rem)] md:w-auto" />
 		<MapConfigPanel
-			{activities}
+			activities={activities}
 			bind:activityTypeFilter
 			bind:commuteFilter
 			bind:dateRangeMinFilter
@@ -221,7 +221,7 @@
 		/>
 		<Separator class="mt-3 mx-5 w-[calc(100vw-2.5rem)] md:w-auto" />
 		<ActivityTable activityData={activities} />
-	{:else if activities.length == 0 && !error}
+	{:else if allGeojsonFeatures.length == 0 && !error}
 		<Card.Content>
 			<Separator />
 			<div class="flex flex-col justify-center items-center w-full mt-2">
@@ -239,7 +239,7 @@
 				/>
 			</div>
 		</Card.Content>
-	{:else if activities.length === 1 && Object.keys(activities[0]).length === 0 && !error}
+	{:else if allGeojsonFeatures.length === 1 && Object.keys(allGeojsonFeatures[0]).length === 0 && !error}
 		<Card.Content>
 			<Separator />
 			<div class="flex flex-col justify-center items-center w-full mt-2">
@@ -290,7 +290,7 @@
 		<Button
 			class="py-[6px] px-[10px] bg-background hover:bg-card dark:hover:bg-muted border flex items-center mx-auto h-10 my-3 px-4"
 			on:click={() => {
-				localStorage.removeItem('activities');
+				localStorage.removeItem('allGeojsonFeatures');
 				signOut('strava');
 			}}
 		>

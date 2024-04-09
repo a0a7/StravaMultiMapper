@@ -53,9 +53,3 @@
 		fill="#242c34"
 	/></svg
 >
-
-<style>
-	text {
-		font-weight: bold;
-	}
-</style>

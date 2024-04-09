@@ -41,6 +41,7 @@
 	});
 </script>
 
+
 <svelte:head>
 	<title>Multi-Activity Heatmap for Strava</title>
 	<meta

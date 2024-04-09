@@ -15,16 +15,16 @@
 
 	export let activities: StravaActivity[];
 
-	let earliestDate = activities.reduce((earliest, current) => {
+	let earliestDate = activities.length > 0 ? activities.reduce((earliest, current) => {
 		return new Date(current.start_date) < new Date(earliest.start_date) ? current : earliest;
-	}).start_date;
+	}).start_date : null;
 
 	const df = new DateFormatter('en-US', {
 		dateStyle: 'medium'
 	});
 
 	let value: DateRange | undefined = {
-		start: parseDate(earliestDate.split('T')[0]),
+		start: parseDate(earliestDate ? earliestDate.split('T')[0] : '2007-10-31'),
 		end: today(getLocalTimeZone())
 	};
 
