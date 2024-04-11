@@ -5,7 +5,7 @@
 [![Website](https://img.shields.io/website?url=https%3A%2F%2Fstravamap.pages.dev%2F)](https://stravamap.pages.dev/)
 [![Mozilla HTTP Observatory Grade](https://img.shields.io/mozilla-observatory/grade-score/stravamap.pages.dev)](https://observatory.mozilla.org/analyze/stravamap.pages.dev)
 [![license](https://img.shields.io/github/license/sudolev/StravaMultiMapper)](https://github.com/sudolev/StravaMultiMapper/blob/main/LICENSE)
-[![Install As PWA](https://img.shields.io/badge/Install%20App-A?style=flat&logo=pwa&logoColor=fff&color=5a10c9)](https://stravamap.pages.dev)
+[![Install As PWA](https://img.shields.io/badge/Install-PWA?style=flat&logo=pwa&logoColor=fff&color=5a10c9)](https://stravamap.pages.dev)
 <!-- ![Lines of Code](https://tokei.rs/b1/github/syslev/StravaMultiMapper?type=Svelte,Typescript,Javascript&style=flat) -->
 
 The best way to visualize your Strava activities--free, modern, fast and feature-rich. Currently WIP!
