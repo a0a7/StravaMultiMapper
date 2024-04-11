@@ -5,7 +5,7 @@
 [![Website](https://img.shields.io/website?url=https%3A%2F%2Fstravamap.pages.dev%2F)](https://stravamap.pages.dev/)
 [![Mozilla HTTP Observatory Grade](https://img.shields.io/mozilla-observatory/grade-score/stravamap.pages.dev)](https://observatory.mozilla.org/analyze/stravamap.pages.dev)
 [![license](https://img.shields.io/github/license/sudolev/StravaMultiMapper)](https://github.com/sudolev/StravaMultiMapper/blob/main/LICENSE)
-
+[![Install As PWA](https://img.shields.io/badge/Install%20App-A?style=flat&logo=pwa&logoColor=fff&color=5a10c9)](https://stravamap.pages.dev)
 <!-- ![Lines of Code](https://tokei.rs/b1/github/syslev/StravaMultiMapper?type=Svelte,Typescript,Javascript&style=flat) -->
 
 The best way to visualize your Strava activities--free, modern, fast and feature-rich. Currently WIP!
@@ -49,6 +49,9 @@ The best way to visualize your Strava activities--free, modern, fast and feature
 ![Heatmap Screenshot](https://github.com/syslev/StravaMultiMapper/assets/61996958/9223ab7a-991d-476d-8fad-4b33665744f0)
 ### Layers tool
 ![Connected Screenshot](https://github.com/syslev/StravaMultiMapper/assets/61996958/2104676e-73f8-413e-a967-7239599cf50a)
+### PWA Demonstration
+![PWA Screenshot](https://github.com/syslev/StravaMultiMapper/assets/61996958/1fd9d11d-d664-4bf5-a6b2-717ad2e5242f)
+
 ### Loading Screen
 ![Loading Screen](https://github.com/syslev/StravaMultiMapper/assets/61996958/67c75f01-7af2-4fb9-aa1f-53f0e52950fd)
 
