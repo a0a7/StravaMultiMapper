@@ -78,7 +78,7 @@
 		"deck.gl": "^9.0.1",
 		"geojson": "^0.5.0",
 		"geojson-polyline": "^1.0.3",
-		"lucide-svelte": "^0.358.0",
+		"lucide-svelte": "^0.376.1",
 		"maplibre-gl": "^3.6.2",
 		"mode-watcher": "^0.3.0",
 		"paneforge": "^0.0.2",
