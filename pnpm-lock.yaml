@@ -57,8 +57,8 @@ dependencies:
     specifier: ^6.5.0
     version: 6.5.0
   '@watergis/maplibre-gl-export':
-    specifier: ^3.1.0
-    version: 3.1.0
+    specifier: ^3.8.1
+    version: 3.8.1
   '@watergis/svelte-maplibre-measure':
     specifier: ^3.0.0
     version: 3.0.0(svelte@4.2.12)
@@ -3835,12 +3835,12 @@ packages:
       pretty-format: 29.7.0
     dev: true
 
-  /@watergis/maplibre-gl-export@3.1.0:
-    resolution: {integrity: sha512-t20tsup2fF7d1ryug3bF+Ksh99u05x39Lehk6svJwvusL4hoAACA5ocbbWHMuABz9EdvmV9Fd+YE0x1aA3bdIQ==}
+  /@watergis/maplibre-gl-export@3.8.1:
+    resolution: {integrity: sha512-+r62v8GX8JuyVkiCfU3mO89b/5DeuAa7e1LRmyzXHd2af+bEzKcEyc0q59gNw45Gh1MbMTkbaUvtB8HowPOTkA==}
     dependencies:
       js-loading-overlay: 1.2.0
       jspdf: 2.5.1
-      maplibre-gl: 3.6.2
+      maplibre-gl: 4.1.0
     dev: false
 
   /@watergis/svelte-maplibre-measure@3.0.0(svelte@4.2.12):
