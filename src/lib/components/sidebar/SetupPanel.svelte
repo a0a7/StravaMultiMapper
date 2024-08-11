@@ -102,6 +102,7 @@
 				heatmapCoords = coordsFlat;
 				console.log(heatmapCoords.length);
 				allGeojsonFeatures = allCoordsArray;
+				localStorage.setItem('activities', JSON.stringify(activities));
 				localStorage.setItem('heatmapCoords', JSON.stringify(heatmapCoords));
 				localStorage.setItem('allGeojsonFeatures', JSON.stringify(allGeojsonFeatures));
 			} else {
@@ -120,7 +121,10 @@
 		if (localStorage.getItem('heatmapCoords')) {
 			heatmapCoords = JSON.parse(localStorage.getItem('heatmapCoords')!);
 		}
-		if ((allGeojsonFeatures.length == 0) || (heatmapCoords.length == 0)) {
+		if (localStorage.getItem('activities')) {
+			activities = JSON.parse(localStorage.getItem('activities')!);
+		}
+		if ((allGeojsonFeatures.length == 0) || (heatmapCoords.length == 0) || (activities.length == 0)) {
 			console.log('Requesting activities from Strava');
 			getActivities();
 		}
@@ -133,17 +137,19 @@
 		startIconEl.width = 20;
 	});
 	$: if (isClient && allGeojsonFeatures && heatmapCoords) {
-		heatmapLayer = new HeatmapLayer({
-			id: 'HeatmapLayer',
-			data: heatmapCoords,
-			aggregation: 'SUM',
-			threshold: 0.05,
-			intensity: 50,
-			getWeight: d => 1,
-			getPosition: (d) => d,
-			radiusPixels: 3,
-			colorRange: [[158,188,218,0.1], [158,188,218], [140,150,198], [136,86,167], [129,15,124]],
-		});
+		if (!heatmapLayer) {
+			heatmapLayer = new HeatmapLayer({
+				id: 'HeatmapLayer',
+				data: heatmapCoords,
+				aggregation: 'SUM',
+				threshold: 0.05,
+				intensity: 50,
+				getWeight: d => 1,
+				getPosition: (d) => d,
+				radiusPixels: 3,
+				colorRange: [[158,188,218,0.1], [158,188,218], [140,150,198], [136,86,167], [129,15,124]],
+			});
+		}
 		for (const feature in allGeojsonFeatures) {
 			if (!geoJsonData.some((e) => e.id === allGeojsonFeatures[feature].properties.id)) {
 				geoJsonData.push(
@@ -175,6 +181,7 @@
 	}
 	$: if (map && mapLoaded && geoJsonData && heatmapLayer) {
 		if (!visualizationDeck) {
+			console.log('geojsondata', geoJsonData);
 			visualizationDeck = new DeckOverlay({
 				layers: [...geoJsonData, heatmapLayer]
 			});
