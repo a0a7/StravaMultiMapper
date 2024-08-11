@@ -4,10 +4,11 @@
 	import '$lib/components/sidebar/svg-styles.css';
 
 	export let name: string;
+	export let id: number;
 	export let sport_type: string;
 	// export let commute: boolean;
 </script>
-
+<a href={`https://www.strava.com/activities/${id}`} target="_blank" rel="noopener noreferrer">
 <div class="flex">
 	<p class="inline-block truncate">{name}</p>
 	<Tooltip.Root openDelay={50}>
@@ -25,3 +26,4 @@
         {@html getCommuteIconURL(commute)}
     </div>-->
 </div>
+</a>

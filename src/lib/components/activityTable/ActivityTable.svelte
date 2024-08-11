@@ -22,7 +22,7 @@
 
 	import type { StravaActivity } from '$lib/activities';
 
-	export let activityData: StravaActivity[] = [];
+	export let activityData: StravaActivity[];
 	const table = createTable(readable(activityData), {
 		sort: addSortBy({ disableMultiSort: true }),
 		filter: addTableFilter({
@@ -37,8 +37,8 @@
 			accessor: (item) => item,
 			header: 'Name',
 			id: 'name',
-			cell: ({ value: { name, sport_type, commute } }) =>
-				createRender(ActivityDescriptionCell, { name, sport_type }),
+			cell: ({ value: { name, sport_type, id, commute } }) =>
+				createRender(ActivityDescriptionCell, { name, id, sport_type }),
 			plugins: {
 				sort: {
 					getSortValue({ name }: { name: string }) {
@@ -173,6 +173,9 @@
 
 	const { headerRows, pageRows, tableAttrs, tableBodyAttrs, pluginStates, flatColumns, rows } =
 		table.createViewModel(columns);
+	
+	console.log('activityData:', activityData);
+	console.log('Page Rows:', $pageRows);
 
 	const ids = flatColumns.map((col) => col.id);
 
