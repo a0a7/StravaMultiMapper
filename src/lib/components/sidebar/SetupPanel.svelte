@@ -47,6 +47,8 @@
 	let coordsFlat: any = [];
 	let startIconEl: HTMLImageElement, endIconEl: HTMLImageElement;
 	let heatmapLayer: any;
+	let loading: boolean = true;
+
 	async function getActivities() {
 		try {
 			if (
@@ -67,7 +69,8 @@
 				);
 				const allActivities = await Promise.all(promises);
 				activities = allActivities.flat();
-				
+				loading = false;
+
 				let allCoordsArray: any = [];
 				for (const activity in activities) {
 					let coords = polyline
@@ -221,7 +224,7 @@
 		/>
 		<Separator class="mt-3 mx-5 w-[calc(100vw-2.5rem)] md:w-auto" />
 		<ActivityTable activityData={activities} />
-	{:else if allGeojsonFeatures.length == 0 && !error}
+	{:else if allGeojsonFeatures.length == 0 && loading && !error}
 		<Card.Content>
 			<Separator />
 			<div class="flex flex-col justify-center items-center w-full mt-2">
