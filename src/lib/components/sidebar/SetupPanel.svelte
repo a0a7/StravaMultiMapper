@@ -23,8 +23,6 @@
 	import { Deck } from '@deck.gl/core';
 	import { MapboxOverlay as DeckOverlay } from '@deck.gl/mapbox';
 	import { GeoJsonLayer } from '@deck.gl/layers';
-	import {HeatmapLayer} from '@deck.gl/aggregation-layers';
-	import type {HeatmapLayerProps} from '@deck.gl/aggregation-layers';
 
 	export let map: Map;
 
@@ -46,7 +44,6 @@
 	let heatmapCoords: any = [];
 	let coordsFlat: any = [];
 	let startIconEl: HTMLImageElement, endIconEl: HTMLImageElement;
-	let heatmapLayer: any;
 	let loading: boolean = true;
 
 	async function getActivities() {
@@ -137,19 +134,6 @@
 		startIconEl.width = 20;
 	});
 	$: if (isClient && allGeojsonFeatures && heatmapCoords) {
-		if (!heatmapLayer) {
-			heatmapLayer = new HeatmapLayer({
-				id: 'HeatmapLayer',
-				data: heatmapCoords,
-				aggregation: 'SUM',
-				threshold: 0.05,
-				intensity: 50,
-				getWeight: d => 1,
-				getPosition: (d) => d,
-				radiusPixels: 3,
-				colorRange: [[158,188,218,0.1], [158,188,218], [140,150,198], [136,86,167], [129,15,124]],
-			});
-		}
 		for (const feature in allGeojsonFeatures) {
 			if (!geoJsonData.some((e) => e.id === allGeojsonFeatures[feature].properties.id)) {
 				geoJsonData.push(
@@ -179,11 +163,11 @@
 			mapLoaded = true;
 		});
 	}
-	$: if (map && mapLoaded && geoJsonData && heatmapLayer) {
+	$: if (map && mapLoaded && geoJsonData) {
 		if (!visualizationDeck) {
 			console.log('geojsondata', geoJsonData);
 			visualizationDeck = new DeckOverlay({
-				layers: [...geoJsonData, heatmapLayer]
+				layers: [...geoJsonData]
 			});
 			map.addControl(visualizationDeck);
 		}
